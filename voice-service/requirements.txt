@@ -1,0 +1,5 @@
+# Voice service dependencies — install in Phase 2
+# rasa>=3.6.0
+# requests>=2.31.0
+# fastapi>=0.110.0
+# uvicorn>=0.27.0

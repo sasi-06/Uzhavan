@@ -1,0 +1,41 @@
+version: "3.1"
+
+nlu:
+  - intent: search_machine
+    examples: |
+      - find a tractor near me
+      - I need a harvester for tomorrow
+      - search for plough in [Chennai](location)
+
+  - intent: book_machine
+    examples: |
+      - book this tractor for [2 acres](duration_or_area)
+      - reserve machine for [tomorrow](date)
+
+  - intent: check_booking_status
+    examples: |
+      - where is my booking
+      - check my booking status
+
+  - intent: cancel_booking
+    examples: |
+      - cancel my booking
+      - I want to cancel
+
+  - intent: list_my_machine
+    examples: |
+      - list my tractor for rent
+      - add my harvester
+
+  - intent: check_earnings
+    examples: |
+      - how much did I earn
+      - show my earnings
+
+entities:
+  - machine_type
+  - location
+  - date
+  - duration_or_area
+  - machine_id
+  - rating_value

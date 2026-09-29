@@ -1,0 +1,18 @@
+version: "3.1"
+
+intents:
+  - search_machine
+  - book_machine
+  - check_booking_status
+  - cancel_booking
+  - contact_owner
+  - rate_owner
+  - list_my_machine
+  - check_earnings
+
+actions:
+  - action_search_machine
+  - action_book_machine
+  - action_confirm_booking
+  - action_check_status
+  - action_fallback_to_ui
