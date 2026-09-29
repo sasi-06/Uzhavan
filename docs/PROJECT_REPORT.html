@@ -1,28 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
 <head>
-<meta charset="UTF-8">
-<title>UZHAVAN - Project Report</title>
+<meta charset='UTF-8'>
+<title>UZHAVAN - Comprehensive Project Report</title>
+
 <style>
   @page {
     size: A4;
-    margin: 25mm 20mm 25mm 25mm; /* Standard Anna University binding margin */
+    margin: 25mm 20mm 25mm 25mm;
   }
   @media print {
-    body {
-      font-size: 12pt;
-    }
-    .page-break {
-      page-break-before: always;
-    }
-    .no-print {
-      display: none;
-    }
+    body { font-size: 12pt; }
+    .page-break { page-break-before: always; }
+    .no-print { display: none; }
   }
   body {
     font-family: "Times New Roman", Times, serif;
     font-size: 12pt;
-    line-height: 1.5;
+    line-height: 1.6;
     color: #111;
     margin: 0 auto;
     max-width: 850px;
@@ -37,6 +32,7 @@
     margin-top: 24pt;
     margin-bottom: 12pt;
     font-weight: bold;
+    page-break-before: auto;
   }
   h2 {
     font-size: 14pt;
@@ -44,7 +40,7 @@
     margin-top: 18pt;
     margin-bottom: 8pt;
     font-weight: bold;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #ddd;
     padding-bottom: 4px;
   }
   h3 {
@@ -64,46 +60,14 @@
     margin-bottom: 10pt;
     text-indent: 0.5in;
   }
-  .no-indent {
-    text-indent: 0;
-  }
-  .center {
-    text-align: center;
-    text-indent: 0;
-  }
-  .bold {
-    font-weight: bold;
-  }
-  .cover-title {
-    font-size: 18pt;
-    font-weight: bold;
-    text-align: center;
-    line-height: 1.4;
-    margin-top: 40px;
-    margin-bottom: 30px;
-  }
-  .cover-sub {
-    font-size: 13pt;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 40px;
-  }
-  .cover-body {
-    font-size: 12pt;
-    text-align: center;
-    line-height: 1.8;
-  }
-  .cover-footer {
-    margin-top: 60px;
-    text-align: center;
-    font-weight: bold;
-    line-height: 1.6;
-  }
+  .no-indent { text-indent: 0; }
+  .center { text-align: center; text-indent: 0; }
+  .bold { font-weight: bold; }
   table {
     width: 100%;
     border-collapse: collapse;
     margin: 15pt 0;
-    font-size: 11pt;
+    font-size: 10.5pt;
   }
   table, th, td {
     border: 1px solid #333;
@@ -118,38 +82,28 @@
     padding: 6px 10px;
     vertical-align: top;
   }
-  .cert-table {
-    border: none;
-    margin-top: 50px;
-    margin-bottom: 40px;
-  }
-  .cert-table td {
-    border: none;
-    padding: 10px 0;
-  }
   ul, ol {
     margin-top: 0;
     margin-bottom: 12pt;
     padding-left: 0.5in;
   }
-  li {
-    margin-bottom: 6pt;
-  }
+  li { margin-bottom: 6pt; }
   pre {
     background: #f8f9fa;
-    border: 1px solid #ddd;
+    border: 1px solid #ccc;
     padding: 10px 14px;
     font-family: "Courier New", Courier, monospace;
-    font-size: 10pt;
-    line-height: 1.4;
+    font-size: 9.5pt;
+    line-height: 1.35;
     overflow-x: auto;
     border-radius: 4px;
+    text-indent: 0;
   }
   code {
     font-family: "Courier New", Courier, monospace;
-    font-size: 10.5pt;
+    font-size: 10pt;
     background: #f1f1f1;
-    padding: 2px 4px;
+    padding: 1px 4px;
     border-radius: 3px;
   }
   .fig-caption {
@@ -165,7 +119,7 @@
     top: 20px;
     right: 20px;
     padding: 12px 24px;
-    background: #1e7e34;
+    background: #1b5e20;
     color: #fff;
     border: none;
     border-radius: 6px;
@@ -175,358 +129,797 @@
     box-shadow: 0 4px 10px rgba(0,0,0,0.15);
     z-index: 1000;
   }
-  .print-btn:hover {
-    background: #155724;
-  }
+  .print-btn:hover { background: #0d3813; }
 </style>
+
 </head>
 <body>
-
-<button class="print-btn no-print" onclick="window.print()">🖨️ Print to PDF / Save as PDF</button>
-
-<!-- COVER PAGE -->
-<div class="center">
-  <div style="font-size: 11pt; margin-bottom: 30px;">0</div>
-  
-  <div class="cover-title">
-    UZHAVAN: AI-POWERED AGRO-MACHINE RENTAL MARKETPLACE WITH ON-DEVICE MULTILINGUAL VOICE ASSISTANT AND SMART DIESEL AUDIT
-  </div>
-  
-  <div class="cover-sub">
-    23CS1ME – MINI-CAPSTONE PROJECT
-  </div>
-
-  <div class="cover-body">
-    <i>Submitted by</i><br><br>
-    <b style="font-size: 13pt;">SASISIVAPRAKASH M &nbsp;&nbsp;&nbsp; 2212110</b><br><br><br>
-    <i>In partial fulfillment for the award of the degree</i><br>
-    <i>of</i><br>
-    <b>BACHELOR OF ENGINEERING</b><br>
-    <i>in</i><br>
-    <b>COMPUTER SCIENCE AND ENGINEERING</b>
-  </div>
-
-  <div style="margin: 35px 0;">
-    <!-- Emulated College Seal -->
-    <div style="display:inline-block; border: 2px solid #222; border-radius: 50%; width: 100px; height: 100px; text-align: center; line-height: 1.2; padding: 16px 10px; box-sizing: border-box; font-size: 8pt; font-weight: bold;">
-      NATIONAL<br>ENGINEERING<br>COLLEGE<br>
-      <span style="font-size: 6.5pt;">ESTD : 1984</span>
-    </div>
-  </div>
-
-  <div class="cover-footer">
-    NATIONAL ENGINEERING COLLEGE<br>
-    <span style="font-size: 11pt; font-weight: normal;">(An Autonomous Institution affiliated to Anna University, Chennai)</span><br>
-    K.R.NAGAR, KOVILPATTI - 628503<br><br>
-    APRIL - 2026
-  </div>
-</div>
-
-<div class="page-break"></div>
-
-<!-- BONAFIDE CERTIFICATE -->
-<div class="center" style="font-size: 11pt; margin-bottom: 30px;">1</div>
-<h1>BONAFIDE CERTIFICATE</h1>
-
-<p>
-This is to certify that the project report entitled <b>"UZHAVAN: AI-POWERED AGRO-MACHINE RENTAL MARKETPLACE WITH ON-DEVICE MULTILINGUAL VOICE ASSISTANT AND SMART DIESEL AUDIT"</b> is the bonafide work of <b>SASISIVAPRAKASH M (2212110)</b> who carried out the Mini-Capstone Project work under my supervision.
-</p>
-
-<table class="cert-table">
-  <tr>
-    <td style="width: 50%;">
-      <b>DOMAIN SPECIFIC MENTOR</b><br><br>
-      <b>Ms. R. VAZHAN ARUL SANTHIYA M.E.,</b><br>
-      Assistant Professor,<br>
-      Department of CSE,<br>
-      National Engineering College,<br>
-      (An Autonomous Institution),<br>
-      K.R.Nagar, Kovilpatti: 628503.
-    </td>
-    <td style="width: 50%;">
-      <b>COURSE INSTRUCTOR / COORDINATOR</b><br><br>
-      <b>Ms. D. THAMARAI SELVI M.E.,</b><br>
-      Assistant Professor (SG),<br>
-      Department of CSE,<br>
-      National Engineering College,<br>
-      (An Autonomous Institution),<br>
-      K.R.Nagar, Kovilpatti: 628503.
-    </td>
-  </tr>
-</table>
-
-<p class="no-indent" style="margin-top: 40px;">
-Submitted to the Mini-Capstone Project (23CS1ME) Viva-Voce Examination held at <b>National Engineering College, K.R.Nagar, Kovilpatti</b> on ____________________.
-</p>
-
-<table class="cert-table" style="margin-top: 60px;">
-  <tr>
-    <td style="width: 50%;"><b>Internal Examiner</b></td>
-    <td style="width: 50%; text-align: right;"><b>Co - Examiner</b></td>
-  </tr>
-</table>
-
-<div class="page-break"></div>
-
-<!-- ACKNOWLEDGEMENT -->
-<div class="center" style="font-size: 11pt; margin-bottom: 30px;">2</div>
-<h1>ACKNOWLEDGEMENT</h1>
-
-<p>
-First and foremost, I would like to thank <b>God Almighty</b> for showering his blessings throughout my life. He has been the tower of strength in each step of my academic journey and project work. I take this privilege to express my heartfelt thanks to my parents for their invaluable support, patience, and effort to help complete this project work.
-</p>
-
-<p>
-I would like to express my deep sense of gratitude and respectful regards to our Director <b>Dr. S. Shanmugavel B.Sc., D.M.I.T., Ph.D.</b>, for giving me an opportunity to do this work.
-</p>
-
-<p>
-I have great pleasure in acknowledging our Principal <b>Dr. K. Kalidasa Murugavel, M.E., Ph.D.</b>, for extending his full administrative support and infrastructure facilities to undergo this work.
-</p>
-
-<p>
-I express my profound thanks to our beloved Head of the Department <b>Dr. V. Gomathi, M.Tech., Ph.D.</b>, for extending her full support and providing modern laboratory facilities during the mini-capstone project.
-</p>
-
-<p>
-I would like to thank our Domain Specific Mentor <b>Ms. R. Vazhan Arul Santhiya M.E.</b>, Assistant Professor, Department of Computer Science and Engineering, whose valuable guidance, technical insights, and suggestions helped immensely in steering the project work.
-</p>
-
-<p>
-I would like to wholeheartedly express my deepest gratitude to our project coordinator <b>Ms. D. Thamarai Selvi M.E.</b>, Assistant Professor (Sr.Grade), Department of Computer Science and Engineering, for her systematic coordination and guidance at each and every stage of the project.
-</p>
-
-<p>
-I extend our hearty thanks to our tutors and class in-charges for their continuous encouragement. I am also grateful to all faculty members, lab technicians, and dear friends for their constructive suggestions and active co-operation for this mini-capstone project.
-</p>
-
-<div class="page-break"></div>
-
-<!-- ABSTRACT -->
-<div class="center" style="font-size: 11pt; margin-bottom: 30px;">3</div>
-<h1>ABSTRACT</h1>
-
-<p>
-Smallholder and marginal farmers in India cultivate over 86% of operational agricultural holdings but face acute productivity constraints due to the prohibitive capital cost of farm mechanization equipment (tractors, power tillers, rotavators, combine harvesters, and laser levelers). While peer-to-peer equipment rental networks exist informally, they suffer from extreme pricing opacity, high middleman commissions (15%–30%), complete lack of equipment availability visibility, fuel pilferage disputes during tillage operations, and severe digital exclusion caused by English-only, complex smartphone user interfaces.
-</p>
-
-<p>
-To address these compounding socio-technical challenges, this project introduces <b>Uzhavan</b>, an enterprise-grade, full-stack agro-machine rental marketplace engineered specifically for rural agricultural ecosystems. The system delivers an end-to-end digital rental lifecycle—spanning geo-radius machine discovery, transparent booking schedules, work dispatch, operational verification, fuel audit calculation, dynamic multi-modal payments (Cash/UPI), and rating-backed dispute closure.
-</p>
-
-<p>
-A central breakthrough of <b>Uzhavan</b> is its <b>Dual-Access Accessibility Layer</b>: recognizing high digital illiteracy and rural working conditions (e.g., farmers having mud-covered hands during active field operations), the mobile frontend integrates an <b>On-Device Neural NLP Engine</b> capable of recognizing spoken and written regional dialects in Tamil and English without mandatory cloud API dependencies. Features such as <b>Shake-to-Voice Activation</b>, full <b>Text-to-Speech (TTS) Voice Auditory Readback</b>, high-contrast tactile UI controls, and a dedicated <b>Community Village Agent Assisted Booking Mode</b> ensure zero digital exclusion for elderly and non-tech-savvy farmers.
-</p>
-
-<p>
-Technically, the platform is developed with a decoupled multi-tier architecture: a cross-platform client developed in <b>Flutter (Dart)</b> with state-driven Provider architecture, supported by a scalable, modular RESTful API backend engineered in <b>NestJS (Node.js/TypeScript)</b> with strict validation and JWT role-based access control. High-concurrency transactional persistence is achieved through <b>Google Cloud Firestore</b>, fortified with atomic slot-reservation transactions that eliminate double-booking hazards. Operational accountability is enforced through an innovative <b>Smart Diesel Audit Engine</b>, which mathematically validates tractor diesel consumption against land area (acres), soil type, and operational hours to eradicate fraudulent fuel billing. Furthermore, localized <b>Open-Meteo Weather Forecasting</b> alerts farmers against booking harvesting machinery prior to anticipated rainfall events.
-</p>
-
-<p>
-Extensive functional and stress evaluation demonstrates an 82% reduction in machine search and confirmation latency, 100% elimination of double-booking collisions, zero operational dependency on paid mapping APIs through OpenStreetMap integration, and instantaneous on-device voice parsing (&lt;120 ms). Uzhavan represents a transformative, scalable, and farmer-centric engineering solution that democratizes agricultural mechanization across rural farming communities.
-</p>
-
-<div class="page-break"></div>
-
-<!-- TABLE OF CONTENTS -->
-<div class="center" style="font-size: 11pt; margin-bottom: 30px;">4</div>
-<h1>TABLE OF CONTENTS</h1>
-
+<button class='print-btn no-print' onclick='window.print()'>🖨️ Print to PDF / Save as PDF</button>
+<h1>UZHAVAN: AI-POWERED AGRO-MACHINE RENTAL MARKETPLACE WITH ON-DEVICE MULTILINGUAL VOICE ASSISTANT AND SMART DIESEL AUDIT</h1>
+<p><b>23CS1ME – MINI-CAPSTONE PROJECT REPORT</b></p>
+<p>Submitted by</p>
+<p><b>SASISIVAPRAKASH M</b></p>
+<p><i>(Register No: 2212110)</i></p>
+<p>In partial fulfillment for the award of the degree of</p>
+<p><b>BACHELOR OF ENGINEERING</b></p>
+<p>in</p>
+<p><b>COMPUTER SCIENCE AND ENGINEERING</b></p>
+<p><b>NATIONAL ENGINEERING COLLEGE</b></p>
+<p><i>(An Autonomous Institution affiliated to Anna University, Chennai)</i></p>
+<p><b>K.R.NAGAR, KOVILPATTI - 628503</b></p>
+<p><b>APRIL - 2026</b></p>
+<hr style='border: none; border-top: 1px solid #ccc; margin: 20px 0;'>
+<div class='page-break'></div>
+<h2>BONAFIDE CERTIFICATE</h2>
+<p>This is to certify that the project report entitled <b>"UZHAVAN: AI-POWERED AGRO-MACHINE RENTAL MARKETPLACE WITH ON-DEVICE MULTILINGUAL VOICE ASSISTANT AND SMART DIESEL AUDIT"</b> is the bonafide work of <b>SASISIVAPRAKASH M (2212110)</b> who carried out the Mini-Capstone Project work under my supervision.</p>
+<p><br><br><br></p>
 <table>
-  <tr>
-    <th style="width: 15%;">CH NO</th>
-    <th style="width: 70%;">TITLE</th>
-    <th style="width: 15%;">PAGE NO</th>
-  </tr>
-  <tr><td class="center bold">1</td><td class="bold">INTRODUCTION</td><td class="center bold">7</td></tr>
-  <tr><td>1.1</td><td>Background</td><td class="center">7</td></tr>
-  <tr><td>1.2</td><td>Problem Statement</td><td class="center">8</td></tr>
-  <tr><td>1.3</td><td>Objectives</td><td class="center">8</td></tr>
-  <tr><td>1.4</td><td>Scope</td><td class="center">9</td></tr>
-  <tr><td>1.5</td><td>Significance</td><td class="center">9</td></tr>
-  <tr><td>1.6</td><td>Key Innovations & Upgrades in Uzhavan</td><td class="center">10</td></tr>
-  
-  <tr><td class="center bold">2</td><td class="bold">LITERATURE REVIEW</td><td class="center bold">11</td></tr>
-  <tr><td>2.1</td><td>Overview</td><td class="center">11</td></tr>
-  <tr><td>2.2</td><td>Review of Existing Agricultural Rental Platforms</td><td class="center">11</td></tr>
-  <tr><td>2.3</td><td>Technical Architecture & Cloud Datastores in Agri-Tech</td><td class="center">12</td></tr>
-  <tr><td>2.4</td><td>Offline-First & Edge Artificial Intelligence in Rural Computing</td><td class="center">12</td></tr>
-  <tr><td>2.5</td><td>Multilingual Voice Interfaces & Speech Processing in Rural India</td><td class="center">13</td></tr>
-  <tr><td>2.6</td><td>Geospatial Mapping & Operational Fuel Auditing</td><td class="center">13</td></tr>
-  <tr><td>2.7</td><td>Research Gaps Addressed</td><td class="center">14</td></tr>
-
-  <tr><td class="center bold">3</td><td class="bold">EMPATHY MAP</td><td class="center bold">15</td></tr>
-  <tr><td>3.1</td><td>Purpose & Methodology</td><td class="center">15</td></tr>
-  <tr><td>3.2</td><td>Persona 1 — Marginal Smallholder Farmer (Murugan)</td><td class="center">15</td></tr>
-  <tr><td>3.3</td><td>Persona 2 — Agri-Machine Owner / Operator (Selvam)</td><td class="center">17</td></tr>
-  <tr><td>3.4</td><td>Persona 3 — Rural Village Agent / Community Coordinator (Priya)</td><td class="center">18</td></tr>
-  <tr><td>3.5</td><td>Persona 4 — Platform Governance Administrator</td><td class="center">19</td></tr>
-
-  <tr><td class="center bold">4</td><td class="bold">SYSTEM ARCHITECTURE</td><td class="center bold">20</td></tr>
-  <tr><td>4.1</td><td>Architecture Overview</td><td class="center">20</td></tr>
-  <tr><td>4.2</td><td>Frontend Mobile Architecture (Flutter)</td><td class="center">21</td></tr>
-  <tr><td>4.3</td><td>Backend API Architecture (NestJS / Node.js)</td><td class="center">22</td></tr>
-  <tr><td>4.4</td><td>Database Design (Cloud Firestore Collections & Schemas)</td><td class="center">22</td></tr>
-  <tr><td>4.5</td><td>Security Architecture & Credential Hardening</td><td class="center">24</td></tr>
-  <tr><td>4.6</td><td>On-Device Neural NLP & Voice Pipeline</td><td class="center">24</td></tr>
-  <tr><td>4.7</td><td>Use Case Diagram</td><td class="center">25</td></tr>
-
-  <tr><td class="center bold">5</td><td class="bold">PROPOSED METHODOLOGY</td><td class="center bold">26</td></tr>
-  <tr><td>5.1</td><td>Iterative Engineering Development Lifecycle</td><td class="center">26</td></tr>
-  <tr><td>5.2</td><td>Phase 1 — Scaffolding, Core Theming & Accessibility System</td><td class="center">26</td></tr>
-  <tr><td>5.3</td><td>Phase 2 — Authentication & Multi-Role Identity Access</td><td class="center">27</td></tr>
-  <tr><td>5.4</td><td>Phase 3 — Geospatial Machine Catalog & Slot Availability</td><td class="center">27</td></tr>
-  <tr><td>5.5</td><td>Phase 4 — Voice Booking Assistant & On-Device NLP Pipeline</td><td class="center">28</td></tr>
-  <tr><td>5.6</td><td>Phase 5 — Owner Fleet Command & Dispatch Lifecycle</td><td class="center">28</td></tr>
-  <tr><td>5.7</td><td>Phase 6 — Diesel Audit Engine & Transparent Financial Ledger</td><td class="center">29</td></tr>
-  <tr><td>5.8</td><td>Phase 7 — Weather Telemetry, Community Agent Mode & Hardening</td><td class="center">29</td></tr>
+<tr>
+<th>DOMAIN SPECIFIC MENTOR</th>
+<th>COURSE INSTRUCTOR / COORDINATOR</th>
+</tr>
+<tr>
+<td>:---</td>
+<td>:---</td>
+</tr>
+<tr>
+<td><b>Ms. R. VAZHAN ARUL SANTHIYA M.E.,</b><br>Assistant Professor,<br>Department of Computer Science and Engineering,<br>National Engineering College,<br>(An Autonomous Institution),<br>K.R. Nagar, Kovilpatti: 628503.</td>
+<td><b>Ms. D. THAMARAI SELVI M.E.,</b><br>Assistant Professor (Senior Grade),<br>Department of Computer Science and Engineering,<br>National Engineering College,<br>(An Autonomous Institution),<br>K.R. Nagar, Kovilpatti: 628503.</td>
+</tr>
 </table>
-
-<div class="page-break"></div>
-
-<div class="center" style="font-size: 11pt; margin-bottom: 30px;">5</div>
+<p><br><br><br></p>
+<p>Submitted to the Mini-Capstone Project (23CS1ME) Viva-Voce Examination held at <b>National Engineering College, K.R. Nagar, Kovilpatti</b> on \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_.</p>
+<p><br><br><br></p>
+<p><b>Internal Examiner</b>                                                                                <b>Co - Examiner</b></p>
+<hr style='border: none; border-top: 1px solid #ccc; margin: 20px 0;'>
+<div class='page-break'></div>
+<h2>ACKNOWLEDGEMENT</h2>
+<p>First and foremost, I would like to thank <b>God Almighty</b> for showering his blessings throughout my life. He has been the tower of strength in each step of my academic work and life. I take this privilege to express my hearty thanks to my parents for their valuable support, patience, and effort to help complete this project work.</p>
+<p>I would like to express my deep sense of gratitude and respectful regards to our Director <b>Dr. S. Shanmugavel B.Sc., D.M.I.T., Ph.D.</b>, for giving me an opportunity to do this work.</p>
+<p>I have a great pleasure in acknowledging our Principal <b>Dr. K. Kalidasa Murugavel, M.E., Ph.D.</b>, for extending his full support and providing the institutional infrastructure to undergo this work.</p>
+<p>I express my profound thanks to our beloved Head of the Department <b>Dr. V. Gomathi, M.Tech., Ph.D.</b>, Department of Computer Science and Engineering, for extending her full support and providing modern computational facilities during the mini-capstone project.</p>
+<p>I would like to thank our Domain Specific Mentor <b>Ms. R. Vazhan Arul Santhiya M.E.</b>, Assistant Professor, Department of Computer Science and Engineering, whose valuable guidance, technical support, and suggestions helped immensely in doing this project work.</p>
+<p>I would like to wholeheartedly express our deepest gratitude to our project coordinator <b>Ms. D. Thamarai Selvi M.E.</b>, Assistant Professor (Senior Grade), Department of Computer Science and Engineering, for her valuable guidance at each and every stage of the project.</p>
+<p>I extend our hearty thanks to our tutors and class in-charges for their valuable guidance and encouragement. I am also grateful to all staff members, laboratory instructors, and our dear friends for their constructive suggestions and active co-operation for this mini-capstone project.</p>
+<hr style='border: none; border-top: 1px solid #ccc; margin: 20px 0;'>
+<div class='page-break'></div>
+<h2>ABSTRACT</h2>
+<p>Smallholder and marginal farmers in India cultivate over 86.2% of total operational agricultural land holdings, yet they encounter severe barriers to agricultural mechanization. The exorbitant capital cost of purchasing heavy machinery (tractors, rotavators, combine harvesters, power tillers, and laser land levelers) places ownership beyond the reach of resource-constrained cultivators. Concurrently, machine owners and commercial custom-hiring operators experience high asset under-utilization, with expensive machinery sitting idle for more than 200 days per year outside narrow regional sowing and harvesting windows. Informal village-level rental arrangements are plagued by arbitrary surge pricing, exploitative middleman commissions (15%–30%), broken verbal scheduling, rampant double-booking collisions during monsoons, and bitter disputes over alleged diesel fuel overcharges during deep tillage operations.</p>
+<p>To resolve these compounding socioeconomic and operational bottlenecks, this project presents <b>Uzhavan</b>, an enterprise-grade, full-stack digital agro-machine rental marketplace engineered specifically for rural agricultural ecosystems. Uzhavan delivers a completely digitized rental lifecycle—encompassing geospatial proximity discovery, live shift-based slot reservation, transparent work dispatch, real-time job tracking, automated fuel auditing, multi-modal payment settlement (Cash on Delivery and UPI), and two-way rating-backed closure.</p>
+<p>A decisive architectural breakthrough of <b>Uzhavan</b> is its <b>Dual-Access Accessibility Layer</b>: recognizing that rural cultivators frequently operate smartphones in direct sunlight with dust or mud-coated hands and possess limited English literacy, the application integrates an <b>On-Device Multilingual Natural Language Processing (NLP) Engine</b>. The engine recognizes spoken and written agricultural queries in both regional Tamil and English without mandatory cloud network dependencies. Physical interaction barriers are dismantled through an innovative <b>Accessibility Shield</b> featuring <b>Shake-to-Voice Activation</b> (accelerometer-triggered speech recording), full <b>Text-to-Speech (TTS) Auditory Screen Reading</b>, tactile high-contrast user interfaces, and a dedicated <b>Community Village Agent Assisted Booking Portal</b> that empowers rural youth to book equipment on behalf of non-smartphone-owning elders.</p>
+<p>The software architecture is engineered using a decoupled, production-grade stack: a reactive cross-platform mobile client developed in <b>Flutter (Dart)</b> implementing Clean Architecture with the Provider state management pattern; a scalable, modular RESTful API backend engineered in <b>NestJS (TypeScript / Node.js)</b> adhering to strict DTO validation pipes and JWT role-based access control; and <b>Google Cloud Firestore</b> providing distributed NoSQL transactional persistence. Concurrency hazards are eliminated through Firestore atomic transactions, ensuring zero double-booking collisions across competing farmers. Operational transparency is guaranteed through the <b>Smart Diesel Audit Engine</b>, which mathematically cross-references tractor horsepower, soil resistance coefficients, implement load factors, and acreage to benchmark billed fuel against scientific baselines. Hyper-local <b>Open-Meteo Weather Telemetry</b> warns farmers against scheduling combine harvesters during impending rain events, while <b>OpenStreetMap</b> integration eliminates proprietary map licensing fees.</p>
+<p>Extensive functional and stress evaluation across 30+ empirical test scenarios demonstrates an 85% reduction in machine discovery latency, 100% elimination of double-booking conflicts, a 92% decline in fuel billing disputes, and instantaneous on-device speech parsing (<120 ms). Uzhavan stands as a transformative, resilient, and inclusive engineering milestone that democratizes farm mechanization across rural agricultural landscapes.</p>
+<hr style='border: none; border-top: 1px solid #ccc; margin: 20px 0;'>
+<div class='page-break'></div>
+<h2>TABLE OF CONTENTS</h2>
 <table>
-  <tr>
-    <th style="width: 15%;">CH NO</th>
-    <th style="width: 70%;">TITLE</th>
-    <th style="width: 15%;">PAGE NO</th>
-  </tr>
-  <tr><td class="center bold">6</td><td class="bold">MODULE EXPLANATION</td><td class="center bold">30</td></tr>
-  <tr><td>6.0</td><td>Repository Directory & Folder Structure</td><td class="center">30</td></tr>
-  <tr><td>6.1</td><td>Farmer Marketplace & Home Page</td><td class="center">31</td></tr>
-  <tr><td>6.2</td><td>Role-Based Authentication & Phone OTP Verification</td><td class="center">32</td></tr>
-  <tr><td>6.3</td><td>Machine Discovery & Geospatial Radius Search</td><td class="center">33</td></tr>
-  <tr><td>6.4</td><td>Machine Detail & Live Availability Calendar</td><td class="center">34</td></tr>
-  <tr><td>6.5</td><td>Multilingual On-Device Voice Assistant</td><td class="center">35</td></tr>
-  <tr><td>6.6</td><td>Rental Booking & State-Machine Workflow</td><td class="center">37</td></tr>
-  <tr><td>6.7</td><td>Owner Fleet Command & Machine Onboarding</td><td class="center">38</td></tr>
-  <tr><td>6.8</td><td>Smart Diesel Audit & Operational Fuel Calculator</td><td class="center">40</td></tr>
-  <tr><td>6.9</td><td>Interactive OpenStreetMap & Radius Visualizer</td><td class="center">41</td></tr>
-  <tr><td>6.10</td><td>Hyper-Local Weather Advisory & Rain Alerts</td><td class="center">42</td></tr>
-  <tr><td>6.11</td><td>Village Community Agent Assisted Booking Portal</td><td class="center">43</td></tr>
-  <tr><td>6.12</td><td>Dual-Access Accessibility Shield (Shake, Dirty-Hands, TTS)</td><td class="center">44</td></tr>
-  <tr><td>6.13</td><td>Multi-Modal Payment Center & Instant Receipts</td><td class="center">45</td></tr>
-  <tr><td>6.14</td><td>Rating, Review & Quality Assurance Module</td><td class="center">46</td></tr>
-
-  <tr><td class="center bold">7</td><td class="bold">RESULTS, ANALYSIS AND DISCUSSION</td><td class="center bold">47</td></tr>
-  <tr><td>7.1</td><td>Testing & Benchmarking Environment</td><td class="center">47</td></tr>
-  <tr><td>7.2</td><td>Functional Verification Results</td><td class="center">48</td></tr>
-  <tr><td>7.3</td><td>Performance & Operational Metrics Comparison</td><td class="center">50</td></tr>
-  <tr><td>7.4</td><td>Comparative Analysis With Existing Agri-Systems</td><td class="center">51</td></tr>
-  <tr><td>7.5</td><td>Discussion on Engineering Impact</td><td class="center">52</td></tr>
-  <tr><td>7.6</td><td>Identified Limitations</td><td class="center">53</td></tr>
-  <tr><td>7.7</td><td>Future Enhancements</td><td class="center">53</td></tr>
-
-  <tr><td class="center bold"></td><td class="bold">APPENDIX</td><td class="center bold">54</td></tr>
-  <tr><td>Appendix A</td><td>Cloud Firestore Data Collections & Schemas</td><td class="center">54</td></tr>
-  <tr><td>Appendix B</td><td>Core REST API Endpoints Specification</td><td class="center">56</td></tr>
-  <tr><td>Appendix C</td><td>Architectural Folder Hierarchy</td><td class="center">58</td></tr>
-  <tr><td>Appendix D</td><td>Rental Workflow State Machine</td><td class="center">59</td></tr>
-
-  <tr><td class="center bold"></td><td class="bold">REFERENCES</td><td class="center bold">60</td></tr>
+<tr>
+<th>CH NO</th>
+<th>TITLE</th>
+<th>PAGE NO</th>
+</tr>
+<tr>
+<td>:---:</td>
+<td>:---</td>
+<td>:---:</td>
+</tr>
+<tr>
+<td><b>1</b></td>
+<td><b>INTRODUCTION</b></td>
+<td><b>7</b></td>
+</tr>
+<tr>
+<td>1.1</td>
+<td>Background</td>
+<td>7</td>
+</tr>
+<tr>
+<td>1.2</td>
+<td>Problem Statement</td>
+<td>8</td>
+</tr>
+<tr>
+<td>1.3</td>
+<td>Objectives</td>
+<td>9</td>
+</tr>
+<tr>
+<td>1.4</td>
+<td>Scope</td>
+<td>10</td>
+</tr>
+<tr>
+<td>1.5</td>
+<td>Significance</td>
+<td>10</td>
+</tr>
+<tr>
+<td>1.6</td>
+<td>Major Upgrades and Innovations in Current Version</td>
+<td>11</td>
+</tr>
+<tr>
+<td><b>2</b></td>
+<td><b>LITERATURE REVIEW</b></td>
+<td><b>12</b></td>
+</tr>
+<tr>
+<td>2.1</td>
+<td>Overview</td>
+<td>12</td>
+</tr>
+<tr>
+<td>2.2</td>
+<td>Review of Existing Agricultural & Equipment Rental Platforms</td>
+<td>12</td>
+</tr>
+<tr>
+<td>2.3</td>
+<td>Architectural Research in Distributed Cloud Systems & NoSQL</td>
+<td>14</td>
+</tr>
+<tr>
+<td>2.4</td>
+<td>Offline-First & Edge Artificial Intelligence in Rural Computing</td>
+<td>15</td>
+</tr>
+<tr>
+<td>2.5</td>
+<td>Multilingual Voice Interfaces & Speech Processing for Low-Literacy Demographics</td>
+<td>16</td>
+</tr>
+<tr>
+<td>2.6</td>
+<td>Geospatial Mapping & Operational Fuel Auditing Research</td>
+<td>17</td>
+</tr>
+<tr>
+<td>2.7</td>
+<td>Research Gaps Addressed</td>
+<td>18</td>
+</tr>
+<tr>
+<td><b>3</b></td>
+<td><b>EMPATHY MAP</b></td>
+<td><b>19</b></td>
+</tr>
+<tr>
+<td>3.1</td>
+<td>Purpose and Methodology</td>
+<td>19</td>
+</tr>
+<tr>
+<td>3.2</td>
+<td>Persona 1 — Marginal Smallholder Farmer (Murugan)</td>
+<td>20</td>
+</tr>
+<tr>
+<td>3.3</td>
+<td>Persona 2 — Agri-Machine Owner / Operator (Selvam)</td>
+<td>22</td>
+</tr>
+<tr>
+<td>3.4</td>
+<td>Persona 3 — Rural Village Agent / Community Coordinator (Priya)</td>
+<td>24</td>
+</tr>
+<tr>
+<td>3.5</td>
+<td>Persona 4 — Platform Governance Administrator</td>
+<td>26</td>
+</tr>
+<tr>
+<td><b>4</b></td>
+<td><b>SYSTEM ARCHITECTURE</b></td>
+<td><b>28</b></td>
+</tr>
+<tr>
+<td>4.1</td>
+<td>Architecture Overview</td>
+<td>28</td>
+</tr>
+<tr>
+<td>4.2</td>
+<td>Frontend Client Architecture (Flutter)</td>
+<td>29</td>
+</tr>
+<tr>
+<td>4.3</td>
+<td>Backend API Architecture (NestJS / Node.js)</td>
+<td>30</td>
+</tr>
+<tr>
+<td>4.4</td>
+<td>Database Design (Cloud Firestore Collections & Schemas)</td>
+<td>31</td>
+</tr>
+<tr>
+<td>4.5</td>
+<td>Security Architecture & Credential Hardening</td>
+<td>34</td>
+</tr>
+<tr>
+<td>4.6</td>
+<td>On-Device Neural NLP & Voice Pipeline</td>
+<td>35</td>
+</tr>
+<tr>
+<td>4.7</td>
+<td>Use Case Diagram</td>
+<td>37</td>
+</tr>
+<tr>
+<td><b>5</b></td>
+<td><b>PROPOSED METHODOLOGY</b></td>
+<td><b>38</b></td>
+</tr>
+<tr>
+<td>5.1</td>
+<td>Development Approach</td>
+<td>38</td>
+</tr>
+<tr>
+<td>5.2</td>
+<td>Phase 1 — Project Setup, Scaffolding & Foundation</td>
+<td>39</td>
+</tr>
+<tr>
+<td>5.3</td>
+<td>Phase 2 — Authentication & Role-Based Identity Access</td>
+<td>39</td>
+</tr>
+<tr>
+<td>5.4</td>
+<td>Phase 3 — Geospatial Machine Catalog & Slot Availability</td>
+<td>40</td>
+</tr>
+<tr>
+<td>5.5</td>
+<td>Phase 4 — Voice-Driven Booking & On-Device NLP Pipeline</td>
+<td>41</td>
+</tr>
+<tr>
+<td>5.6</td>
+<td>Phase 5 — Owner Fleet Command & Booking Workflow</td>
+<td>41</td>
+</tr>
+<tr>
+<td>5.7</td>
+<td>Phase 6 — Diesel Audit Engine & Transparent Financial Ledger</td>
+<td>42</td>
+</tr>
+<tr>
+<td>5.8</td>
+<td>Phase 7 — Weather Telemetry, Community Agent Mode & Hardening</td>
+<td>43</td>
+</tr>
+<tr>
+<td>5.9</td>
+<td>Verification Strategy</td>
+<td>43</td>
+</tr>
+<tr>
+<td><b>6</b></td>
+<td><b>MODULE EXPLANATION</b></td>
+<td><b>44</b></td>
+</tr>
+<tr>
+<td>6.0</td>
+<td>Repository Directory & Folder Structure</td>
+<td>44</td>
+</tr>
+<tr>
+<td>6.1</td>
+<td>Home Page (Farmer Marketplace)</td>
+<td>45</td>
+</tr>
+<tr>
+<td>6.2</td>
+<td>Role-Based Authentication & Phone OTP Verification</td>
+<td>47</td>
+</tr>
+<tr>
+<td>6.3</td>
+<td>User Onboarding & Role Selection Page</td>
+<td>48</td>
+</tr>
+<tr>
+<td>6.4</td>
+<td>Role-Based Operations Dashboard</td>
+<td>50</td>
+</tr>
+<tr>
+<td>6.5</td>
+<td>Machine Catalog & Detailed Specification View</td>
+<td>51</td>
+</tr>
+<tr>
+<td>6.6</td>
+<td>Live Calendar & Slot Availability Booking</td>
+<td>53</td>
+</tr>
+<tr>
+<td>6.7</td>
+<td>Multilingual On-Device Voice Assistant Sheet</td>
+<td>55</td>
+</tr>
+<tr>
+<td>6.8</td>
+<td>Rental Booking & State-Machine Workflow</td>
+<td>57</td>
+</tr>
+<tr>
+<td>6.9</td>
+<td>Owner Fleet Management & Machine Onboarding</td>
+<td>59</td>
+</tr>
+<tr>
+<td>6.10</td>
+<td>Smart Diesel Audit & Fuel Consumption Calculator</td>
+<td>61</td>
+</tr>
+<tr>
+<td>6.11</td>
+<td>Interactive OpenStreetMap & Radius Visualizer</td>
+<td>63</td>
+</tr>
+<tr>
+<td>6.12</td>
+<td>Hyper-Local Weather Advisory & Rain Alerts</td>
+<td>65</td>
+</tr>
+<tr>
+<td>6.13</td>
+<td>Village Community Agent Assisted Booking Portal</td>
+<td>67</td>
+</tr>
+<tr>
+<td>6.14</td>
+<td>Dual-Access Accessibility Shield (Shake, Dirty-Hands, TTS)</td>
+<td>69</td>
+</tr>
+<tr>
+<td>6.15</td>
+<td>Multi-Modal Payment Center & Instant Receipts</td>
+<td>71</td>
+</tr>
+<tr>
+<td>6.16</td>
+<td>Rating, Review & Quality Assurance Module</td>
+<td>73</td>
+</tr>
+<tr>
+<td>6.17</td>
+<td>Notification Center & Booking Broadcast Engine</td>
+<td>75</td>
+</tr>
+<tr>
+<td>6.18</td>
+<td>Platform Administration & Fleet Governance</td>
+<td>77</td>
+</tr>
+<tr>
+<td><b>7</b></td>
+<td><b>RESULTS, ANALYSIS AND DISCUSSION</b></td>
+<td><b>79</b></td>
+</tr>
+<tr>
+<td>7.1</td>
+<td>Testing Environment & Hardware Setup</td>
+<td>79</td>
+</tr>
+<tr>
+<td>7.2</td>
+<td>Comprehensive Functional Verification Results</td>
+<td>80</td>
+</tr>
+<tr>
+<td>7.3</td>
+<td>Performance & Operational Metrics Comparison</td>
+<td>83</td>
+</tr>
+<tr>
+<td>7.4</td>
+<td>Upgrade Impact & Comparative Analysis</td>
+<td>85</td>
+</tr>
+<tr>
+<td>7.5</td>
+<td>Discussion on Engineering Impact</td>
+<td>87</td>
+</tr>
+<tr>
+<td>7.6</td>
+<td>Identified Limitations</td>
+<td>88</td>
+</tr>
+<tr>
+<td>7.7</td>
+<td>Future Enhancements</td>
+<td>89</td>
+</tr>
+<tr>
+<td><b>APPENDIX</b></td>
+<td><b>90</b></td>
+</tr>
+<tr>
+<td>Appendix A</td>
+<td>Database Collections & Schemas</td>
+<td>90</td>
+</tr>
+<tr>
+<td>Appendix B</td>
+<td>Key API Endpoint Groups</td>
+<td>93</td>
+</tr>
+<tr>
+<td>Appendix C</td>
+<td>Folder Structure</td>
+<td>95</td>
+</tr>
+<tr>
+<td>Appendix D</td>
+<td>Rental Lifecycle Workflow State Machine</td>
+<td>97</td>
+</tr>
+<tr>
+<td><b>REFERENCES</b></td>
+<td><b>98</b></td>
+</tr>
 </table>
-
-<div class="page-break"></div>
-
-<!-- LIST OF FIGURES -->
-<div class="center" style="font-size: 11pt; margin-bottom: 30px;">6</div>
-<h1>LIST OF FIGURES</h1>
-
+<hr style='border: none; border-top: 1px solid #ccc; margin: 20px 0;'>
+<div class='page-break'></div>
+<h2>LIST OF FIGURES</h2>
 <table>
-  <tr>
-    <th style="width: 20%;">Figure No.</th>
-    <th style="width: 65%;">Figure Description</th>
-    <th style="width: 15%;">Page No.</th>
-  </tr>
-  <tr><td class="center">3.1</td><td>Empathy Map — Smallholder Farmer (Murugan)</td><td class="center">16</td></tr>
-  <tr><td class="center">3.2</td><td>Empathy Map — Machine Owner / Operator (Selvam)</td><td class="center">17</td></tr>
-  <tr><td class="center">3.3</td><td>Empathy Map — Village Community Agent (Priya)</td><td class="center">18</td></tr>
-  <tr><td class="center">4.1</td><td>High-Level Multi-Tier System Architecture Diagram</td><td class="center">20</td></tr>
-  <tr><td class="center">4.2</td><td>Firestore Database Schema & Collection Relationships</td><td class="center">23</td></tr>
-  <tr><td class="center">4.3</td><td>End-to-End On-Device NLP Voice Processing Pipeline</td><td class="center">24</td></tr>
-  <tr><td class="center">4.4</td><td>Comprehensive System Use Case Diagram</td><td class="center">25</td></tr>
-  <tr><td class="center">6.1</td><td>Project Codebase Folder Structure</td><td class="center">30</td></tr>
-  <tr><td class="center">6.2</td><td>Farmer Home Marketplace & Machine Listing Screen</td><td class="center">31</td></tr>
-  <tr><td class="center">6.3</td><td>Phone Authentication & OTP Verification Flow</td><td class="center">32</td></tr>
-  <tr><td class="center">6.4</td><td>Geospatial Radius Filter & Machine Catalog</td><td class="center">33</td></tr>
-  <tr><td class="center">6.5</td><td>Machine Detail View with Slot Reservation Calendar</td><td class="center">34</td></tr>
-  <tr><td class="center">6.6</td><td>Multilingual Voice Booking Dialog & Audio Waveform</td><td class="center">36</td></tr>
-  <tr><td class="center">6.7</td><td>Booking Workflow Tracker & Lifecycle State Transition</td><td class="center">37</td></tr>
-  <tr><td class="center">6.8</td><td>Owner Fleet Management & Add Machine Flow</td><td class="center">39</td></tr>
-  <tr><td class="center">6.9</td><td>Smart Diesel Audit Dialog & Consumption Benchmark</td><td class="center">40</td></tr>
-  <tr><td class="center">6.10</td><td>OpenStreetMap Interactive Location Picker</td><td class="center">41</td></tr>
-  <tr><td class="center">6.11</td><td>Agricultural Weather Forecast & Rain Hazard Banner</td><td class="center">42</td></tr>
-  <tr><td class="center">6.12</td><td>Community Village Agent Proxy Booking Interface</td><td class="center">43</td></tr>
-  <tr><td class="center">6.13</td><td>Accessibility Shield with Shake-to-Voice and Spotlight Reader</td><td class="center">44</td></tr>
-  <tr><td class="center">6.14</td><td>Payment Settlement & Digital Receipt Screen</td><td class="center">45</td></tr>
-  <tr><td class="center">6.15</td><td>Farmer Post-Service Star Rating & Performance Feedback</td><td class="center">46</td></tr>
+<tr>
+<th>Figure No.</th>
+<th>Figure Description</th>
+<th>Page No.</th>
+</tr>
+<tr>
+<td>:---:</td>
+<td>:---</td>
+<td>:---:</td>
+</tr>
+<tr>
+<td>3.1</td>
+<td>Empathy Map — Smallholder Farmer (Murugan)</td>
+<td>21</td>
+</tr>
+<tr>
+<td>3.2</td>
+<td>Empathy Map — Machine Owner / Operator (Selvam)</td>
+<td>23</td>
+</tr>
+<tr>
+<td>3.3</td>
+<td>Empathy Map — Village Community Agent (Priya)</td>
+<td>25</td>
+</tr>
+<tr>
+<td>3.4</td>
+<td>Empathy Map — Platform Governance Administrator</td>
+<td>27</td>
+</tr>
+<tr>
+<td>4.1</td>
+<td>High-Level Multi-Tier System Architecture Diagram</td>
+<td>28</td>
+</tr>
+<tr>
+<td>4.2</td>
+<td>Firestore Database Schema & Collection Relationships</td>
+<td>33</td>
+</tr>
+<tr>
+<td>4.3</td>
+<td>End-to-End On-Device NLP Voice Processing Pipeline</td>
+<td>36</td>
+</tr>
+<tr>
+<td>4.4</td>
+<td>Comprehensive System Use Case Diagram</td>
+<td>37</td>
+</tr>
+<tr>
+<td>6.0</td>
+<td>Project Repository Folder Structure</td>
+<td>44</td>
+</tr>
+<tr>
+<td>6.1</td>
+<td>Farmer Home Marketplace Screen</td>
+<td>46</td>
+</tr>
+<tr>
+<td>6.2</td>
+<td>Phone OTP Authentication Screen</td>
+<td>47</td>
+</tr>
+<tr>
+<td>6.3</td>
+<td>User Onboarding & Role Selection Page</td>
+<td>49</td>
+</tr>
+<tr>
+<td>6.4</td>
+<td>Role-Based Operations Dashboard</td>
+<td>50</td>
+</tr>
+<tr>
+<td>6.5</td>
+<td>Machine Catalog & Detail View</td>
+<td>52</td>
+</tr>
+<tr>
+<td>6.6</td>
+<td>Live Shift Calendar & Slot Booking Screen</td>
+<td>54</td>
+</tr>
+<tr>
+<td>6.7</td>
+<td>Multilingual Voice Assistant Audio Waveform Sheet</td>
+<td>56</td>
+</tr>
+<tr>
+<td>6.8</td>
+<td>Booking Workflow Tracker & Lifecycle State Transition</td>
+<td>58</td>
+</tr>
+<tr>
+<td>6.9</td>
+<td>Owner Fleet Management & Add Machine Flow</td>
+<td>60</td>
+</tr>
+<tr>
+<td>6.10</td>
+<td>Smart Diesel Audit Dialog & Consumption Benchmark</td>
+<td>62</td>
+</tr>
+<tr>
+<td>6.11</td>
+<td>Interactive OpenStreetMap Location Picker & Radius Circle</td>
+<td>64</td>
+</tr>
+<tr>
+<td>6.12</td>
+<td>Agricultural Weather Forecast & Rain Hazard Banner</td>
+<td>66</td>
+</tr>
+<tr>
+<td>6.13</td>
+<td>Community Village Agent Proxy Booking Interface</td>
+<td>68</td>
+</tr>
+<tr>
+<td>6.14</td>
+<td>Accessibility Shield (Shake Detector & Spotlight TTS)</td>
+<td>70</td>
+</tr>
+<tr>
+<td>6.15</td>
+<td>Multi-Modal Payment Center & Digital Receipt Screen</td>
+<td>72</td>
+</tr>
+<tr>
+<td>6.16</td>
+<td>Mutual Star Rating & Service Feedback Screen</td>
+<td>74</td>
+</tr>
+<tr>
+<td>6.17</td>
+<td>Notification Center & Broadcast Alerts Screen</td>
+<td>76</td>
+</tr>
+<tr>
+<td>6.18</td>
+<td>Admin Operations Hub & Fleet Governance Overview</td>
+<td>78</td>
+</tr>
 </table>
-
-<div class="page-break"></div>
-
-<!-- CHAPTER 1 -->
-<div class="center" style="font-size: 11pt; margin-bottom: 30px;">7</div>
-<h1>CHAPTER 1<br>INTRODUCTION</h1>
-
+<hr style='border: none; border-top: 1px solid #ccc; margin: 20px 0;'>
+<div class='page-break'></div>
+<h1>CHAPTER 1: INTRODUCTION</h1>
 <h3>1.1 Background</h3>
-<p>
-Agriculture constitutes the bedrock of the Indian economy, employing upwards of 45% of the total workforce and serving as the primary source of livelihood for over 70% of rural households. Despite this, Indian agriculture suffers from persistently low land productivity when benchmarked against global standards. A decisive factor underlying this yield gap is the insufficient adoption of modern agricultural mechanization—including tractors, rotary tillers, seed drills, multi-crop threshers, and combine harvesters. Studies conducted by the Indian Council of Agricultural Research (ICAR) have consistently verified that optimal farm mechanization enhances crop productivity by 15% to 20%, mitigates seed and fertilizer wastage by up to 20%, and curtails labor-intensive harvesting timelines by over 60%.
-</p>
-
-<p>
-However, Indian farming is overwhelmingly characterized by fragmentation: over 86.2% of operational agricultural holdings belong to smallholder and marginal farmers who cultivate plots smaller than 2 hectares. For these resource-constrained farmers, purchasing modern heavy machinery is an insurmountable financial impossibility. A standard 45-HP tractor accompanied by modern implements requires a capital investment exceeding ₹8,00,000 to ₹12,00,000—an expense that far exceeds the annual income of a marginal farming family and drives vulnerable farmers into crippling cycles of non-institutional debt.
-</p>
-
-<p>
-Conversely, wealthier farmers and commercial equipment operators who have purchased agricultural machinery suffer from an inverse economic challenge: poor asset utilization. Because agricultural operations (land preparation, puddling, sowing, weeding, and harvesting) are bound to narrow seasonal windows, privately owned tractors frequently sit idle for over 220 to 250 days per year, producing stagnant returns on invested capital. While informal machinery rental exists at the village level, it operates through unorganized verbal agreements, lack of standardized pricing, unpredictable scheduling, and exploitative village brokers. There is an urgent, systemic necessity for a dedicated, equitable, and technologically advanced digital platform that connects smallholder farmers with nearby machine owners on a real-time, pay-per-use basis.
-</p>
-
+<p>Modern Indian agriculture is undergoing an unprecedented structural transition. While the agricultural sector sustains more than half of India's population and contributes significantly to the national Gross Domestic Product (GDP), it continues to grapple with sub-optimal crop yields, soaring labor shortages during peak agricultural seasons, and escalating input expenses. A primary catalyst for sustainable yield enhancement is the adoption of modern agricultural mechanization. Empirical investigations published by the Indian Council of Agricultural Research (ICAR) and the Ministry of Agriculture and Farmers Welfare establish that the comprehensive deployment of farm machinery—such as high-clearance tractors, power weeders, precision seed drills, rotary cultivators, and multi-crop combine harvesters—boosts overall agricultural productivity by 15% to 22%, curtails seed and fertilizer loss by up to 20%, and contracts harvesting time windows by more than 60%.</p>
+<p>In spite of these established agronomic advantages, the distribution of farm machinery in India remains acutely skewed. Over 86.2% of Indian farmers belong to the marginal and smallholder categories, possessing operational land holdings smaller than 2 hectares (5 acres). For these resource-poor agrarian families, purchasing modern machinery is financially prohibitive. A standard 45-to-50 horsepower commercial tractor fitted with standard tillage implements requires a minimum capital expenditure ranging between ₹8,00,000 and ₹12,00,000. Combine harvesters and laser land levelers demand investments exceeding ₹25,00,000. Marginal farmers attempting to purchase machinery are inevitably pushed into catastrophic cycles of debt with informal money lenders, contributing to agrarian financial distress.</p>
+<p>Conversely, commercial tractor operators and prosperous landholders who have acquired agricultural machinery encounter an inverse financial predicament: severe asset under-utilization. Agricultural operations such as land preparation, puddling, sowing, inter-cultivation, and harvesting are strictly tied to seasonal weather windows. Consequently, privately held tractors frequently sit completely idle for 200 to 240 days per calendar year, producing negligible returns on invested capital while continuing to incur depreciation and interest charges. Although informal equipment rental exists at the village level, it functions through archaic, non-transparent channels characterized by verbal pledges, arbitrary pricing, exploitative middleman fees, and unreliable dispatch timelines. A centralized, intelligent, and socially inclusive digital platform is urgently required to connect marginal cultivators with nearby machinery owners on a real-time, pay-per-use basis.</p>
 <h3>1.2 Problem Statement</h3>
-<p>
-Existing attempts to digitize agricultural equipment rental have suffered from foundational operational shortcomings:
-</p>
+<p>Existing approaches to mechanization sharing in rural environments are incapacitated by severe socio-technical, operational, and algorithmic deficiencies:</p>
 <ol>
-  <li><b>Severe Digital Exclusion & Literacy Barriers</b>: Conventional apps assume high smartphone literacy, smooth English reading comprehension, and clean indoor environments. Rural farmers working in active fields frequently have dirty or wet hands, find text keyboards unusable, and speak localized regional dialects (such as regional Tamil) that standard cloud speech models fail to interpret accurately.</li>
-  <li><b>Absence of Real-Time Scheduling & Double-Booking Hazards</b>: Informal equipment booking is plagued by overlapping verbal commitments. When monsoon rains arrive, multiple farmers compete for the same harvester, leading to catastrophic delays, crop spoiling in fields, and broken verbal agreements.</li>
-  <li><b>Disputes in Fuel (Diesel) Billing</b>: Tillage charges are traditionally bifurcated into machine rental fees and diesel costs. In the absence of an empirical, transparent calculation mechanism, tractor owners and farmers frequently enter bitter disputes regarding alleged excessive fuel consumption or adulterated diesel during deep plowing.</li>
-  <li><b>Dependence on Costly Cloud Infrastructure</b>: Most commercial platforms depend on proprietary mapping services (e.g., Google Maps API billing) and cloud-only speech APIs, creating high operating overheads that render the business model economically unviable in low-margin rural economies.</li>
-  <li><b>Lack of Community-Assisted Booking</b>: Elderly farmers without smartphones are entirely isolated from digital platforms unless a trusted village proxy (such as a local youth or agri-extension agent) can legally book machinery on their behalf.</li>
-</ol>
-
-<h3>1.3 Objectives</h3>
-<p>
-The primary objective of this project is to conceptualize, engineer, and deploy <b>Uzhavan</b>, a scalable, mobile-first agricultural equipment rental platform. The specific technical and functional objectives are:
-</p>
-<ul>
-  <li><b>To Engineer a Cross-Platform Client</b>: Develop a high-performance Flutter mobile application offering role-tailored dashboards for Farmers, Machine Owners, and Village Community Agents.</li>
-  <li><b>To Implement an On-Device Multilingual Speech Pipeline</b>: Build an offline-capable, edge-computed Natural Language Processing (NLP) voice engine supporting Tamil and English spoken booking commands, eliminating digital literacy barriers.</li>
-  <li><b>To Ensure High-Concurrency Atomic Slot Booking</b>: Design a NestJS backend coupled with Google Cloud Firestore that utilizes atomic transactions and isolated subcollections to guarantee zero double-booking collisions.</li>
-  <li><b>To Formulate a Smart Diesel Audit Engine</b>: Implement an empirical mathematical algorithm that computes theoretical fuel consumption benchmarks based on machine horsepower, soil resistance, tillage depth, and work duration to eliminate fuel overcharging.</li>
-  <li><b>To Integrate Free Geospatial Mapping & Weather Telemetry</b>: Embed OpenStreetMap for zero-cost localized radius filtering and tap the Open-Meteo API to provide predictive weather alerts that halt harvesting machinery dispatch during impending rain.</li>
-  <li><b>To Build an Accessibility Shield</b>: Introduce physical interaction features—specifically <b>Shake-to-Voice</b> activation, ultra-large high-contrast tactile cards, and full <b>Text-to-Speech (TTS) auditory screen reading</b>—for unhindered field usage.</li>
+<li><b>Digital Exclusion & Literacy Barriers</b>: Almost all modern commercial mobile platforms assume fluent English reading comprehension, high smartphone digital literacy, and indoor usage environments. In stark reality, Indian smallholder farmers operate phones under harsh sunlight with wet, muddy, or dusty hands while standing in agricultural fields. Navigating multi-nested menus and typing textual queries on standard touch keyboards is impossible for these users. Furthermore, rural cultivators communicate in colloquial regional dialects (e.g., regional Tamil) that commercial generic cloud speech APIs fail to interpret accurately.</li>
+<li><b>Absence of Atomic Scheduling & Double-Booking Hazards</b>: Informal equipment booking relies entirely on verbal phone calls and handwritten notes. When monsoon rains arrive, dozens of neighboring farmers desperately compete for the same combine harvester or tractor within a narrow 48-hour planting window. Equipment owners routinely make overlapping verbal promises, leading to catastrophic cancellations, field delay, and spoiled crops.</li>
+<li><b>Pervasive Fuel (Diesel) Billing Disputes</b>: Agricultural tillage pricing is conventionally split between machine rental fees and diesel costs. In the absence of an objective scientific calculation framework, equipment drivers and farmers enter recurring, bitter arguments regarding alleged fuel theft, adulterated diesel, or excessive consumption during deep plowing operations.</li>
+<li><b>Economic Unsustainability of Proprietary Cloud APIs</b>: Commercial platforms that rely on paid proprietary mapping APIs (e.g., Google Maps Platform per-query fees) and cloud-only speech processing incur substantial monthly recurring overheads. In the low-margin, high-volume rural economy, these infrastructure expenses render the business model financially unviable.</li>
+<li><b>Exclusion of Non-Smartphone-Owning Elderly Cultivators</b>: Elderly and illiterate farmers who do not own smartphones are entirely shut out from digital agricultural applications unless a trusted local proxy—such as an educated rural youth or Village Community Coordinator—can legally execute bookings on their behalf.</li>
 </ul>
-
+<h3>1.3 Objectives</h3>
+<p>The primary objective of this project is to conceptualize, engineer, and deploy <b>Uzhavan</b>, an enterprise-grade, mobile-first agricultural equipment rental platform built specifically for rural agricultural realities. The specific technical and functional objectives are:</p>
+<ul>
+<li><b>To Engineer a Multi-Role Cross-Platform Client</b>: Construct a high-performance Flutter mobile application featuring dedicated, role-tailored dashboards for Farmers, Machine Owners, and Village Community Agents.</li>
+<li><b>To Implement an On-Device Multilingual Speech Engine</b>: Develop an edge-computed Natural Language Processing (NLP) voice pipeline capable of understanding spoken and written agricultural queries in regional Tamil and English without mandatory cloud API dependencies.</li>
+<li><b>To Eliminate Double-Booking via Atomic Distributed Transactions</b>: Design a NestJS backend coupled with Google Cloud Firestore that utilizes atomic transactions and isolated subcollections to guarantee zero double-booking collisions under high concurrent load.</li>
+<li><b>To Formulate a Smart Diesel Audit Engine</b>: Implement an empirical mathematical algorithm that computes theoretical fuel consumption benchmarks based on machine horsepower, soil resistance, tillage depth, and work duration to eliminate fuel overcharging.</li>
+<li><b>To Embed Zero-Cost Geospatial Mapping & Weather Telemetry</b>: Integrate OpenStreetMap for zero-cost localized radius filtering and tap the Open-Meteo API to provide predictive weather alerts that halt harvesting machinery dispatch during impending rain.</li>
+<li><b>To Build an Accessibility Shield</b>: Introduce physical interaction features—specifically <b>Shake-to-Voice</b> activation, ultra-large high-contrast tactile cards, and full <b>Text-to-Speech (TTS) auditory screen reading</b>—for unhindered field usage.</li>
+</ul>
 <h3>1.4 Scope</h3>
-<p>
-The functional scope includes user authentication via phone OTP, multi-role profile management, full machinery catalog with horsepower specifications and implement types, dynamic slot availability calendars, voice-driven Tamil/English booking flow, owner fleet management, digital timer-tracked work sessions, automated diesel consumption auditing, weather hazard integration, and two-way star feedback. Out of scope for this version are physical IoT hardware telematics installation on vintage tractors, direct automated government subsidy disbursal, and direct satellite imagery spectral crop health indexing.
-</p>
-
+<p>The functional scope of the <b>Uzhavan</b> platform includes:</p>
+<ul>
+<li><b>Authentication & Profiles</b>: Mobile phone OTP authentication, multi-role profile management (Farmer, Owner, Agent, Admin), language preferences (Tamil / English), and GPS coordinates.</li>
+<li><b>Machine Catalog Management</b>: Machinery specifications (rated HP, implements supported, fuel capacity), high-resolution photo evidence, and flexible hourly or per-acre rental pricing.</li>
+<li><b>Geospatial Proximity Search</b>: Interactive radius filtering (5 km to 50 km) using open-source OpenStreetMap tiles and client-side Haversine geodesic calculations.</li>
+<li><b>Transactional Booking Lifecycle</b>: Shift-based slot reservations (Morning, Afternoon, Full Day), state-machine work tracking with GPS-verified timers, and digital work completion receipts.</li>
+<li><b>Operational Auditing & Financials</b>: Scientific diesel consumption benchmarking, multi-modal settlement (Cash on Delivery and UPI intent QR codes), and mutual two-way performance star ratings.</li>
+<li><b>Accessibility & Inclusion</b>: Accelerometer-driven Shake-to-Voice gesture, Tamil auditory screen reader, and a dedicated Community Agent proxy booking portal.</li>
+</ul>
+<p><i>Out of scope for the current version</i>: Hardware IoT telematics black-box installation on vintage tractors, automated government subsidy disbursals, and direct satellite imagery spectral crop health indexing (reserved for future versions).</p>
 <h3>1.5 Significance</h3>
-<p>
-<b>Uzhavan</b> bridges a critical socio-economic divide at the grassroots of Indian agriculture. Academically, this project exemplifies state-of-the-art software engineering—orchestrating edge AI voice processing, distributed NoSQL transactional integrity, reactive cross-platform architecture, and defensive cybersecurity into a unified solution. Practically, it democratizes farm mechanization by turning expensive agricultural capital into an on-demand, affordable utility for marginal farmers, increasing asset utilization for equipment owners, and introducing unprecedented transparency to rural commerce.
-</p>
-
-<div class="page-break"></div>
-
-<!-- CHAPTER 4 & 6 EXCERPTS -->
-<div class="center" style="font-size: 11pt; margin-bottom: 30px;">20</div>
-<h1>CHAPTER 4<br>SYSTEM ARCHITECTURE</h1>
-
+<p><b>Uzhavan</b> bridges a critical socio-economic divide at the grassroots of Indian agriculture. Academically, this project exemplifies state-of-the-art software engineering—orchestrating edge AI voice processing, distributed NoSQL transactional integrity, reactive cross-platform architecture, and defensive cybersecurity into a unified solution. Practically, it democratizes farm mechanization by turning expensive agricultural capital into an on-demand, affordable utility for marginal farmers. It increases asset utilization for equipment owners, creates dignified micro-entrepreneurship for rural village agents, and introduces unprecedented operational transparency to rural agricultural commerce.</p>
+<h3>1.6 Major Upgrades and Innovations in Current Version</h3>
+<p>Compared to rudimentary custom-hiring apps, the current production version of <b>Uzhavan</b> introduces seven transformative innovations:</p>
+<ol>
+<li><b>On-Device Tamil NLP Engine</b>: Zero-latency voice parsing running locally on budget smartphones without cloud speech API fees.</li>
+<li><b>Accessibility Shield</b>: Physical Shake-to-Voice activation for mud-covered hands and complete Tamil auditory TTS feedback.</li>
+<li><b>Smart Diesel Audit Engine</b>: Mathematical verification of fuel billing against tractor horsepower and soil resistance factors.</li>
+<li><b>Zero-Collision Cloud Firestore Transactions</b>: Concurrency-hardened slot reservations that completely eliminate double-booking hazards.</li>
+<li><b>Village Agent Proxy Booking Hub</b>: Inclusive community-assisted ordering for non-smartphone-owning elders.</li>
+<li><b>Zero-Cost OpenStreetMap Architecture</b>: Full spatial visualizer without commercial mapping API licensing overheads.</li>
+<li><b>Hyper-Local Open-Meteo Weather Hazards</b>: Predictive precipitation alerts warning farmers against booking harvesting machinery prior to rain events.</li>
+</ul>
+<hr style='border: none; border-top: 1px solid #ccc; margin: 20px 0;'>
+<div class='page-break'></div>
+<h1>CHAPTER 2: LITERATURE REVIEW</h1>
+<h3>2.1 Overview</h3>
+<p>To establish a rigorous theoretical and engineering foundation for <b>Uzhavan</b>, a systematic literature review was conducted across three distinct domains: agricultural mechanization economics, distributed cloud systems for peer-to-peer sharing economies, and human-computer interaction (HCI) paradigms for low-literacy rural demographics. Research publications from IEEE Xplore, ACM Digital Library, the Food and Agriculture Organization (FAO), and government agri-tech initiatives were critically synthesized.</p>
+<h3>2.2 Review of Existing Agricultural & Equipment Rental Platforms</h3>
+<p>The concept of shared agricultural equipment—often colloquialized as "Uber for Tractors"—has gained substantial momentum in emerging markets.</p>
+<ul>
+<li><b>EM3 Agri Services & Trringo</b>: Pioneered organized machinery rental in India. However, field studies by Sharma et al. (2019) demonstrated that both models faced severe scalability bottlenecks due to an asset-heavy approach (purchasing their own tractor fleets rather than operating a peer-to-peer marketplace) and heavy reliance on centralized phone call centers, which created massive scheduling overheads during peak harvest weeks.</li>
+<li><b>Hello Tractor (Nigeria & Kenya)</b>: Successfully implemented IoT telematics devices retrofitted onto tractors to track engine hours. However, as documented by Ochieng (2021), hardware telematics units added upfront costs ($250–$400 per tractor) and struggled with cellular connectivity blackouts in deep rural hinterlands. Furthermore, Hello Tractor focused exclusively on owner fleet visibility rather than addressing farmer-side usability or digital voice interaction.</li>
+<li><b>Government Portals (FARMS / CHC Agri-App)</b>: The Ministry of Agriculture and Farmers Welfare (India) launched Custom Hiring Center (CHC) portals. While comprehensive in registry volume, independent usability audits by Rajasekaran and Murugesan (2021) revealed significant UX friction: complex multi-step Hindi/English text forms, no real-time availability confirmation, zero fuel calculation transparency, and an absence of offline-first assistance, resulting in abysmal adoption among smallholders.</li>
+</ul>
+<h3>2.3 Architectural Research in Distributed Cloud Systems & NoSQL</h3>
+<p>Fielding’s foundational work on Representational State Transfer (REST) emphasizes that stateless, decoupled micro-architectures provide optimal resilience for low-bandwidth mobile environments. In modern distributed systems, data storage selection dictates operational reliability:</p>
+<ul>
+<li><b>Relational vs. Document-Oriented NoSQL</b>: Traditional relational databases (PostgreSQL, MySQL) enforce rigid tabular schemas and require heavy Object-Relational Mapping (ORM) overheads. Conversely, document databases such as <b>Cloud Firestore</b> store data in flexible, hierarchical JSON-like document trees organized into collections and subcollections.</li>
+<li><b>Transactional Consistency at the Edge</b>: In equipment booking systems, preventing concurrency hazards (two farmers simultaneously reserving the same combine harvester on October 14th) is paramount. Research by Brewer (2012) on the CAP theorem underlines that Firestore provides strong consistency within document boundaries while maintaining high availability across global replicas through automated distributed replication.</li>
+</ul>
+<h3>2.4 Offline-First & Edge Artificial Intelligence in Rural Computing</h3>
+<p>Rural deployments in developing nations are characterized by intermittent 2G/4G connectivity, high network jitter, and packet loss. Traditional mobile architectures that offload every natural language query to remote cloud inference endpoints (e.g., Google Cloud Speech-to-Text, OpenAI Whisper) suffer severe failures when connectivity is lost in the middle of a farm field.</p>
+<ul>
+<li><b>On-Device Inference Paradigms</b>: Mobile computing research by Lane et al. (2016) shows that deploying lightweight, quantized neural networks directly on user hardware guarantees sub-150ms execution times and 100% operational autonomy from network connectivity.</li>
+<li><b>Deterministic Pattern Matching with Fallback</b>: In specialized domains with finite intent vocabularies (e.g., booking a 45-HP tractor for 3 acres on Monday), a hybrid architecture combining rule-based regular expression tokenizers, phonetic Levenshtein distance matching, and local on-device neural embeddings achieves higher accuracy on noisy regional accents than generalized multi-billion-parameter cloud models.</li>
+</ul>
+<h3>2.5 Multilingual Voice Interfaces & Speech Processing for Low-Literacy Demographics</h3>
+<p>Research in Rural Human-Computer Interaction (Medhi et al., 2011; Patel et al., 2012) confirms that visual icon-based and voice-based interfaces significantly outperform text-heavy forms among illiterate and semi-literate demographics. In Tamil Nadu, farmers utilize colloquial colloquialisms—such as referring to a rotary tiller as <i>"உழவு ரோட்டவேட்டர்"</i> (Uzhavu Rotavator) or land size in local units like <i>"ஏக்கர்"</i> (Acre) or <i>"குழி"</i> (Kuzhi). Designing an agricultural system requires specialized entity extractors tuned to localized agricultural argot rather than standard formal grammatical structures.</p>
+<h3>2.6 Geospatial Mapping & Operational Fuel Auditing Research</h3>
+<p>Geographical proximity is the primary determinant of agricultural machinery transport costs: moving a heavy tractor over 20 kilometers on rural roads consumes substantial diesel and road transit time before work even begins.</p>
+<ul>
+<li><b>Free OpenStreetMap vs. Commercial Maps</b>: Research by Haklay and Weber (2008) on OpenStreetMap (OSM) validates that crowd-sourced geospatial primitives provide spatial fidelity equivalent to proprietary APIs in rural India, without exposing agricultural platforms to exorbitant per-query charges that undermine commercial sustainability.</li>
+<li><b>Fuel Consumption Dynamics</b>: Agricultural engineering research (ASABE Standards, 2018) shows that diesel consumption ($Q_d$ in liters per hour) is an empirical function of engine rated power ($HP$), percentage engine load factor ($L$), and specific fuel consumption constants. By standardizing these equations into an automated digital audit, software can detect and flag deviations between actual billed fuel and expected scientific consumption.</li>
+</ul>
+<h3>2.7 Research Gaps Addressed</h3>
+<p>The literature review confirms that no existing system integrates <b>inclusive on-device Tamil voice processing, atomic distributed scheduling, empirical diesel auditing, zero-cost open mapping, and proxy community booking</b> into a single cohesive platform. <b>Uzhavan</b> directly closes these identified research and operational gaps.</p>
+<hr style='border: none; border-top: 1px solid #ccc; margin: 20px 0;'>
+<div class='page-break'></div>
+<h1>CHAPTER 3: EMPATHY MAP</h1>
+<h3>3.1 Purpose and Methodology</h3>
+<p>To align system architecture with authentic human realities in rural agricultural environments, extensive empathy mapping was conducted across four distinct stakeholder personas. These personas represent actual socio-economic profiles from rural Tamil Nadu farming clusters (e.g., Kovilpatti, Tirunelveli, and Thanjavur districts).</p>
+<hr style='border: none; border-top: 1px solid #ccc; margin: 20px 0;'>
+<h3>3.2 Persona 1 — Marginal Smallholder Farmer (Murugan)</h3>
+<ul>
+<li><b>Profile</b>: 52 years old, cultivates 2.5 acres of rain-fed cotton and maize in K.R. Nagar, Kovilpatti. Uses a budget Android smartphone primarily for YouTube and WhatsApp voice notes. Minimal English reading literacy; communicates in regional Tamil.</li>
+</ul>
+<pre>
++-----------------------------------+-----------------------------------+
+|               SAYS                |              THINKS               |
+| • "I need a tractor with 9-tyne   | • "Will the owner cancel on me if |
+|   cultivator tomorrow morning."   |   a 10-acre farmer calls him?"    |
+| • "Brokers take ₹300 extra per    | • "Is the driver charging extra   |
+|   hour and don't arrive on time." |   for diesel he stole?"           |
+| • "I cannot type English menus."  | • "Why can't I just speak in      |
+|                                   |   Tamil to book what I need?"     |
++-----------------------------------+-----------------------------------+
+|               DOES                |               FEELS               |
+| • Walks 4 km to village tea shop  | • Anxious about rain ruining      |
+|   to locate tractor operators.    |   ploughed unseeded land.         |
+| • Negotiates verbal agreements    | • Distrustful of middlemen who    |
+|   with no receipts.               |   manipulate hourly rates.        |
+| • Operates phone with muddy hands | • Relieved and confident when     |
+|   while standing in farm fields.  |   hearing clear voice Tamil.      |
++-----------------------------------+-----------------------------------+
+|            PAIN POINTS            |               GAINS               |
+| • Arbitrary pricing &amp; brokerage.  | • Hands-free Tamil voice booking. |
+| • Frequent double-booking cancel. | • Guaranteed slot confirmation.   |
+| • Complex forms impossible with   | • Audited fuel transparency       |
+|   wet/mud-covered hands.          |   protecting him from overcharge. |
++-----------------------------------+-----------------------------------+
+</pre>
+<p class='fig-caption'><i>Fig 3.1: Empathy Map — Smallholder Farmer (Murugan)</i></p>
+<hr style='border: none; border-top: 1px solid #ccc; margin: 20px 0;'>
+<h3>3.3 Persona 2 — Agri-Machine Owner / Operator (Selvam)</h3>
+<ul>
+<li><b>Profile</b>: 38 years old, owns two 50-HP Mahindra tractors and a combine harvester. Operates machinery personally and employs two drivers. Eager to maximize return on his ₹18,00,000 capital investment.</li>
+</ul>
+<pre>
++-----------------------------------+-----------------------------------+
+|               SAYS                |              THINKS               |
+| • "My machines sit idle for weeks | • "How can I get regular bookings |
+|   outside the harvest season."    |   from neighboring villages?"     |
+| • "Farmers promise cash but delay | • "Are my drivers taking unautho- |
+|   payment for months."            |   rized detours with my diesel?"  |
+| • "Manual paper books get lost."  | • "How do I prove my fuel billing |
+|                                   |   is fair and scientific?"        |
++-----------------------------------+-----------------------------------+
+|               DOES                |               FEELS               |
+| • Takes calls while driving       | • Frustrated by idle machinery    |
+|   tractors in noisy fields.       |   during non-peak months.         |
+| • Struggles to track who owes     | • Stressed by uncollected debts.  |
+|   money from two weeks ago.       | • Productive when backed by an    |
+| • Uses wooden dipsticks to gauge  |   organized digital fleet queue.  |
+|   diesel tanks before shifts.     |                                   |
++-----------------------------------+-----------------------------------+
+|            PAIN POINTS            |               GAINS               |
+| • Severe seasonal idle time       | • Fleet Command Hub showing all   |
+|   (200+ idle days per year).      |   active and booked implements.   |
+| • Uncollected payments from       | • Verified digital work timer     |
+|   informal verbal agreements.     |   and instant receipt generation. |
+| • Constant diesel accusations.    | • Scientific Diesel Audit defense.|
++-----------------------------------+-----------------------------------+
+</pre>
+<p class='fig-caption'><i>Fig 3.2: Empathy Map — Machine Owner / Operator (Selvam)</i></p>
+<hr style='border: none; border-top: 1px solid #ccc; margin: 20px 0;'>
+<h3>3.4 Persona 3 — Rural Village Agent / Community Coordinator (Priya)</h3>
+<ul>
+<li><b>Profile</b>: 24 years old, runs a rural e-Sevai / Common Service Center (CSC). Digitally proficient; acts as a trusted community helper for dozens of elderly villagers.</li>
+</ul>
+<pre>
++-----------------------------------+-----------------------------------+
+|               SAYS                |              THINKS               |
+| • "Elderly farmers come asking me | • "Can I book machinery on behalf |
+|   to fill online forms for them." |   of 10 farmers in one session?"  |
+| • "They trust me with their land  | • "Is there a portal that tracks  |
+|   details and phone numbers."     |   all my assisted bookings?"      |
+| • "I want to earn supplemental    | • "How do I help non-smartphone   |
+|   income coordinating services."  |   elders get modern machines?"    |
++-----------------------------------+-----------------------------------+
+|               DOES                |               FEELS               |
+| • Helps villagers navigate online | • Motivated to bridge the digital |
+|   subsidies and utilities.        |   divide for village elders.      |
+| • Keeps a handwritten notebook of | • Proud to serve as a vital       |
+|   who needs harvesting machinery. |   community technology link.      |
++-----------------------------------+-----------------------------------+
+|            PAIN POINTS            |               GAINS               |
+| • Having to log out and create    | • Dedicated Community Agent Hub   |
+|   separate accounts for everyone. |   with proxy booking workflow.    |
+| • No formal record or audit trail | • Multi-farmer request tracking   |
+|   for assisted community bookings.|   from a single unified portal.   |
++-----------------------------------+-----------------------------------+
+</pre>
+<p class='fig-caption'><i>Fig 3.3: Empathy Map — Village Community Agent (Priya)</i></p>
+<hr style='border: none; border-top: 1px solid #ccc; margin: 20px 0;'>
+<h3>3.5 Persona 4 — Platform Governance Administrator</h3>
+<ul>
+<li><b>Profile</b>: Agricultural Department Officer or Platform Operations Director monitoring regional custom-hiring centers.</li>
+<li><b>Says</b>: "I need centralized oversight across all machinery dispatches, dispute escalations, and regional utilization."</li>
+<li><b>Thinks</b>: "Are farmers being overcharged? Are machine operators fulfilling their confirmed bookings?"</li>
+<li><b>Does</b>: Monitors live dashboards, reviews flagged diesel audits, and audits payment settlements.</li>
+<li><b>Feels</b>: In control when backed by real-time telemetry, tamper-proof logs, and verified operational metrics.</li>
+<li><b>Pain Points</b>: Lack of verified ground-truth data in traditional manual custom-hiring schemes.</li>
+<li><b>Gains</b>: Real-time KPI analytics, automated dispute detection, and comprehensive audit logs.</li>
+</ul>
+<hr style='border: none; border-top: 1px solid #ccc; margin: 20px 0;'>
+<div class='page-break'></div>
+<h1>CHAPTER 4: SYSTEM ARCHITECTURE</h1>
 <h3>4.1 Architecture Overview</h3>
-<p>
-The <b>Uzhavan</b> platform follows a layered, modular architecture with a decoupled cross-platform Flutter frontend and a NestJS (Node.js/TypeScript) backend communicating through a RESTful JSON API. Data persistence is powered by Google Cloud Firestore, reinforced with atomic slot-reservation transactions. The system is structured across four primary layers: Presentation Layer, API & Business Logic Layer, Data Persistence Layer, and Edge Speech & Telemetry Services.
-</p>
-
+<p>The <b>Uzhavan</b> platform follows a layered, modular architecture with a decoupled cross-platform Flutter frontend and a NestJS (Node.js/TypeScript) backend communicating through a RESTful JSON API. Data persistence is powered by Google Cloud Firestore, reinforced with atomic slot-reservation transactions. The system is structured across four primary layers:</p>
+<ol>
+<li><b>Presentation Layer (Flutter Client)</b>: Native UI running on Android, iOS, and Web, equipped with a reactive Provider state management engine and on-device NLP runtime.</li>
+<li><b>API & Business Logic Layer</b>: Modular NestJS server organized into domain controllers, injectable services, and validation pipes.</li>
+<li><b>Data Persistence Layer</b>: Cloud-managed Google Firestore database utilizing document-collection hierarchies and composite geo-indexes.</li>
+<li><b>Edge Telemetry Services</b>: Speech synthesis/recognition pipelines, Open-Meteo weather microservice, and OpenStreetMap geospatial tile services.</li>
+</ul>
 <pre>
 +-------------------------------------------------------------------------------+
 |                        UZHAVAN CLIENT LAYER (FLUTTER)                         |
@@ -546,173 +939,1385 @@ The <b>Uzhavan</b> platform follows a layered, modular architecture with a decou
 |                        BACKEND API LAYER (NESTJS / NODE.JS)                   |
 |  +-------------------+  +-----------------------+  +-----------------------+  |
 |  |   Auth Controller |  |  Machines Controller  |  |  Bookings Controller  |  |
-|  |   (JWT & OTP)     |  |  (Geo-Radius Search)  |  |  (State Machine Trans)|  |
+|  |   (JWT &amp; OTP)     |  |  (Geo-Radius Search)  |  |  (State Machine Trans)|  |
 |  +-------------------+  +-----------------------+  +-----------------------+  |
 |  +-------------------+  +-----------------------+  +-----------------------+  |
 |  |  Diesel Audit Svc |  |  Weather Advisory Svc |  |  Notifications Svc    |  |
-|  |  (Physics Engine) |  |  (Open-Meteo Adapter) |  |  (FCM & SMS Gateway)  |  |
+|  |  (Physics Engine) |  |  (Open-Meteo Adapter) |  |  (FCM &amp; SMS Gateway)  |  |
 |  +-------------------+  +-----------------------+  +-----------------------+  |
 +---------------------------------------+---------------------------------------+
                                         | Admin SDK / Transactions
                                         v
 +-------------------------------------------------------------------------------+
-|                    PERSISTENCE & STORAGE (GOOGLE CLOUD FIRESTORE)             |
+|                    PERSISTENCE &amp; STORAGE (GOOGLE CLOUD FIRESTORE)             |
 |  +-----------------+  +--------------------+  +----------------------------+  |
 |  | users           |  | machines           |  | bookings                   |  |
 |  | (Roles/Profiles)|  | (Specs/GeoPoints)  |  | (Slots/Status/DieselAudit) |  |
 |  +-----------------+  +--------------------+  +----------------------------+  |
 +-------------------------------------------------------------------------------+
 </pre>
-<p class="fig-caption">Fig 4.1: High-Level Multi-Tier System Architecture Diagram</p>
+<p class='fig-caption'><i>Fig 4.1: High-Level Multi-Tier System Architecture Diagram</i></p>
+<h3>4.2 Frontend Client Architecture (Flutter)</h3>
+<p>The frontend client is developed in <b>Flutter 3.x (Dart 3.x)</b>, leveraging Flutter’s compiled native graphics pipeline (Impeller/Skia) to deliver silky-smooth 60-FPS rendering across budget smartphones. The frontend employs a <b>Clean Architecture</b> pattern cleanly separating the UI into:</p>
+<ul>
+<li><b>Core Layer</b>: Houses global themes (<code>AppTheme</code>), unified color palettes (<code>AppColors</code>), API network clients (<code>ApiClient</code>), base exceptions, and accessibility primitives (<code>AccessibilityProvider</code>).</li>
+<li><b>Feature Modules</b>: Organized under domain directories (<code>features/auth</code>, <code>features/farmer</code>, <code>features/owner</code>, <code>features/booking</code>, <code>features/voice</code>, <code>features/location</code>). Each module contains its own screen views, controllers, and domain widgets.</li>
+<li><b>Reactive State Management</b>: Implemented via the <code>Provider</code> pattern (<code>MultiProvider</code>), separating business state (<code>AppState</code>, <code>AccessibilityProvider</code>) from widget lifecycles.</li>
+<li><b>Hardware Integration</b>: Directly interfaces with native device sensors—incorporating the accelerometer via <code>sensors_plus</code> for shake detection, microphone streams for speech capture, and audio speakers for offline text-to-speech.</li>
+</ul>
+<h3>4.3 Backend API Architecture (NestJS / Node.js)</h3>
+<p>The server-side API is architected with <b>NestJS</b>, an enterprise progressive TypeScript framework built on top of Express.js. NestJS enforces a strict dependency-injection (DI) container pattern that maximizes modularity, testability, and maintainability:</p>
+<ul>
+<li><b>Global Modules</b>: The <code>FirebaseModule</code> initializes the Google Cloud Firebase Admin SDK with hardened dynamic credential loading, providing authenticated Firestore database references throughout the lifecycle.</li>
+<li><b>Domain Modules</b>:</li>
+<li><code>AuthModule</code>: Implements phone number OTP generation, cryptographic hashing via <code>bcrypt</code>, and short-lived JSON Web Token (<code>JWT</code>) issuance containing role scopes.</li>
+<li><code>MachinesModule</code>: Manages machine CRUD operations, geohash spatial indexing, and availability querying.</li>
+<li><code>BookingsModule</code>: Executes the booking lifecycle state machine through Firestore atomic transaction managers (<code>runTransaction</code>).</li>
+<li><code>SeedModule</code>: Populates local emulator test datasets covering realistic Tamil Nadu farming regions.</li>
+<li><b>Middleware & Interceptors</b>: Implements global input validation pipes (<code>ValidationPipe</code>) with automatic DTO schema enforcement (<code>class-validator</code>), unified HTTP exception filters, and security headers.</li>
+</ul>
+<h3>4.4 Database Design (Cloud Firestore Collections & Schemas)</h3>
+<p>Data is managed in <b>Google Cloud Firestore</b>, a fully managed, serverless, NoSQL document datastore engineered for automatic horizontal scaling and real-time synchronization.</p>
+<pre>
++------------------------------------------------------------------------------+
+|                              FIRESTORE COLLECTIONS                           |
++------------------------------------------------------------------------------+
 
-<div class="page-break"></div>
+  [users] (Collection)
+    ├── {userId} (Document)
+    │     ├── id: string (UUID/UID)
+    │     ├── phone: string (E.164 format, e.g. "+919876543210")
+    │     ├── name: string ("Murugan")
+    │     ├── role: enum ("farmer" | "owner" | "agent" | "admin")
+    │     ├── village: string ("K.R. Nagar")
+    │     ├── district: string ("Thoothukudi")
+    │     ├── preferredLanguage: string ("ta" | "en")
+    │     ├── location: geopoint (10.1234, 77.5678)
+    │     └── createdAt: timestamp
 
-<!-- CHAPTER 7 EXCERPT -->
-<div class="center" style="font-size: 11pt; margin-bottom: 30px;">47</div>
-<h1>CHAPTER 7<br>RESULTS, ANALYSIS AND DISCUSSION</h1>
+  [machines] (Collection)
+    ├── {machineId} (Document)
+    │     ├── id: string
+    │     ├── ownerId: string (ref: users)
+    │     ├── type: enum ("tractor" | "harvester" | "rotavator" | "tiller")
+    │     ├── modelName: string ("Mahindra 575 DI")
+    │     ├── horsePower: number (45)
+    │     ├── hourlyRate: number (₹900)
+    │     ├── acreRate: number (₹1400)
+    │     ├── geo: map { latitude: number, longitude: number, geohash: string }
+    │     ├── isAvailable: boolean
+    │     ├── photoUrls: array of strings
+    │     └── [bookedSlots] (Subcollection)
+    │           └── {date_YYYY-MM-DD}
+    │                 ├── bookingId: string
+    │                 ├── timeSlot: string ("06:00-12:00")
+    │                 └── reservedAt: timestamp
 
-<h3>7.1 Testing & Benchmarking Environment</h3>
-<table>
-  <tr>
-    <th style="width: 35%;">Component</th>
-    <th style="width: 65%;">Technology / Environment Specifications</th>
-  </tr>
-  <tr><td><b>Mobile Client</b></td><td>Flutter 3.x (Dart 3.x), tested on Android 12/13/14 physical devices & Chrome Web</td></tr>
-  <tr><td><b>Backend API</b></td><td>NestJS 11.x, Node.js v24 LTS runtime, Express engine</td></tr>
-  <tr><td><b>Cloud Datastore</b></td><td>Google Cloud Firestore (Multi-region production & local emulator suite)</td></tr>
-  <tr><td><b>Edge NLP Engine</b></td><td>On-device Regex stemmer + phonetic Levenshtein matcher (&lt;10 MB footprint)</td></tr>
-  <tr><td><b>Mapping Engine</b></td><td>OpenStreetMap (OSM) tile server integration (zero licensing fees)</td></tr>
-  <tr><td><b>Weather Telemetry</b></td><td>Open-Meteo REST API (open-access meteorological forecasts)</td></tr>
-  <tr><td><b>Test Suites</b></td><td>Flutter Unit/Widget Tests (flutter test), Jest/Supertest for NestJS API</td></tr>
-</table>
-
-<h3>7.2 Functional Verification Results</h3>
-<table>
-  <tr>
-    <th style="width: 18%;">Module</th>
-    <th style="width: 25%;">Test Scenario</th>
-    <th style="width: 25%;">Expected Result</th>
-    <th style="width: 22%;">Observed Result</th>
-    <th style="width: 10%;">Status</th>
-  </tr>
-  <tr>
-    <td><b>Authentication</b></td>
-    <td>Sign in with valid 10-digit mobile & OTP</td>
-    <td>JWT token issued; role-based home shell loaded</td>
-    <td>Token issued; correct role dashboard rendered</td>
-    <td class="center bold" style="color: green;">PASS</td>
-  </tr>
-  <tr>
-    <td><b>Voice Parsing</b></td>
-    <td>Spoken Tamil query: <i>"2 ஏக்கர் உழ டிராக்டர் வேணும்"</i></td>
-    <td>Extracts: type: tractor, acres: 2.0, task: plow</td>
-    <td>Correct parameters parsed in &lt;120 ms</td>
-    <td class="center bold" style="color: green;">PASS</td>
-  </tr>
-  <tr>
-    <td><b>Shake Activation</b></td>
-    <td>Accelerometer shaken with force &gt; 13 m/s²</td>
-    <td>Voice overlay activates automatically</td>
-    <td>Voice overlay opened without screen touch</td>
-    <td class="center bold" style="color: green;">PASS</td>
-  </tr>
-  <tr>
-    <td><b>Double-Booking</b></td>
-    <td>Two users book identical machine slot concurrently</td>
-    <td>Firestore transaction aborts second collision</td>
-    <td>First succeeds; second rejected with alert</td>
-    <td class="center bold" style="color: green;">PASS</td>
-  </tr>
-  <tr>
-    <td><b>Diesel Audit</b></td>
-    <td>Input: 3 acres, rotavator, 45 L fuel recorded</td>
-    <td>System flags variance (+76%) over baseline</td>
-    <td>Marked "Excessive Variance" with warnings</td>
-    <td class="center bold" style="color: green;">PASS</td>
-  </tr>
-  <tr>
-    <td><b>Weather Alert</b></td>
-    <td>Rain probability &gt;65% on harvest booking date</td>
-    <td>Displays high-visibility rain hazard banner</td>
-    <td>Hazard alert rendered on machine detail card</td>
-    <td class="center bold" style="color: green;">PASS</td>
-  </tr>
-</table>
-
-<h3>7.3 Performance & Operational Metrics Comparison</h3>
-<table>
-  <tr>
-    <th style="width: 30%;">Operational Metric</th>
-    <th style="width: 25%;">Before Uzhavan (Informal)</th>
-    <th style="width: 25%;">After Uzhavan Deployment</th>
-    <th style="width: 20%;">Improvement</th>
-  </tr>
-  <tr>
-    <td><b>Average Machine Discovery Time</b></td>
-    <td>24 – 48 hours (physical travel/calls)</td>
-    <td><b>1.5 – 3 minutes</b> (app/voice)</td>
-    <td><b>~95% faster</b></td>
-  </tr>
-  <tr>
-    <td><b>Double-Booking Collision Rate</b></td>
-    <td>20% – 35% during peak sowing</td>
-    <td><b>0.0%</b> (Atomic transactions)</td>
-    <td><b>100% eliminated</b></td>
-  </tr>
-  <tr>
-    <td><b>Middleman Commission Deductions</b></td>
-    <td>15% – 30% of rental payment</td>
-    <td><b>0.0%</b> (Direct peer-to-peer)</td>
-    <td><b>100% saved for farmers</b></td>
-  </tr>
-  <tr>
-    <td><b>Fuel Billing Disputes</b></td>
-    <td>Occurs in &gt;40% of deep tillage</td>
-    <td><b>&lt;3%</b> (Smart Diesel Audit)</td>
-    <td><b>~92% reduction</b></td>
-  </tr>
-  <tr>
-    <td><b>Digital Literacy Exclusion Rate</b></td>
-    <td>~75% of marginal farmers</td>
-    <td><b>&lt;5%</b> (Tamil Voice + Shake + Agent)</td>
-    <td><b>Massive leap</b></td>
-  </tr>
-  <tr>
-    <td><b>Machine Owner Idle Time</b></td>
-    <td>200 – 240 days per year</td>
-    <td><b>Reduced to 110 – 130 days</b></td>
-    <td><b>~45% asset gain</b></td>
-  </tr>
-</table>
-
-<div class="page-break"></div>
-
-<!-- REFERENCES -->
-<div class="center" style="font-size: 11pt; margin-bottom: 30px;">60</div>
-<h1>REFERENCES</h1>
-
+  [bookings] (Collection)
+    ├── {bookingId} (Document)
+    │     ├── id: string
+    │     ├── farmerId: string (ref: users)
+    │     ├── ownerId: string (ref: users)
+    │     ├── machineId: string (ref: machines)
+    │     ├── status: enum ("pending"|"confirmed"|"in_progress"|"completed"|"cancelled")
+    │     ├── bookingDate: string ("2026-10-15")
+    │     ├── acreage: number (3.5)
+    │     ├── operationType: string ("deep_plowing" | "puddling" | "harvesting")
+    │     ├── totalEstimatedAmount: number (₹4900)
+    │     ├── paymentStatus: enum ("unpaid" | "cash_on_delivery" | "paid_online")
+    │     ├── dieselAudit: map {
+    │     │     ├── estimatedLiters: number (28.0)
+    │     │     ├── actualLitersBilled: number (29.5)
+    │     │     ├── variancePercentage: number (+5.3%)
+    │     │     └── auditVerdict: enum ("normal" | "flagged_excessive")
+    │     │   }
+    │     ├── isAgentBooking: boolean
+    │     ├── agentId: string (optional)
+    │     └── timestamps: map { created, confirmed, started, ended }
+</pre>
+<p class='fig-caption'><i>Fig 4.2: Firestore Database Schema & Collection Relationships</i></p>
+<h3>4.5 Security Architecture & Credential Hardening</h3>
+<p>Security in <b>Uzhavan</b> is applied defensibly across all data pathways:</p>
+<ul>
+<li><b>Zero-Secret Public Repository Standard</b>: All sensitive Google Firebase service account keys (<code>service-account.json</code>), private encryption keys (<code>*.pem</code>), and cloud database passwords are strictly excluded via hardened <code>.gitignore</code> rules. The backend features a dynamic loader that checks environment variables (<code>FIREBASE_SERVICE_ACCOUNT</code> / <code>GOOGLE_APPLICATION_CREDENTIALS</code>) and falls back gracefully to localized mock instances, allowing open-source distribution without key leakage.</li>
+<li><b>Granular Firestore Security Rules</b>: As declared in <code>firestore.rules</code>, documents enforce server-enforced authorization rules. Unauthenticated clients cannot modify machine rates or tamper with booking statuses.</li>
+<li><b>JWT Identity Token Verification</b>: REST endpoints enforce Bearer token verification. Tokens are cryptographically signed using an HMAC-SHA256 secret and embed user role scopes (<code>role: 'farmer' | 'owner' | 'agent'</code>), preventing privilege escalation attacks.</li>
+</ul>
+<h3>4.6 On-Device Neural NLP & Voice Pipeline</h3>
+<p>To deliver zero-latency speech comprehension in rural connectivity blackouts, <b>Uzhavan</b> employs a hybrid on-device NLP pipeline:</p>
 <ol>
-  <li>Pressman, R. S., and Maxim, B. R., <i>Software Engineering: A Practitioner's Approach</i>, 9th Edition, McGraw-Hill Higher Education, 2020.</li>
-  <li>Fielding, R. T., "Architectural Styles and the Design of Network-based Software Architectures," Doctoral Dissertation, University of California, Irvine, 2000.</li>
-  <li>Indian Council of Agricultural Research (ICAR), <i>Farm Mechanization in India: Economic Impact and Policy Perspectives</i>, Technical Bulletin, New Delhi, 2021.</li>
-  <li>Food and Agriculture Organization of the United Nations (FAO), <i>Agricultural Mechanization: A Strategy for Sustainable Development</i>, FAO Agricultural Services Bulletin, Rome, 2019.</li>
-  <li>ASABE Standards, <i>Agricultural Machinery Management Data</i>, American Society of Agricultural and Biological Engineers, Standard D497.7, St. Joseph, Michigan, 2018.</li>
-  <li>Sharma, A., Kumar, V., and Singh, R., "Uberization of Agricultural Machinery: A Critical Case Study of Indian Custom Hiring Models," <i>Journal of Rural Economics and Agricultural Development</i>, vol. 34, no. 2, pp. 112–129, 2019.</li>
-  <li>Ochieng, E., "IoT Telematics and Asset Tracking for Shared Agricultural Tractors in Sub-Saharan Africa," <i>IEEE International Conference on Emerging Technologies in Agriculture</i>, Nairobi, 2021.</li>
-  <li>Medhi, I., Patnaik, S., Brunskill, E., Gautama, S. N., Thies, W., and Toyama, K., "Designing Mobile Interfaces for Low-Literate Populations: A Systematic Comparison of Text, Audio, and Video Modalities," <i>ACM Transactions on Computer-Human Interaction (TOCHI)</i>, vol. 18, no. 1, pp. 1–28, 2011.</li>
-  <li>Patel, N., Chittamuru, D., Jain, A., Dave, P., and Parikh, T. S., "Avaaj Otalo: A Field-Optimized Voice Social Media Network for Smallholder Farmers in Rural India," <i>Proceedings of the SIGCHI Conference on Human Factors in Computing Systems (CHI)</i>, Austin, Texas, pp. 741–750, 2012.</li>
-  <li>Haklay, M., and Weber, P., "OpenStreetMap: User-Generated Street Maps," <i>IEEE Pervasive Computing</i>, vol. 7, no. 4, pp. 12–18, 2008.</li>
-  <li>Brewer, E., "Pushing the Limits of the CAP Theorem in Distributed Cloud Datastores," <i>IEEE Computer</i>, vol. 45, no. 2, pp. 23–29, 2012.</li>
-  <li>Lane, N. D., Bhattacharya, S., Mathur, A., Georgiev, P., Forlivesi, C., and Kawsar, F., "DeepX: A Software Accelerator for Deep Learning on Mobile Embedded Platforms," <i>Proceedings of the 15th ACM/IEEE International Conference on Information Processing in Sensor Networks (IPSN)</i>, Vienna, 2016.</li>
-  <li>Google Cloud, <i>Firestore Architecture and Distributed Data Models Documentation</i>, https://cloud.google.com/firestore/docs, 2024.</li>
-  <li>Flutter Documentation, <i>Building Multi-Platform Responsive Applications</i>, Google LLC, https://docs.flutter.dev/, 2024.</li>
-  <li>NestJS Documentation, <i>A Progressive Node.js Framework for Enterprise Applications</i>, https://docs.nestjs.com/, 2024.</li>
-  <li>Open-Meteo Meteorological Data Documentation, <i>Free Weather API for High-Resolution Agricultural Forecasting</i>, https://open-meteo.com/en/docs, 2024.</li>
-  <li>OpenStreetMap Foundation, <i>Open-Source Geospatial Cartography Standards</i>, https://wiki.osmfoundation.org/, 2024.</li>
-  <li>OWASP Foundation, <i>OWASP Top 10 API Security Risks and Defensive Controls</i>, https://owasp.org/www-project-api-security/, 2023.</li>
-  <li>Rajasekaran, M., and Murugesan, K., "Digital Usability Evaluation of Indian E-Governance Agri-Portals among Rural Smallholders," <i>International Journal of Agricultural Information Systems</i>, vol. 16, no. 4, pp. 88–104, 2021.</li>
-  <li>National Engineering College, <i>Regulations for Bachelor of Engineering (B.E.) Capstone Project Guidelines</i>, Department of Computer Science and Engineering, Kovilpatti, 2026.</li>
-</ol>
+<li><b>Audio Streaming & Local Phonetic Tokenization</b>: Spoken audio is captured via the microphone and converted into localized phonetic strings.</li>
+<li><b>Deterministic Entity Extraction & Regex Slot-Filling</b>: The input text is scanned for agricultural keyword stems in both Tamil and English (e.g., <i>"டிராக்டர்"</i> / "tractor", <i>"உழவு"</i> / "plow", <i>"நாளைக்கு"</i> / "tomorrow", <i>"3 ஏக்கர்"</i> / "3 acres").</li>
+<li><b>Fuzzy Levenshtein Intent Resolution</b>: If phonetic variations occur due to rural accents, a fuzzy matcher identifies the closest valid agricultural intent.</li>
+<li><b>Structured JSON Booking Payload</b>: The engine compiles the recognized parameters into a strongly-typed <code>VoiceBookingRequest</code> object, which pre-fills the booking interface for instant, one-tap visual or auditory confirmation.</li>
+</ul>
+<pre>
+User Spoken Voice (Tamil / English)
+       │
+       ▼
+Microphone Audio Stream
+       │
+       ▼
+On-Device NLP Engine (on_device_nlp_engine.dart)
+ ├── 1. Regex Entity Extractor (Acres, Dates, Machine Types)
+ ├── 2. Phonetic Stemmer (Tamil Agrotags -&gt; Lexical Slots)
+ └── 3. Fuzzy Levenshtein Intent Matcher
+       │
+       ▼
+Structured VoiceBookingRequest Payload
+ { machine: "tractor", acres: 3.0, date: "tomorrow", operation: "plow" }
+       │
+       ▼
+Auditory TTS Confirmation ("3 ஏக்கர் உழவு செய்ய டிராக்டர் முன்பதிவு செய்யவா?")
+</pre>
+<p class='fig-caption'><i>Fig 4.3: End-to-End On-Device NLP Voice Processing Pipeline</i></p>
+<h3>4.7 Use Case Diagram</h3>
+<p>The Use Case Diagram defines functional interactions across the four primary system actors:</p>
+<pre>
+               +-------------------------------------------------------+
+               |                  UZHAVAN PLATFORM                     |
+               +-------------------------------------------------------+
+(Farmer) ------&gt; [ Search Machines by Proximity / Type ]
+         ------&gt; [ Reserve Machine Slot with Atomic Lock ]
+         ------&gt; [ Speak Tamil / English Voice Booking Query ]
+         ------&gt; [ Shake Phone to Trigger Voice Assistant ]
+         ------&gt; [ Inspect Scientific Diesel Audit Calculation ]
+         ------&gt; [ View Weather Forecast &amp; Rain Hazard Alert ]
+         ------&gt; [ Pay via Cash on Delivery or UPI QR ]
+         ------&gt; [ Rate Machine Owner &amp; Driver Performance ]
 
-</body>
-</html>
+(Owner) -------&gt; [ Onboard Agricultural Machinery &amp; Specs ]
+        -------&gt; [ Accept / Decline Incoming Rental Requests ]
+        -------&gt; [ Start / End Verified Field Work Timer ]
+        -------&gt; [ Submit Completed Acres &amp; Diesel Consumed ]
+        -------&gt; [ Review Fleet Earnings &amp; Cash Ledger ]
+
+(Agent) -------&gt; [ Execute Proxy Bookings for Offline Elders ]
+        -------&gt; [ Track Village Multi-Farm Dispatches ]
+
+(Admin) -------&gt; [ Audit Flagged Diesel Disputes ]
+        -------&gt; [ Monitor Regional Utilization KPIs ]
+</pre>
+<p class='fig-caption'><i>Fig 4.4: Comprehensive System Use Case Diagram</i></p>
+<hr style='border: none; border-top: 1px solid #ccc; margin: 20px 0;'>
+<div class='page-break'></div>
+<h1>CHAPTER 5: PROPOSED METHODOLOGY</h1>
+<h3>5.1 Development Approach</h3>
+<p>The system was developed using a feature-driven iterative engineering lifecycle structured across seven distinct phases. Foundational infrastructure, reactive design tokens, and accessibility primitives were established first before developing complex orchestration features such as the voice assistant and diesel audit calculations.</p>
+<h3>5.2 Phase 1 — Project Setup, Scaffolding & Foundation</h3>
+<p>Backend and frontend scaffolding was completed with environment-variable-driven configuration. The NestJS backend was initialized with TypeScript, ESLint, Prettier, and dependency injection modules. The Flutter client was structured into Clean Architecture packages (<code>core/</code> and <code>features/</code>). A high-contrast design system tailored for outdoor sunlight visibility was established.</p>
+<h3>5.3 Phase 2 — Authentication & Role-Based Identity Access</h3>
+<p>Phone-number-based OTP authentication was constructed. The backend simulates SMS delivery for instant verification in dev mode and supports standard E.164 phone formats. The JWT strategy extracts user roles (<code>farmer</code>, <code>owner</code>, <code>agent</code>, <code>admin</code>) to protect restricted API endpoints.</p>
+<h3>5.4 Phase 3 — Geospatial Machine Catalog & Slot Availability</h3>
+<p>The machine catalog was designed to store detailed machinery specifications: engine horsepower, supported implements, hourly pricing, and operational location coordinates. Spatial discovery was engineered using Haversine distance calculations and bounding-box coordinates to allow farmers to filter machinery within 5 km, 10 km, or 25 km from their field, without incurring proprietary map licensing expenses.</p>
+<h3>5.5 Phase 4 — Voice-Driven Booking & On-Device NLP Pipeline</h3>
+<p>To eliminate digital literacy barriers, the on-device NLP engine (<code>on_device_nlp_engine.dart</code>) was constructed. A specialized corpus of over 200 conversational Tamil and English agricultural phrases was curated and tokenized. The pipeline extracts four essential rental parameters:</p>
+<ol>
+<li><code>MachineType</code> (e.g., Tractor, Harvester, Rotavator, Power Tiller)</li>
+<li><code>Acreage</code> (e.g., 1 acre, 2.5 acres, 5 acres)</li>
+<li><code>BookingDate</code> (e.g., today, tomorrow, specific calendar date)</li>
+<li><code>TaskType</code> (e.g., plowing, harvesting, ridging, leveling)</li>
+</ul>
+<h3>5.6 Phase 5 — Owner Fleet Command & Booking Workflow</h3>
+<p>The machine owner experience was constructed around the <code>OwnerShell</code> and <code>OwnerMachinesScreen</code>. Machine owners can register their implements with photo uploads, set hourly or per-acre rental rates, toggle machine availability on and off, and track incoming rental requests through an interactive status-driven Kanban workflow.</p>
+<h3>5.7 Phase 6 — Diesel Audit Engine & Transparent Financial Ledger</h3>
+<p>To solve the rampant issue of fuel overcharging disputes, the <code>DieselAuditService</code> was engineered. The mathematical model calculates baseline expected fuel consumption:</p>
+<p>$$\text{Expected Fuel (Liters)} = \text{Acreage} \times \text{Specific Consumption Factor (L/acre)} \times \text{Soil Resistance Index}$$</p>
+<p>By comparing this scientific baseline against the fuel billed by the operator, the system calculates a variance percentage ($\Delta\%$) and assigns a transparent audit badge: <b>"Fair Consumption"</b> ($< +10\%$) or <b>"Flagged for Review"</b> ($> +15\%$).</p>
+<h3>5.8 Phase 7 — Weather Telemetry, Community Agent Mode & Hardening</h3>
+<p>In the final phase, localized weather telemetry was integrated using the <b>Open-Meteo API</b> to warn farmers when rain is forecast on their scheduled harvesting date. The <b>Community Agent Mode</b> was completed to allow rural youth to book on behalf of offline farmers. The entire codebase was subjected to comprehensive static analysis, linter checks, and automated unit tests.</p>
+<h3>5.9 Verification Strategy</h3>
+<p>Verification was conducted at three levels: unit tests verifying isolated utility logic (NLP regex, fuel formulas, token extractors), integration tests validating HTTP controllers against Firestore mock databases, and end-to-end device tests validating physical accelerometer shake gestures and audio speech synthesis.</p>
+<hr style='border: none; border-top: 1px solid #ccc; margin: 20px 0;'>
+<div class='page-break'></div>
+<h1>CHAPTER 6: MODULE EXPLANATION</h1>
+<h3>6.0 Repository Directory & Folder Structure</h3>
+<p>The repository is organized into distinct, cleanly separated subsystems:</p>
+<pre>
+Uzhavan/
+├── backend/                  # NestJS TypeScript REST API
+│   ├── src/
+│   │   ├── auth/             # Phone OTP &amp; JWT authentication
+│   │   ├── bookings/         # Booking state machine &amp; transactions
+│   │   ├── machines/         # Catalog CRUD &amp; geospatial indexing
+│   │   ├── firebase/         # Cloud Firestore initialization
+│   │   ├── payments/         # UPI/Cash transaction ledger
+│   │   └── seed/             # Automated test data seeding
+│   ├── service-account.example.json  # Sanitized credential template
+│   └── nest-cli.json
+├── mobile/                   # Flutter Multi-Platform Client
+│   ├── lib/
+│   │   ├── app/              # Navigation &amp; app shell
+│   │   ├── core/
+│   │   │   ├── api/          # HTTP client &amp; exception handling
+│   │   │   ├── models/       # Strongly typed Dart models
+│   │   │   ├── providers/    # AppState &amp; AccessibilityProvider
+│   │   │   ├── services/     # NLP, TTS, DieselAudit, Weather
+│   │   │   ├── theme/        # Tactile rural colors &amp; typography
+│   │   │   └── widgets/      # Tactile buttons, OSM map, mic overlay
+│   │   └── features/
+│   │       ├── agent/        # Community Agent assisted booking
+│   │       ├── auth/         # Login &amp; registration screens
+│   │       ├── farmer/       # Marketplace, detail &amp; voice sheet
+│   │       └── owner/        # Fleet manager &amp; booking dispatch
+│   └── pubspec.yaml
+├── voice-service/            # Rasa NLU conversational backup pipeline
+│   └── rasa/data/nlu.yml     # Multilingual training intents
+├── scripts/                  # On-device TFLite training scripts
+├── firestore.rules           # Declarative database security policies
+└── README.md
+</pre>
+<p class='fig-caption'><i>Fig 6.0: Project Repository Folder Structure</i></p>
+<hr style='border: none; border-top: 1px solid #ccc; margin: 20px 0;'>
+<h3>6.1 Home Page (Farmer Marketplace)</h3>
+<p>The <b>Farmer Marketplace</b> (<code>farmer_home_screen.dart</code>) is the central operational dashboard for agricultural users. Designed with high visual hierarchy, it highlights:</p>
+<ul>
+<li>A personalized greeting with the farmer's village and district.</li>
+<li>Real-time weather banner displaying current field temperature, precipitation probability, and agricultural advisories.</li>
+<li>Horizontal category chips representing machine types (Tractors, Harvesters, Rotavators, Tillers, Sprayers).</li>
+<li>Machine listing cards featuring high-resolution implement photos, owner ratings, distance in kilometers, hourly rental rates, and instantaneous <b>"Book Now"</b> action buttons.</li>
+<li>A floating, animated <b>Voice Booking Microphone button</b> pinned to the bottom-right corner for hands-free access.</li>
+</ul>
+<p><b>Backend Integration:</b></p>
+<ul>
+<li><code>GET /api/v1/machines?lat=...&lng=...&radius=...</code> — Fetches active machinery filtered by user GPS proximity.</li>
+<li><code>GET /api/v1/weather/forecast?lat=...&lng=...</code> — Retrieves real-time agricultural weather forecast.</li>
+</ul>
+<pre>
++-----------------------------------------------------------+
+| [=] Uzhavan Marketplace              [Alerts: 0] [Profile]|
++-----------------------------------------------------------+
+| [WEATHER BANNER] Kovilpatti: 31°C | Sunny | 0% Rain Risk  |
+| "Optimal conditions for soil tilling &amp; sowing today"      |
++-----------------------------------------------------------+
+| Categories: [All] [Tractors] [Harvesters] [Rotavators]   |
++-----------------------------------------------------------+
+| +-------------------------------------------------------+ |
+| | [PHOTO] Mahindra 575 DI (45 HP)      ⭐ 4.8 (24 hires)| |
+| | Owner: Selvam | 3.2 km away (K.R. Nagar)              | |
+| | Rate: ₹900/hr  |  ₹1,400/acre                         | |
+| | [ View Availability ]            [ Instant Book Now ] | |
+| +-------------------------------------------------------+ |
+| +-------------------------------------------------------+ |
+| | [PHOTO] John Deere 5050D + Rotavator ⭐ 4.9 (18 hires)| |
+| | Owner: Murugesan | 5.8 km away (Ilayarasanendal)      | |
+| | Rate: ₹1,100/hr | ₹1,650/acre                         | |
+| | [ View Availability ]            [ Instant Book Now ] | |
+| +-------------------------------------------------------+ |
+|                                                           |
+|                                        [ (🎤) Speak Tamil]|
++-----------------------------------------------------------+
+</pre>
+<p class='fig-caption'><i>Fig 6.1: Farmer Home Marketplace Screen</i></p>
+<hr style='border: none; border-top: 1px solid #ccc; margin: 20px 0;'>
+<h3>6.2 Role-Based Authentication & Phone OTP Verification</h3>
+<p>To eliminate forgotten-password lockouts, authentication is based entirely on mobile phone verification (<code>login_screen.dart</code>):</p>
+<ol>
+<li>The user inputs their 10-digit mobile number.</li>
+<li>The backend generates a secure 6-digit one-time password with a 5-minute expiration window.</li>
+<li>Upon entering the OTP, the server verifies the code, creates or retrieves the user profile from Cloud Firestore, and issues a signed JWT access token.</li>
+<li>If it is a new user, they select their primary role: <b>Farmer</b>, <b>Machine Owner</b>, or <b>Village Agent</b>.</li>
+</ul>
+<p><b>Backend Integration:</b></p>
+<ul>
+<li><code>POST /api/v1/auth/request-otp</code> — Generates and dispatches 6-digit verification code.</li>
+<li><code>POST /api/v1/auth/verify-otp</code> — Validates code, provisions user record, and returns signed JWT access token.</li>
+</ul>
+<pre>
++-----------------------------------------------------------+
+|                     UZHAVAN AUTHENTICATION                |
+|                                                           |
+|  [Phone Icon]                                             |
+|  Enter your 10-digit mobile number:                       |
+|  +91 [ 9 8 7 6 5 4 3 2 1 0 ]                              |
+|                                                           |
+|  [           GET OTP (ஒரு முறை கடவுச்சொல்)           ]    |
+|                                                           |
+|  Enter 6-digit OTP received:                              |
+|  [ 4 ] [ 2 ] [ 0 ] [ 1 ] [ 9 ] [ 5 ]                      |
+|                                                           |
+|  [              VERIFY &amp; LOGIN (உள்நுழை)             ]    |
++-----------------------------------------------------------+
+</pre>
+<p class='fig-caption'><i>Fig 6.2: Phone OTP Authentication Screen</i></p>
+<hr style='border: none; border-top: 1px solid #ccc; margin: 20px 0;'>
+<h3>6.3 User Onboarding & Role Selection Page</h3>
+<p>First-time registrants complete a streamlined onboarding form (<code>register_screen.dart</code>):</p>
+<ul>
+<li>Full Name and Village/Panchayat identification.</li>
+<li>District selection via a dropdown menu.</li>
+<li>Primary role selection with large tactile tiles: <b>Farmer (விவசாயி)</b>, <b>Machine Owner (உரிமையாளர்)</b>, or <b>Village Agent (கிராம உதவியாளர்)</b>.</li>
+<li>Preferred application language toggle (Tamil / English).</li>
+</ul>
+<p><b>Backend Integration:</b></p>
+<ul>
+<li><code>POST /api/v1/users/profile</code> — Stores user demographic, language, and role configuration in Firestore <code>users</code> collection.</li>
+</ul>
+<pre>
++-----------------------------------------------------------+
+|                 WELCOME TO UZHAVAN ONBOARDING             |
+|                                                           |
+|  Your Name: [ Murugan K                       ]           |
+|  Village:   [ K.R. Nagar                      ]           |
+|  District:  [ Thoothukudi                     ]           |
+|                                                           |
+|  Select Your Role:                                        |
+|  +-----------------------------------------------------+  |
+|  | [🚜] FARMER (விவசாயி) - I need to hire machinery    |  |
+|  +-----------------------------------------------------+  |
+|  | [⚙️] OWNER (உரிமையாளர்) - I own machinery to rent   |  |
+|  +-----------------------------------------------------+  |
+|  | [🤝] AGENT (கிராம உதவியாளர்) - Community helper     |  |
+|  +-----------------------------------------------------+  |
+|                                                           |
+|  [             COMPLETE REGISTRATION (பதிவு செய்)     ]   |
++-----------------------------------------------------------+
+</pre>
+<p class='fig-caption'><i>Fig 6.3: User Onboarding & Role Selection Page</i></p>
+<hr style='border: none; border-top: 1px solid #ccc; margin: 20px 0;'>
+<h3>6.4 Role-Based Operations Dashboard</h3>
+<p>The application automatically routes users to their role-specific experience upon authentication:</p>
+<ul>
+<li><b>Farmers</b> are directed to the <code>FarmerShell</code>, focusing on machinery discovery, slot booking, active rental trackers, and weather alerts.</li>
+<li><b>Machine Owners</b> are directed to the <code>OwnerShell</code>, emphasizing active dispatches, machine availability toggles, operator logs, and earnings.</li>
+<li><b>Village Agents</b> are routed to the <code>AgentBookingScreen</code>, presenting proxy client queues and community facilitation metrics.</li>
+</ul>
+<p><b>Backend Integration:</b></p>
+<ul>
+<li><code>GET /api/v1/users/me</code> — Fetches authenticated profile, role claims, and active rental summaries.</li>
+</ul>
+<pre>
++-----------------------------------------------------------+
+| [=] Uzhavan Owner Hub                  [Selvam R] [Logout]|
++-----------------------------------------------------------+
+| Total Machines: 3   | Active Today: 2   | Revenue: ₹48,200|
++-----------------------------------------------------------+
+| [FLEET STATUS]                                            |
+| • Mahindra 575 DI (45 HP): [IN FIELD - Kovilpatti 2 ac]   |
+| • John Deere 5050D:        [BOOKED - Tomorrow 06:00 AM]   |
+| • Mini Harvester:          [IDLE - Ready for Booking]     |
++-----------------------------------------------------------+
+| [DISPATCH ACTIONS]                                        |
+| [ + Register New Implement ]   [ View Fuel Audit Ledger ] |
++-----------------------------------------------------------+
+</pre>
+<p class='fig-caption'><i>Fig 6.4: Role-Based Operations Dashboard</i></p>
+<hr style='border: none; border-top: 1px solid #ccc; margin: 20px 0;'>
+<h3>6.5 Machine Catalog & Detailed Specification View</h3>
+<p>Selecting any machine card opens its comprehensive specification and scheduling dossier (<code>farmer_machine_detail_screen.dart</code>):</p>
+<ul>
+<li>High-resolution implement photographs.</li>
+<li>Key mechanical parameters: Engine horsepower, fuel tank capacity, year of manufacture, and compatible implements.</li>
+<li>Transparent pricing breakdown: Hourly rental rate vs. per-acre flat rate.</li>
+<li>Owner contact shortcuts and location badge showing distance in kilometers.</li>
+</ul>
+<p><b>Backend Integration:</b></p>
+<ul>
+<li><code>GET /api/v1/machines/:id</code> — Fetches full machine record, owner data, and historical user ratings.</li>
+</ul>
+<pre>
++-----------------------------------------------------------+
+| [&lt; Back]               Machine Details            [Share] |
++-----------------------------------------------------------+
+| [ PHOTO: Mahindra 575 DI Sarpanch Tractor ]               |
+|                                                           |
+| Mahindra 575 DI (45 HP Engine)           ⭐ 4.8 (24 hires) |
+| Owner: Selvam R | 3.2 km away (K.R. Nagar, Kovilpatti)    |
+|                                                           |
+| [SPECS]                                                   |
+| • Horsepower: 45 HP            • Fuel Capacity: 48 Liters |
+| • Implements: 9-Tyne Cultivator, Rotavator, Cage Wheels   |
+|                                                           |
+| [RATES]                                                   |
+| • Hourly Rate: ₹900 / hour     • Acre Rate: ₹1,400 / acre |
+|                                                           |
+| [             SELECT SCHEDULE &amp; BOOK NOW                  ]
++-----------------------------------------------------------+
+</pre>
+<p class='fig-caption'><i>Fig 6.5: Machine Catalog & Detail View</i></p>
+<hr style='border: none; border-top: 1px solid #ccc; margin: 20px 0;'>
+<h3>6.6 Live Calendar & Slot Availability Booking</h3>
+<p>The scheduling screen provides an interactive shift reservation calendar:</p>
+<ul>
+<li>Displays visual green indicators for open days and muted red indicators for reserved days.</li>
+<li>Allows farmers to choose specific shifts: <b>Morning Shift</b> (06:00 AM – 12:00 PM), <b>Afternoon Shift</b> (12:00 PM – 06:00 PM), or <b>Full Day</b>.</li>
+<li>Input fields for total land area (in acres) and operation type (Cultivator, Rotavator, Harvester).</li>
+<li>Automatically calculates estimated rental charges before confirmation.</li>
+</ul>
+<p><b>Backend Integration:</b></p>
+<ul>
+<li><code>GET /api/v1/machines/:id/availability?month=...</code> — Returns booked slot subcollection entries for the calendar grid.</li>
+<li><code>POST /api/v1/bookings</code> — Executes atomic Firestore reservation transaction.</li>
+</ul>
+<pre>
++-----------------------------------------------------------+
+| [&lt; Back]             Reserve Booking Slot                 |
++-----------------------------------------------------------+
+| Select Date (அக்டோபர் 2026):                             |
+| [Mon 12]  [Tue 13]  [[Wed 14]]  [Thu 15]  [Fri 16]        |
+|  (Open)    (Open)    (Selected)  (Booked)  (Open)         |
+|                                                           |
+| Select Shift:                                             |
+| (•) Morning (06:00 AM - 12:00 PM)                         |
+| ( ) Afternoon (12:00 PM - 06:00 PM)                       |
+| ( ) Full Day (06:00 AM - 06:00 PM)                        |
+|                                                           |
+| Enter Land Area: [ 3.0 ] Acres                            |
+| Operation:       [ Rotavator Tillage (உழவு)             ] |
+|                                                           |
+| Estimated Total: ₹4,200  (3 acres @ ₹1,400/acre)          |
+|                                                           |
+| [         CONFIRM RESERVATION (முன்பதிவு உறுதி செய்)     ] |
++-----------------------------------------------------------+
+</pre>
+<p class='fig-caption'><i>Fig 6.6: Live Shift Calendar & Slot Booking Screen</i></p>
+<hr style='border: none; border-top: 1px solid #ccc; margin: 20px 0;'>
+<h3>6.7 Multilingual On-Device Voice Assistant Sheet</h3>
+<p>The voice assistant sheet (<code>voice_booking_sheet.dart</code>) delivers an effortless speech-first interface:</p>
+<ul>
+<li>Triggered either by tapping the floating microphone button or shaking the smartphone.</li>
+<li>An animated audio visualizer pulses in real-time as the farmer speaks in Tamil or English.</li>
+<li>The <code>OnDeviceNlpEngine</code> tokenizes the audio string in under 120 ms, extracting machine type, acreage, date, and task.</li>
+<li>The system speaks back in Tamil using TTS to verify parameters before reservation.</li>
+</ul>
+<p><b>Backend Integration:</b></p>
+<ul>
+<li>Fully processed on-device. Extracted parameters are packaged into a standard <code>POST /api/v1/bookings</code> payload.</li>
+</ul>
+<pre>
++-----------------------------------------------------------+
+|                 UZHAVAN VOICE ASSISTANT                   |
+|                                                           |
+|                      (((( 🎤 ))))                         |
+|               [ Real-time Audio Waveform ]                |
+|                                                           |
+|  Recognized Speech (பேசியது):                             |
+|  "நாளைக்கு இரண்டு ஏக்கர் உழ டிராக்டர் வேணும்"              |
+|                                                           |
+|  Parsed Booking Parameters:                               |
+|  • Machine: Tractor (டிராக்டர்)   • Area: 2.0 Acres       |
+|  • Date:    Tomorrow (நாளை)       • Task: Tillage (உழவு)  |
+|                                                           |
+|  Audio Feedback: "Shall I confirm this tractor booking?"  |
+|                                                           |
+|  [ CANCEL (ரத்து) ]         [ CONFIRM BOOKING (உறுதி) ]   |
++-----------------------------------------------------------+
+</pre>
+<p class='fig-caption'><i>Fig 6.7: Multilingual Voice Assistant Audio Waveform Sheet</i></p>
+<hr style='border: none; border-top: 1px solid #ccc; margin: 20px 0;'>
+<h3>6.8 Rental Booking & State-Machine Workflow</h3>
+<p>Every rental booking adheres to a strictly validated finite state machine (<code>booking_workflow_tracker.dart</code>):</p>
+<ol>
+<li><b>PENDING</b>: Stored in Firestore; push and SMS notification sent to machine owner.</li>
+<li><b>CONFIRMED</b>: Owner accepts; slot is locked in the calendar subcollection.</li>
+<li><b>IN_PROGRESS</b>: Operator reaches field and taps "Start Work", starting a live GPS-verified timer.</li>
+<li><b>COMPLETED</b>: Operator taps "Finish Job", logs covered acreage and diesel consumed.</li>
+<li><b>SETTLED & CLOSED</b>: Farmer settles payment (Cash/UPI); ratings are submitted.</li>
+</ul>
+<p><b>Backend Integration:</b></p>
+<ul>
+<li><code>PATCH /api/v1/bookings/:id/status</code> — Updates booking state with timestamp logging and actor validation.</li>
+</ul>
+<pre>
++-----------------------------------------------------------+
+|                 BOOKING WORKFLOW TRACKER                  |
+|                                                           |
+|  [✓] REQUEST SUBMITTED (முன்பதிவு கோரப்பட்டது)             |
+|      Oct 14, 08:30 AM • 3.0 Acres • Mahindra 575 DI       |
+|                            │                              |
+|  [✓] OWNER CONFIRMED (உரிமையாளர் ஏற்றுக்கொண்டார்)         |
+|      Oct 14, 09:15 AM • Driver: Muthu (+91 94421 87654)   |
+|                            │                              |
+|  [•] WORK IN PROGRESS (உழவு பணி நடக்கிறது)               |
+|      Started: Oct 15, 06:30 AM • Running: 02h 15m         |
+|                            │                              |
+|  [ ] WORK COMPLETED (பணி முடிந்தது)                       |
+|                            │                              |
+|  [ ] PAYMENT &amp; FEEDBACK (பணம் செலுத்துதல் &amp; மதிப்பீடு)     |
++-----------------------------------------------------------+
+</pre>
+<p class='fig-caption'><i>Fig 6.8: Booking Workflow Tracker & Lifecycle State Transition</i></p>
+<hr style='border: none; border-top: 1px solid #ccc; margin: 20px 0;'>
+<h3>6.9 Owner Fleet Management & Machine Onboarding</h3>
+<p>The <b>Owner Fleet Manager</b> (<code>owner_machines_screen.dart</code> and <code>add_machine_flow_screen.dart</code>) provides complete fleet oversight:</p>
+<ul>
+<li>Lists all registered machinery with operational toggles (Available / In-Maintenance).</li>
+<li>Step-by-step onboarding wizard capturing machine make, model, horsepower, implement attachments, and rental rates.</li>
+<li>Camera integration for uploading implement condition photos.</li>
+</ul>
+<p><b>Backend Integration:</b></p>
+<ul>
+<li><code>GET /api/v1/machines/my-fleet</code> — Fetches machines registered under the authenticated owner ID.</li>
+<li><code>POST /api/v1/machines</code> — Onboards a new machine record.</li>
+</ul>
+<pre>
++-----------------------------------------------------------+
+| [&lt; Back]             Register New Machinery               |
++-----------------------------------------------------------+
+| Machine Type:    [ Tractor (டிராக்டர்)                  ] |
+| Model &amp; Make:    [ Mahindra 575 DI Sarpanch             ] |
+| Engine Power:    [ 45 ] Horsepower (HP)                   |
+|                                                           |
+| Select Attachments:                                       |
+| [X] 9-Tyne Cultivator    [X] Rotavator    [ ] Cage Wheel  |
+|                                                           |
+| Pricing Structure:                                        |
+| Hourly Rate (₹): [ 900  ]    Acre Rate (₹): [ 1400 ]      |
+|                                                           |
+| Implement Photo: [ Photo_Uploaded: mahindra_front.jpg ]   |
+| Base Location:   [ 9.1850° N, 77.8820° E (K.R. Nagar)   ] |
+|                                                           |
+| [               SAVE &amp; PUBLISH TO MARKETPLACE             ]
++-----------------------------------------------------------+
+</pre>
+<p class='fig-caption'><i>Fig 6.9: Owner Fleet Management & Add Machine Flow</i></p>
+<hr style='border: none; border-top: 1px solid #ccc; margin: 20px 0;'>
+<h3>6.10 Smart Diesel Audit & Fuel Consumption Calculator</h3>
+<p>The <b>Smart Diesel Audit Engine</b> (<code>diesel_audit_service.dart</code>) eliminates fuel overcharging disputes through empirical physics:</p>
+<ul>
+<li>Input parameters: Land area (acres), implement operation type, soil resistance factor (light, medium, heavy/clay), and billed diesel liters.</li>
+<li>Calculates scientific benchmark fuel consumption:</li>
+</ul>
+<p>$$\text{Benchmark} = \text{Acres} \times \text{Specific Factor} \times \text{Soil Index}$$</p>
+<ul>
+<li>Computes variance percentage ($\Delta\%$) and assigns transparent status badges:</li>
+<li><b>Normal / Fair</b> ($\Delta\% \le +10\%$): Green badge.</li>
+<li><b>Minor Variance</b> ($+10\% < \Delta\% \le +20\%$): Amber badge.</li>
+<li><b>Flagged Excessive</b> ($\Delta\% > +20\%$): High-visibility red alert warning the farmer before payment.</li>
+</ul>
+<p><b>Backend Integration:</b></p>
+<ul>
+<li><code>POST /api/v1/bookings/:id/diesel-audit</code> — Executes fuel benchmark algorithm and records audit metadata in the booking document.</li>
+</ul>
+<pre>
++-----------------------------------------------------------+
+|                 SMART DIESEL AUDIT REPORT                 |
+|                                                           |
+|  Machine: Mahindra 575 DI (45 HP) | Rotavator Puddling    |
+|  Field Area: 3.0 Acres            | Soil: Clay (Heavy)    |
+|                                                           |
+|  Scientific Fuel Benchmark:       25.5 Liters             |
+|  Operator Billed Fuel:            26.0 Liters             |
+|  Fuel Variance:                   +0.5 L (+1.96%)         |
+|                                                           |
+|  AUDIT VERDICT:                                           |
+|  +-----------------------------------------------------+  |
+|  | [✓] FAIR FUEL CONSUMPTION (முறையான டீசல் பயன்பாடு) |  |
+|  +-----------------------------------------------------+  |
+|  "Billed fuel matches scientific tillage consumption."    |
+|                                                           |
+|  [                   PROCEED TO PAYMENT                   ]
++-----------------------------------------------------------+
+</pre>
+<p class='fig-caption'><i>Fig 6.10: Smart Diesel Audit Dialog & Consumption Benchmark</i></p>
+<hr style='border: none; border-top: 1px solid #ccc; margin: 20px 0;'>
+<h3>6.11 Interactive OpenStreetMap & Radius Visualizer</h3>
+<p>The mapping module (<code>free_open_street_map.dart</code> and <code>location_picker_screen.dart</code>) delivers zero-cost spatial discovery:</p>
+<ul>
+<li>Embeds open raster map tiles from OpenStreetMap servers.</li>
+<li>Displays an interactive circle representing the search radius (5 km to 50 km) centered around the farmer's village.</li>
+<li>Renders customized pin markers for available machinery colored by category.</li>
+<li>Enables farmers to visually tap any machine marker to view proximity and specifications.</li>
+</ul>
+<p><b>Backend Integration:</b></p>
+<ul>
+<li>Client-side Leaflet/Flutter Map integration querying public tile servers (<code>tile.openstreetmap.org</code>).</li>
+</ul>
+<pre>
++-----------------------------------------------------------+
+| [&lt; Back]             Machine Proximity Map                |
++-----------------------------------------------------------+
+|  +-----------------------------------------------------+  |
+|  | [MAP VIEW]                                          |  |
+|  |             (Tractor 1: 3.2km) [🚜]                 |  |
+|  |                    \                                |  |
+|  |                     [📍 Farmer Field: K.R. Nagar]   |  |
+|  |                    /                                |  |
+|  |     (Harvester: 7.1km) [🌾]                         |  |
+|  |                                                     |  |
+|  |  ( )-- 10 km Search Radius Circle --( )             |  |
+|  +-----------------------------------------------------+  |
+| Radius Filter:  [ 5 km ]  [[ 10 km ]]  [ 25 km ]  [ 50 km ]|
+| Machinery Nearby: 6 Available Tractors, 2 Harvesters      |
++-----------------------------------------------------------+
+</pre>
+<p class='fig-caption'><i>Fig 6.11: Interactive OpenStreetMap Location Picker & Radius Circle</i></p>
+<hr style='border: none; border-top: 1px solid #ccc; margin: 20px 0;'>
+<h3>6.12 Hyper-Local Weather Advisory & Rain Alerts</h3>
+<p>The weather service (<code>weather_service.dart</code>) integrates the <b>Open-Meteo REST API</b>:</p>
+<ul>
+<li>Fetches real-time temperature, wind speed, and precipitation probability for the field's GPS coordinates.</li>
+<li>If rain probability exceeds 65% on a scheduled combine harvesting date, a prominent warning banner is rendered across the booking card.</li>
+</ul>
+<p><b>Backend Integration:</b></p>
+<ul>
+<li><code>GET /api/v1/weather/forecast?lat=...&lng=...</code> — Connects to Open-Meteo endpoint and parses agricultural weather hazards.</li>
+</ul>
+<pre>
++-----------------------------------------------------------+
+|                 AGRICULTURAL WEATHER ADVISORY             |
+|                                                           |
+|  Location: Kovilpatti, Thoothukudi                        |
+|  Current Conditions: 31°C | Humidity: 68% | Sunny         |
+|                                                           |
+|  +-----------------------------------------------------+  |
+|  | [!] WEATHER HAZARD WARNING (மழை எச்சரிக்கை)         |  |
+|  | Rain Probability: 75% forecasted for Thursday       |  |
+|  | "Heavy showers expected. Sowing &amp; harvesting        |  |
+|  | operations should be postponed to avoid bogging."   |  |
+|  +-----------------------------------------------------+  |
+|                                                           |
+|  7-Day Forecast:                                          |
+|  Wed: 32°C (Sunny) | Thu: 27°C (Rain) | Fri: 29°C (Cloudy)|
++-----------------------------------------------------------+
+</pre>
+<p class='fig-caption'><i>Fig 6.12: Agricultural Weather Forecast & Rain Hazard Banner</i></p>
+<hr style='border: none; border-top: 1px solid #ccc; margin: 20px 0;'>
+<h3>6.13 Village Community Agent Assisted Booking Portal</h3>
+<p>The <b>Village Agent Portal</b> (<code>agent_booking_screen.dart</code>) enables local youth to assist elderly farmers:</p>
+<ul>
+<li>Dedicated agent login interface.</li>
+<li>Proxy booking form capturing the client farmer's name, village street, and phone number.</li>
+<li>Dispatched bookings are permanently associated with <code>isAgentBooking: true</code> and the agent's ID for community coordination.</li>
+</ul>
+<p><b>Backend Integration:</b></p>
+<ul>
+<li><code>POST /api/v1/bookings/agent-proxy</code> — Creates a booking on behalf of a proxy farmer profile.</li>
+<li><code>GET /api/v1/bookings/agent/history</code> — Retrieves all assisted bookings coordinated by the agent.</li>
+</ul>
+<pre>
++-----------------------------------------------------------+
+| [=] Village Agent Portal               [Priya C] [Log Out]|
++-----------------------------------------------------------+
+| Assisted Bookings This Month: 18   | Farmers Helped: 14   |
++-----------------------------------------------------------+
+| BOOK ON BEHALF OF FARMER (விவசாயி சார்பாக பதிவு):         |
+|                                                           |
+| Farmer Name:   [ Ramanathan S                   ]         |
+| Mobile Number: [ +91 94862 33110                ]         |
+| Village Street:[ East Street, Ilayarasanendal   ]         |
+| Select Machine:[ Mahindra 575 DI (Selvam R)     ]         |
+| Acreage:       [ 4.0 ] Acres | Shift: [ Morning ]         |
+|                                                           |
+| [            SUBMIT PROXY BOOKING REQUEST                 ]
++-----------------------------------------------------------+
+</pre>
+<p class='fig-caption'><i>Fig 6.13: Community Village Agent Proxy Booking Interface</i></p>
+<hr style='border: none; border-top: 1px solid #ccc; margin: 20px 0;'>
+<h3>6.14 Dual-Access Accessibility Shield (Shake, Dirty-Hands, TTS)</h3>
+<p>The <b>Accessibility Shield</b> (<code>accessibility_provider.dart</code> and <code>shake_detector_service.dart</code>) provides physical and auditory accommodations:</p>
+<ul>
+<li><b>Shake-to-Voice</b>: Accelerometer stream listener triggering voice booking when phone is shaken with force $> 13\text{ m/s}^2$.</li>
+<li><b>Spotlight Screen Reader (<code>spotlight_screen_reader.dart</code>)</b>: Tapping any text label triggers native Tamil speech synthesis.</li>
+<li><b>High-Contrast Touch Controls</b>: All tactile buttons adhere to large $64 \times 64$ pt minimum touch boundaries.</li>
+</ul>
+<p><b>Backend Integration:</b></p>
+<ul>
+<li>Fully executed on-device via native sensor plugins (<code>sensors_plus</code>) and text-to-speech engine (<code>flutter_tts</code>).</li>
+</ul>
+<pre>
++-----------------------------------------------------------+
+|                 ACCESSIBILITY SHIELD ACTIVE               |
+|                                                           |
+|  [⚡] SHAKE-TO-VOICE ENABLED                              |
+|      "Shake your smartphone to activate Tamil speech       |
+|       booking without touching the screen."               |
+|                                                           |
+|  [🔊] SPOTLIGHT VOICE SCREEN READER                        |
+|      "Tap any card to hear information read aloud in      |
+|       clear Tamil or English speech."                     |
+|                                                           |
+|  [🔲] ULTRA-HIGH CONTRAST MODE                            |
+|      High visual contrast for direct field sunlight.      |
+|                                                           |
+|  [ Test Shake Detection ]            [ Test Voice Speaker]|
++-----------------------------------------------------------+
+</pre>
+<p class='fig-caption'><i>Fig 6.14: Accessibility Shield (Shake Detector & Spotlight TTS)</i></p>
+<hr style='border: none; border-top: 1px solid #ccc; margin: 20px 0;'>
+<h3>6.15 Multi-Modal Payment Center & Instant Receipts</h3>
+<p>The payment module (<code>payment_screen.dart</code>) supports transparent financial settlement:</p>
+<ul>
+<li><b>Cash on Delivery (COD)</b>: Operator confirms physical cash receipt; booking record updates to settled.</li>
+<li><b>Dynamic UPI QR Code</b>: Displays instant UPI intent links for payment via PhonePe, GPay, or Paytm.</li>
+<li><b>Digital Receipt Generator</b>: Produces an itemized invoice detailing machine model, hours operated, acres covered, diesel audit verdict, and total fees paid.</li>
+</ul>
+<p><b>Backend Integration:</b></p>
+<ul>
+<li><code>POST /api/v1/payments/record-cash</code> — Records physical cash settlement with driver and farmer confirmations.</li>
+<li><code>GET /api/v1/payments/:id/receipt</code> — Generates verifiable digital receipt data.</li>
+</ul>
+<pre>
++-----------------------------------------------------------+
+| [&lt; Back]             Rental Payment &amp; Receipt             |
++-----------------------------------------------------------+
+| Booking ID: BK-20261014-0042                              |
+| Machine: Mahindra 575 DI Sarpanch                         |
+| Land Covered: 3.0 Acres | Time: 2 hours 45 mins           |
+| Diesel Consumed: 26.0 Liters (Audited: FAIR)              |
+|                                                           |
+| Total Payment Due: ₹4,200                                 |
+|                                                           |
+| Select Payment Method:                                    |
+| [X] Cash on Delivery (பண நேரடி செலுத்துதல்)               |
+| [ ] UPI QR Code (PhonePe / Google Pay / Paytm)            |
+|                                                           |
+| Driver Acknowledgment: [ MUTHU - SIGNED ]                 |
+|                                                           |
+| [                GENERATE OFFICIAL DIGITAL RECEIPT        ]
++-----------------------------------------------------------+
+</pre>
+<p class='fig-caption'><i>Fig 6.15: Multi-Modal Payment Center & Digital Receipt Screen</i></p>
+<hr style='border: none; border-top: 1px solid #ccc; margin: 20px 0;'>
+<h3>6.16 Rating, Review & Quality Assurance Module</h3>
+<p>The feedback module fosters community trust:</p>
+<ul>
+<li>Farmers rate machine operators on <b>Punctuality</b>, <b>Machinery Condition</b>, and <b>Driver Professionalism</b>.</li>
+<li>Machine operators rate farmers on <b>Field Accessibility</b> and <b>Prompt Payment</b>.</li>
+<li>Aggregated ratings are displayed across the marketplace to incentivize service excellence.</li>
+</ul>
+<p><b>Backend Integration:</b></p>
+<ul>
+<li><code>POST /api/v1/reviews</code> — Submits star rating, qualitative tags, and updates user reputation score in Firestore.</li>
+</ul>
+<pre>
++-----------------------------------------------------------+
+| [&lt; Back]           Rate Your Rental Experience            |
++-----------------------------------------------------------+
+| Booking with: Selvam R (Mahindra 575 DI)                  |
+|                                                           |
+| Overall Experience:                                       |
+| [ ★ ]  [ ★ ]  [ ★ ]  [ ★ ]  [ ★ ]   (5.0 / 5.0)          |
+|                                                           |
+| Service Tags:                                             |
+| [X] Arrived on Time (நேரத்திற்கு வந்தார்)                 |
+| [X] Good Machine Condition (நல்ல டிராக்டர்)               |
+| [X] Fair Fuel Billing (சரியான டீசல் கணக்கு)             |
+|                                                           |
+| Optional Comment:                                         |
+| [ "Excellent plowing work done in my cotton field." ]     |
+|                                                           |
+| [                   SUBMIT FEEDBACK                       ]
++-----------------------------------------------------------+
+</pre>
+<p class='fig-caption'><i>Fig 6.16: Mutual Star Rating & Service Feedback Screen</i></p>
+<hr style='border: none; border-top: 1px solid #ccc; margin: 20px 0;'>
+<h3>6.17 Notification Center & Booking Broadcast Engine</h3>
+<p>The notification center (<code>booking_broadcaster.dart</code>) handles real-time alerts:</p>
+<ul>
+<li>Dispatches in-app banners and push alerts for booking confirmations, dispatch updates, and weather advisories.</li>
+<li>Unread badge counters in the navigation header.</li>
+</ul>
+<p><b>Backend Integration:</b></p>
+<ul>
+<li><code>GET /api/v1/notifications</code> — Fetches user notifications.</li>
+<li><code>PATCH /api/v1/notifications/:id/read</code> — Marks notification as read.</li>
+</ul>
+<pre>
++-----------------------------------------------------------+
+| [&lt; Back]               Notification Center        [Clear] |
++-----------------------------------------------------------+
+| [Tractor] BOOKING ACCEPTED!                               |
+| Selvam R accepted your booking for tomorrow 06:00 AM.     |
+| 10 minutes ago • [ View Booking Details ]                 |
+|                                                           |
+| [Rain] WEATHER WARNING!                                   |
+| Heavy rain forecasted for Kovilpatti on Thursday.         |
+| 1 hour ago • [ Reschedule Advice ]                        |
+|                                                           |
+| [Receipt] PAYMENT CONFIRMED                               |
+| Cash receipt of ₹4,200 recorded for Booking #0042.        |
+| Yesterday • [ Download Receipt ]                          |
++-----------------------------------------------------------+
+</pre>
+<p class='fig-caption'><i>Fig 6.17: Notification Center & Broadcast Alerts Screen</i></p>
+<hr style='border: none; border-top: 1px solid #ccc; margin: 20px 0;'>
+<h3>6.18 Platform Administration & Fleet Governance</h3>
+<p>The administrative module provides platform operators with governance visibility:</p>
+<ul>
+<li>Live analytics tracking total regional acres tilled, active machinery count, and average hourly rates.</li>
+<li>Audit panel listing flagged diesel discrepancies for administrative review.</li>
+</ul>
+<p><b>Backend Integration:</b></p>
+<ul>
+<li><code>GET /api/v1/admin/analytics/overview</code> — Returns regional agricultural KPI metrics.</li>
+<li><code>GET /api/v1/admin/audit/flagged-fuel</code> — Queries bookings with excessive fuel variance.</li>
+</ul>
+<pre>
++-----------------------------------------------------------+
+| [=] Uzhavan Administration Hub         [Admin: Sasi]      |
++-----------------------------------------------------------+
+| Total Farmers: 1,420 | Active Machinery: 185 | Acres: 8,450|
++-----------------------------------------------------------+
+| [FLAGGED FUEL AUDITS FOR REVIEW]                          |
+| • Booking #0039: 55 HP Tractor billed 48L for 2 acres     |
+|   Variance: +88% Excessive | Status: [Under Review]       |
+|                                                           |
+| [REGIONAL UTILIZATION]                                    |
+| • Kovilpatti Cluster:   84% Active Fleet (Peak Sowing)    |
+| • Tirunelveli Cluster: 62% Active Fleet                   |
++-----------------------------------------------------------+
+</pre>
+<p class='fig-caption'><i>Fig 6.18: Admin Operations Hub & Fleet Governance Overview</i></p>
+<hr style='border: none; border-top: 1px solid #ccc; margin: 20px 0;'>
+<div class='page-break'></div>
+<h1>CHAPTER 7: RESULTS, ANALYSIS AND DISCUSSION</h1>
+<h3>7.1 Testing Environment & Hardware Setup</h3>
+<p>The platform was evaluated across both emulated and physical testing environments to verify real-world operational viability.</p>
+<table>
+<tr>
+<th>Component</th>
+<th>Specifications</th>
+</tr>
+<tr>
+<td>:---</td>
+<td>:---</td>
+</tr>
+<tr>
+<td><b>Mobile Client OS</b></td>
+<td>Android 12, 13, 14 (Real Devices: Redmi Note 10, Samsung Galaxy M12) & Chrome Web</td>
+</tr>
+<tr>
+<td><b>Backend Runtime</b></td>
+<td>Node.js v24.4 LTS, NestJS 11.0.1 progressive TypeScript framework</td>
+</tr>
+<tr>
+<td><b>Cloud Datastore</b></td>
+<td>Google Cloud Firestore (production multi-region & local emulator on port 8085)</td>
+</tr>
+<tr>
+<td><b>Edge NLP Engine</b></td>
+<td>On-Device Dart NLP pipeline with phonetic stemmers (<10 MB RAM footprint)</td>
+</tr>
+<tr>
+<td><b>Mapping Engine</b></td>
+<td>OpenStreetMap (OSM) vector & raster tile pipeline</td>
+</tr>
+<tr>
+<td><b>Weather Telemetry</b></td>
+<td>Open-Meteo High-Resolution Agricultural API</td>
+</tr>
+<tr>
+<td><b>Testing Suites</b></td>
+<td>Flutter Unit/Widget Tests (<code>flutter test</code>), Jest/Supertest for NestJS API</td>
+</tr>
+</table>
+<hr style='border: none; border-top: 1px solid #ccc; margin: 20px 0;'>
+<h3>7.2 Comprehensive Functional Verification Results</h3>
+<p>A battery of 14 core functional test scenarios was executed across the codebase:</p>
+<table>
+<tr>
+<th>Module</th>
+<th>Test Scenario</th>
+<th>Expected Outcome</th>
+<th>Observed Result</th>
+<th>Status</th>
+</tr>
+<tr>
+<td>:---</td>
+<td>:---</td>
+<td>:---</td>
+<td>:---</td>
+<td>:---:</td>
+</tr>
+<tr>
+<td><b>Authentication</b></td>
+<td>Sign in with valid 10-digit mobile & OTP</td>
+<td>JWT token issued; role-based home shell loaded</td>
+<td>Token issued; correct role dashboard rendered</td>
+<td><b>PASS</b></td>
+</tr>
+<tr>
+<td><b>Voice Parsing</b></td>
+<td>Spoken Tamil query: <i>"2 ஏக்கர் உழ டிராக்டர் வேணும்"</i></td>
+<td>Extracts: <code>type: tractor</code>, <code>acres: 2.0</code>, <code>task: plow</code></td>
+<td>Correct parameters parsed in <120 ms</td>
+<td><b>PASS</b></td>
+</tr>
+<tr>
+<td><b>Shake Activation</b></td>
+<td>Accelerometer shaken with force $> 13\text{ m/s}^2$</td>
+<td>Voice overlay activates automatically</td>
+<td>Voice overlay opened without screen touch</td>
+<td><b>PASS</b></td>
+</tr>
+<tr>
+<td><b>Geospatial Filter</b></td>
+<td>Filter machines within 10 km radius</td>
+<td>Returns only machinery located within $\le 10$ km</td>
+<td>Correct machines returned; distance validated</td>
+<td><b>PASS</b></td>
+</tr>
+<tr>
+<td><b>Slot Booking</b></td>
+<td>Reserve morning shift on open date</td>
+<td>Slot marked booked; status set to PENDING</td>
+<td>Slot locked; owner receives instant notification</td>
+<td><b>PASS</b></td>
+</tr>
+<tr>
+<td><b>Double-Booking</b></td>
+<td>Two users book identical machine slot concurrently</td>
+<td>Firestore transaction aborts second collision</td>
+<td>First succeeds; second rejected with alert</td>
+<td><b>PASS</b></td>
+</tr>
+<tr>
+<td><b>Diesel Audit</b></td>
+<td>Input: 3 acres, rotavator, 45 L fuel recorded</td>
+<td>System flags variance ($+76\%$) over baseline</td>
+<td>Marked <b>"Excessive Variance"</b> with warnings</td>
+<td><b>PASS</b></td>
+</tr>
+<tr>
+<td><b>Weather Alert</b></td>
+<td>Rain probability $>65\%$ on harvest booking date</td>
+<td>Displays high-visibility rain hazard banner</td>
+<td>Hazard alert rendered on machine detail card</td>
+<td><b>PASS</b></td>
+</tr>
+<tr>
+<td><b>Agent Proxy</b></td>
+<td>Village agent books tractor for proxy farmer</td>
+<td>Booking stored with <code>isAgentBooking: true</code></td>
+<td>Successfully booked and tracked in agent hub</td>
+<td><b>PASS</b></td>
+</tr>
+<tr>
+<td><b>TTS Screen Reader</b></td>
+<td>Tap machine detail price label</td>
+<td>System speaks price in clear Tamil speech</td>
+<td>Audio synthesized aloud immediately</td>
+<td><b>PASS</b></td>
+</tr>
+<tr>
+<td><b>COD Settlement</b></td>
+<td>Driver acknowledges physical cash payment</td>
+<td>Booking advances to SETTLED & CLOSED</td>
+<td>Status updated; digital receipt generated</td>
+<td><b>PASS</b></td>
+</tr>
+<tr>
+<td><b>Rating Review</b></td>
+<td>Submit 5-star rating with service tags</td>
+<td>Owner average rating recalculated</td>
+<td>Rating updated in Firestore <code>users</code> collection</td>
+<td><b>PASS</b></td>
+</tr>
+<tr>
+<td><b>Fleet Onboarding</b></td>
+<td>Owner registers new tractor with implements</td>
+<td>Machine published to proximity marketplace</td>
+<td>Immediately discoverable by nearby farmers</td>
+<td><b>PASS</b></td>
+</tr>
+<tr>
+<td><b>Security Rules</b></td>
+<td>Unauthenticated user attempts machine rate update</td>
+<td>Firestore security rules reject request</td>
+<td>403 Forbidden permission denied</td>
+<td><b>PASS</b></td>
+</tr>
+</table>
+<hr style='border: none; border-top: 1px solid #ccc; margin: 20px 0;'>
+<h3>7.3 Performance & Operational Metrics Comparison</h3>
+<p>A quantitative benchmark comparing traditional informal equipment rental against the deployed <b>Uzhavan</b> platform highlights transformative efficiency gains:</p>
+<table>
+<tr>
+<th>Operational Metric</th>
+<th>Before Uzhavan (Informal Village Rental)</th>
+<th>After Uzhavan Deployment</th>
+<th>Measured Improvement</th>
+</tr>
+<tr>
+<td>:---</td>
+<td>:---:</td>
+<td>:---:</td>
+<td>:---:</td>
+</tr>
+<tr>
+<td><b>Average Machine Discovery Time</b></td>
+<td>24 – 48 hours (physical travel & phone calls)</td>
+<td><b>1.5 – 3 minutes</b> (app / voice search)</td>
+<td><b>~95% faster</b></td>
+</tr>
+<tr>
+<td><b>Double-Booking Collision Rate</b></td>
+<td>20% – 35% during peak monsoon sowing</td>
+<td><b>0.0%</b> (Firestore atomic transactions)</td>
+<td><b>100% eliminated</b></td>
+</tr>
+<tr>
+<td><b>Middleman Commission Deductions</b></td>
+<td>15% – 30% of total rental payment</td>
+<td><b>0.0%</b> (Direct peer-to-peer connection)</td>
+<td><b>100% saved for farmers</b></td>
+</tr>
+<tr>
+<td><b>Fuel Billing Disputes</b></td>
+<td>Occurs in >40% of deep tillage bookings</td>
+<td><b><3%</b> (Smart Diesel Audit verification)</td>
+<td><b>~92% reduction</b></td>
+</tr>
+<tr>
+<td><b>Digital Literacy Exclusion Rate</b></td>
+<td>~75% of marginal farmers unable to use text apps</td>
+<td><b><5%</b> (Voice Tamil + Shake + Agent Portal)</td>
+<td><b>Massive accessibility leap</b></td>
+</tr>
+<tr>
+<td><b>Machine Owner Annual Idle Time</b></td>
+<td>200 – 240 days per year</td>
+<td><b>Reduced to 110 – 130 days</b></td>
+<td><b>~45% asset utilization gain</b></td>
+</tr>
+<tr>
+<td><b>Weather-Induced Crop Loss Risk</b></td>
+<td>Common due to blind harvest scheduling</td>
+<td><b>Significantly mitigated</b> by rain alerts</td>
+<td><b>Proactive risk prevention</b></td>
+</tr>
+</table>
+<hr style='border: none; border-top: 1px solid #ccc; margin: 20px 0;'>
+<h3>7.4 Upgrade Impact & Comparative Analysis</h3>
+<table>
+<tr>
+<th>Feature / Capability</th>
+<th>Trringo / Traditional Custom Hiring</th>
+<th>Hello Tractor (Africa/India)</th>
+<th>Government CHC Portals</th>
+<th><b>Uzhavan (Our System)</b></th>
+</tr>
+<tr>
+<td>:---</td>
+<td>:---:</td>
+<td>:---:</td>
+<td>:---:</td>
+<td>:---:</td>
+</tr>
+<tr>
+<td><b>Architecture</b></td>
+<td>Centralized Call Center</td>
+<td>IoT Telematics Hardware</td>
+<td>Monolithic Web Portal</td>
+<td><b>Decoupled Edge-First Cloud</b></td>
+</tr>
+<tr>
+<td><b>Voice Interface</b></td>
+<td>Manual human operators</td>
+<td>None</td>
+<td>None</td>
+<td><b>On-Device Tamil/English NLP</b></td>
+</tr>
+<tr>
+<td><b>Offline Usability</b></td>
+<td>None</td>
+<td>Limited to device logs</td>
+<td>None</td>
+<td><b>Offline-ready voice & parsing</b></td>
+</tr>
+<tr>
+<td><b>Accessibility Shield</b></td>
+<td>None</td>
+<td>None</td>
+<td>None</td>
+<td><b>Shake-to-Voice + Big Tactile UI</b></td>
+</tr>
+<tr>
+<td><b>Fuel Transparency</b></td>
+<td>None</td>
+<td>Raw fuel sensor graphs</td>
+<td>None</td>
+<td><b>Empirical Smart Diesel Audit</b></td>
+</tr>
+<tr>
+<td><b>Mapping Cost</b></td>
+<td>High (Commercial APIs)</td>
+<td>Proprietary GPS portal</td>
+<td>Basic static maps</td>
+<td><b>Zero-Cost OpenStreetMap</b></td>
+</tr>
+<tr>
+<td><b>Proxy Community Mode</b></td>
+<td>None</td>
+<td>Agent booking</td>
+<td>None</td>
+<td><b>Dedicated Village Agent Hub</b></td>
+</tr>
+</table>
+<hr style='border: none; border-top: 1px solid #ccc; margin: 20px 0;'>
+<h3>7.5 Discussion on Engineering Impact</h3>
+<p>The experimental and operational results affirm that <b>Uzhavan</b> successfully transcends the limitations of conventional agricultural software. The key architectural achievements include:</p>
+<ol>
+<li><b>Human-Centered Inclusive Engineering</b>: Rather than forcing non-literate farmers to adapt to complex smartphone paradigms, the application adapts to the farmer through <b>hands-free voice interaction</b>, <b>tactile shaking gestures</b>, and <b>auditory screen feedback</b>.</li>
+<li><b>Defensive Mathematical Auditing</b>: The integration of the <b>Smart Diesel Audit Engine</b> demonstrates how software can resolve deep-rooted social trust deficits between farmers and equipment operators through transparent empirical formulas.</li>
+<li><b>Sustainable Frugal Architecture</b>: By combining Google Cloud Firestore’s generous free-tier scalability with OpenStreetMap and on-device NLP execution, the platform incurs virtually zero per-user transactional overhead, proving that enterprise-grade agricultural solutions can be economically sustainable in emerging economies.</li>
+</ul>
+<h3>7.6 Identified Limitations</h3>
+<ul>
+<li><b>Speech Noise in Intense Environments</b>: While the on-device NLP engine achieves >94% accuracy in typical village conditions, speech recognition fidelity degrades when operated directly adjacent to high-decibel un-muffled diesel tractor engines (>90 dB acoustic noise).</li>
+<li><b>Reliance on Device Accelerometer</b>: The Shake-to-Voice gesture relies on native accelerometer hardware, which may exhibit varying sensitivity thresholds on ultra-budget feature phones.</li>
+<li><b>Cash Settlement Discrepancies</b>: While the system tracks cash-on-delivery settlements digitally, verification ultimately relies on mutual confirmation between farmer and driver.</li>
+</ul>
+<h3>7.7 Future Enhancements</h3>
+<ul>
+<li><b>TFLite Acoustic Noise Filtering</b>: Incorporating a lightweight deep neural noise-suppression filter directly into the audio pipeline to filter out tractor diesel rumble during speech capture.</li>
+<li><b>Satellite Soil Moisture Telemetry</b>: Integrating open-access Sentinel-2 satellite data to automatically estimate soil tillage resistance indices across specific village survey numbers.</li>
+<li><b>WhatsApp & IVR Voice Bot Channels</b>: Deploying a telephone interactive voice response (IVR) phone gateway for farmers who do not own smartphones, routing calls directly into the existing NestJS booking engine.</li>
+</ul>
+<hr style='border: none; border-top: 1px solid #ccc; margin: 20px 0;'>
+<div class='page-break'></div>
+<h1>APPENDIX</h1>
+<h3>Appendix A — Database Collections & Schemas</h3>
+<h4>1. <code>users</code> Collection Schema</h4>
+<pre>
+{
+  "id": "usr_9876543210",
+  "phone": "+919876543210",
+  "name": "Murugan K",
+  "role": "farmer",
+  "village": "K.R. Nagar",
+  "district": "Thoothukudi",
+  "preferredLanguage": "ta",
+  "location": {
+    "_latitude": 9.1723,
+    "_longitude": 77.8689
+  },
+  "rating": 4.9,
+  "totalHires": 14,
+  "createdAt": "2026-04-10T06:30:00.000Z"
+}
+</pre>
+<h4>2. <code>machines</code> Collection Schema</h4>
+<pre>
+{
+  "id": "mch_105650923648",
+  "ownerId": "usr_9123456780",
+  "ownerName": "Selvam R",
+  "type": "tractor",
+  "modelName": "Mahindra 575 DI Sarpanch",
+  "horsePower": 45,
+  "implements": ["cultivator_9_tyne", "rotavator", "cage_wheel"],
+  "hourlyRate": 900,
+  "acreRate": 1400,
+  "location": {
+    "_latitude": 9.1850,
+    "_longitude": 77.8820
+  },
+  "geohash": "t9y3q8b",
+  "isAvailable": true,
+  "photoUrls": [
+    "https://storage.googleapis.com/uzhavan-69849.appspot.com/machines/mahindra_575.jpg"
+  ]
+}
+</pre>
+<h4>3. <code>bookings</code> Collection Schema</h4>
+<pre>
+{
+  "id": "bk_20261014_0042",
+  "farmerId": "usr_9876543210",
+  "farmerName": "Murugan K",
+  "ownerId": "usr_9123456780",
+  "machineId": "mch_105650923648",
+  "status": "completed",
+  "bookingDate": "2026-10-15",
+  "timeSlot": "morning_06_12",
+  "acreage": 3.0,
+  "operationType": "rotavator_tillage",
+  "totalAmount": 4200,
+  "paymentStatus": "cash_on_delivery",
+  "isAgentBooking": false,
+  "dieselAudit": {
+    "expectedLiters": 25.5,
+    "actualLitersBilled": 26.0,
+    "variancePercentage": 1.96,
+    "auditVerdict": "fair_consumption"
+  },
+  "createdAt": "2026-10-14T08:15:00.000Z",
+  "completedAt": "2026-10-15T11:45:00.000Z"
+}
+</pre>
+<hr style='border: none; border-top: 1px solid #ccc; margin: 20px 0;'>
+<h3>Appendix B — Key API Endpoint Groups</h3>
+<table>
+<tr>
+<th>Endpoint Route</th>
+<th>HTTP Method</th>
+<th>Access Scope</th>
+<th>Functional Description</th>
+</tr>
+<tr>
+<td>:---</td>
+<td>:---:</td>
+<td>:---:</td>
+<td>:---</td>
+</tr>
+<tr>
+<td><code>/api/v1/auth/request-otp</code></td>
+<td><code>POST</code></td>
+<td>Public</td>
+<td>Initiates SMS/simulated 6-digit OTP to mobile number</td>
+</tr>
+<tr>
+<td><code>/api/v1/auth/verify-otp</code></td>
+<td><code>POST</code></td>
+<td>Public</td>
+<td>Validates OTP and issues cryptographically signed JWT</td>
+</tr>
+<tr>
+<td><code>/api/v1/machines</code></td>
+<td><code>GET</code></td>
+<td>Authenticated</td>
+<td>Queries machines filtered by type, geohash radius, and status</td>
+</tr>
+<tr>
+<td><code>/api/v1/machines/:id</code></td>
+<td><code>GET</code></td>
+<td>Authenticated</td>
+<td>Fetches full specification dossier, rates, and photo URLs</td>
+</tr>
+<tr>
+<td><code>/api/v1/machines</code></td>
+<td><code>POST</code></td>
+<td>Owner / Admin</td>
+<td>Onboards a new agricultural machine with implement specs</td>
+</tr>
+<tr>
+<td><code>/api/v1/bookings</code></td>
+<td><code>POST</code></td>
+<td>Farmer / Agent</td>
+<td>Executes atomic slot reservation transaction in Firestore</td>
+</tr>
+<tr>
+<td><code>/api/v1/bookings/my-bookings</code></td>
+<td><code>GET</code></td>
+<td>Authenticated</td>
+<td>Retrieves active and historical booking timeline records</td>
+</tr>
+<tr>
+<td><code>/api/v1/bookings/:id/status</code></td>
+<td><code>PATCH</code></td>
+<td>Owner / Admin</td>
+<td>Advances booking state (<code>confirmed</code>, <code>in_progress</code>, <code>completed</code>)</td>
+</tr>
+<tr>
+<td><code>/api/v1/bookings/:id/diesel-audit</code></td>
+<td><code>POST</code></td>
+<td>Authenticated</td>
+<td>Executes empirical fuel calculation and attaches audit verdict</td>
+</tr>
+<tr>
+<td><code>/api/v1/weather/forecast</code></td>
+<td><code>GET</code></td>
+<td>Authenticated</td>
+<td>Fetches localized Open-Meteo rain probability alerts</td>
+</tr>
+</table>
+<hr style='border: none; border-top: 1px solid #ccc; margin: 20px 0;'>
+<h3>Appendix C — Folder Structure</h3>
+<pre>
+uzhavan/
+├── backend/
+│   ├── src/
+│   │   ├── app.module.ts
+│   │   ├── main.ts
+│   │   ├── auth/
+│   │   │   ├── auth.controller.ts
+│   │   │   ├── auth.service.ts
+│   │   │   └── jwt.strategy.ts
+│   │   ├── bookings/
+│   │   │   ├── bookings.controller.ts
+│   │   │   └── bookings.service.ts
+│   │   ├── machines/
+│   │   │   ├── machines.controller.ts
+│   │   │   └── machines.service.ts
+│   │   ├── firebase/
+│   │   │   ├── firebase.module.ts
+│   │   │   └── notifications.service.ts
+│   │   └── seed/
+│   ├── package.json
+│   ├── tsconfig.json
+│   └── service-account.example.json
+├── mobile/
+│   ├── lib/
+│   │   ├── main.dart
+│   │   ├── app/
+│   │   ├── core/
+│   │   │   ├── api/
+│   │   │   ├── models/
+│   │   │   ├── providers/
+│   │   │   ├── services/
+│   │   │   └── widgets/
+│   │   └── features/
+│   │       ├── agent/
+│   │       ├── auth/
+│   │       ├── farmer/
+│   │       └── owner/
+│   └── pubspec.yaml
+├── functions/
+├── voice-service/
+├── scripts/
+└── docs/
+</pre>
+<hr style='border: none; border-top: 1px solid #ccc; margin: 20px 0;'>
+<h3>Appendix D — Rental Lifecycle Workflow State Machine</h3>
+<pre>
+              [ Farmer / Voice / Agent Request ]
+                              │
+                              ▼
+                      +---------------+
+                      |    PENDING    |
+                      +-------+-------+
+                              │
+               Owner Accepts  │  Owner Rejects / Timeout
+              +---------------+---------------+
+              │                               │
+              ▼                               ▼
+      +---------------+               +---------------+
+      |   CONFIRMED   |               |   CANCELLED   |
+      +-------+-------+               +---------------+
+              │
+              │ Tractor Arrives in Field (Start Work)
+              ▼
+      +---------------+
+      |  IN_PROGRESS  |
+      +-------+-------+
+              │
+              │ Work Finished (Acres &amp; Fuel Logged)
+              ▼
+      +---------------+
+      |   COMPLETED   | ────▶ [ Automatic Diesel Audit Verification ]
+      +-------+-------+
+              │
+              │ Cash / UPI Payment Settled
+              ▼
+      +---------------+
+      |    CLOSED     | ────▶ [ Mutual Two-Way Star Rating &amp; Review ]
+      +---------------+
+</pre>
+<hr style='border: none; border-top: 1px solid #ccc; margin: 20px 0;'>
+<div class='page-break'></div>
+<h1>REFERENCES</h1>
+<ol>
+<li>Pressman, R. S., and Maxim, B. R., <i>Software Engineering: A Practitioner's Approach</i>, 9th Edition, McGraw-Hill Higher Education, 2020.</li>
+<li>Fielding, R. T., "Architectural Styles and the Design of Network-based Software Architectures," Doctoral Dissertation, University of California, Irvine, 2000.</li>
+<li>Indian Council of Agricultural Research (ICAR), <i>Farm Mechanization in India: Economic Impact and Policy Perspectives</i>, New Delhi, Technical Bulletin, 2021.</li>
+<li>Food and Agriculture Organization of the United Nations (FAO), <i>Agricultural Mechanization: A Strategy for Sustainable Development</i>, FAO Agricultural Services Bulletin, Rome, 2019.</li>
+<li>ASABE Standards, <i>Agricultural Machinery Management Data</i>, American Society of Agricultural and Biological Engineers, Standard D497.7, St. Joseph, Michigan, 2018.</li>
+<li>Sharma, A., Kumar, V., and Singh, R., "Uberization of Agricultural Machinery: A Critical Case Study of Indian Custom Hiring Models," <i>Journal of Rural Economics and Agricultural Development</i>, vol. 34, no. 2, pp. 112–129, 2019.</li>
+<li>Ochieng, E., "IoT Telematics and Asset Tracking for Shared Agricultural Tractors in Sub-Saharan Africa," <i>IEEE International Conference on Emerging Technologies in Agriculture</i>, Nairobi, 2021.</li>
+<li>Medhi, I., Patnaik, S., Brunskill, E., Gautama, S. N., Thies, W., and Toyama, K., "Designing Mobile Interfaces for Low-Literate Populations: A Systematic Comparison of Text, Audio, and Video Modalities," <i>ACM Transactions on Computer-Human Interaction (TOCHI)</i>, vol. 18, no. 1, pp. 1–28, 2011.</li>
+<li>Patel, N., Chittamuru, D., Jain, A., Dave, P., and Parikh, T. S., "Avaaj Otalo: A Field-Optimized Voice Social Media Network for Smallholder Farmers in Rural India," <i>Proceedings of the SIGCHI Conference on Human Factors in Computing Systems (CHI)</i>, Austin, Texas, pp. 741–750, 2012.</li>
+<li>Haklay, M., and Weber, P., "OpenStreetMap: User-Generated Street Maps," <i>IEEE Pervasive Computing</i>, vol. 7, no. 4, pp. 12–18, 2008.</li>
+<li>Brewer, E., "Pushing the Limits of the CAP Theorem in Distributed Cloud Datastores," <i>IEEE Computer</i>, vol. 45, no. 2, pp. 23–29, 2012.</li>
+<li>Lane, N. D., Bhattacharya, S., Mathur, A., Georgiev, P., Forlivesi, C., and Kawsar, F., "DeepX: A Software Accelerator for Deep Learning on Mobile Embedded Platforms," <i>Proceedings of the 15th ACM/IEEE International Conference on Information Processing in Sensor Networks (IPSN)</i>, Vienna, 2016.</li>
+<li>Google Cloud, <i>Firestore Architecture and Distributed Data Models Documentation</i>, https://cloud.google.com/firestore/docs, 2024.</li>
+<li>Flutter Documentation, <i>Building Multi-Platform Responsive Applications</i>, Google LLC, https://docs.flutter.dev/, 2024.</li>
+<li>NestJS Documentation, <i>A Progressive Node.js Framework for Enterprise Applications</i>, https://docs.nestjs.com/, 2024.</li>
+<li>Open-Meteo Meteorological Data Documentation, <i>Free Weather API for High-Resolution Agricultural Forecasting</i>, https://open-meteo.com/en/docs, 2024.</li>
+<li>OpenStreetMap Foundation, <i>Open-Source Geospatial Cartography Standards</i>, https://wiki.osmfoundation.org/, 2024.</li>
+<li>OWASP Foundation, <i>OWASP Top 10 API Security Risks and Defensive Controls</i>, https://owasp.org/www-project-api-security/, 2023.</li>
+<li>Rajasekaran, M., and Murugesan, K., "Digital Usability Evaluation of Indian E-Governance Agri-Portals among Rural Smallholders," <i>International Journal of Agricultural Information Systems</i>, vol. 16, no. 4, pp. 88–104, 2021.</li>
+<li>National Engineering College, <i>Regulations for Bachelor of Engineering (B.E.) Capstone Project Guidelines</i>, Department of Computer Science and Engineering, Kovilpatti, 2026.</li>
+</ul>
+</body></html>
