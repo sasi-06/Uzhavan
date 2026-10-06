@@ -695,7 +695,7 @@ class _FarmerHomeScreenState extends State<FarmerHomeScreen>
                   ),
                 ),
 
-              const SliverToBoxAdapter(child: SizedBox(height: 100)),
+              const SliverToBoxAdapter(child: SizedBox(height: 150)),
             ],
           ),
         ),
@@ -729,149 +729,162 @@ class _MachineCard extends StatelessWidget {
             ),
           ],
         ),
-        child: Row(
-          children: [
-            // Machine image with rounded corner & aspect
-            ClipRRect(
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(21),
-                bottomLeft: Radius.circular(21),
-              ),
-              child: Stack(
-                children: [
-                  Container(
-                    width: 114,
-                    height: 136,
-                    color: const Color(0xFFF1F5F9),
-                    child: machine.photos.isNotEmpty
-                        ? Image.network(
-                            machine.photos.first,
-                            fit: BoxFit.cover,
-                            errorBuilder: (_, __, ___) => const Icon(
-                              Icons.agriculture_rounded,
-                              size: 46,
-                              color: AppColors.primary,
-                            ),
-                          )
-                        : const Icon(
-                            Icons.agriculture_rounded,
-                            size: 46,
-                            color: AppColors.primary,
-                          ),
-                  ),
-                  Positioned(
-                    top: 8,
-                    left: 8,
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                      decoration: BoxDecoration(
-                        color: Colors.black.withValues(alpha: 0.65),
-                        borderRadius: BorderRadius.circular(6),
-                      ),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          const Icon(Icons.star_rounded, size: 12, color: AppColors.starGold),
-                          const SizedBox(width: 2),
-                          Text(
-                            '4.8',
-                            style: const TextStyle(
-                              fontSize: 10,
-                              fontWeight: FontWeight.w800,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            // Info
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(14),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            machine.model ?? machine.type,
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: const TextStyle(
-                              fontSize: 16.5,
-                              fontWeight: FontWeight.w800,
-                              color: AppColors.textPrimary,
-                              letterSpacing: -0.2,
-                            ),
-                          ),
-                        ),
-                        if (machine.operatorIncluded)
-                          Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 3),
-                            decoration: BoxDecoration(
-                              color: AppColors.primary.withValues(alpha: 0.10),
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: const Row(
-                              children: [
-                                Icon(Icons.engineering_rounded, size: 12, color: AppColors.primary),
-                                SizedBox(width: 3),
-                                Text(
-                                  'Operator',
-                                  style: TextStyle(
-                                    fontSize: 10.5,
+        child: IntrinsicHeight(
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              // Machine image with rounded corner & flush aspect
+              ClipRRect(
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(21),
+                  bottomLeft: Radius.circular(21),
+                ),
+                child: SizedBox(
+                  width: 120,
+                  child: Stack(
+                    fit: StackFit.expand,
+                    children: [
+                      Container(
+                        color: const Color(0xFFF1F5F9),
+                        child: machine.photos.isNotEmpty
+                            ? Image.network(
+                                machine.photos.first,
+                                fit: BoxFit.cover,
+                                errorBuilder: (_, __, ___) => const Center(
+                                  child: Icon(
+                                    Icons.agriculture_rounded,
+                                    size: 46,
                                     color: AppColors.primary,
-                                    fontWeight: FontWeight.w700,
                                   ),
                                 ),
-                              ],
-                            ),
-                          ),
-                      ],
-                    ),
-                    const SizedBox(height: 6),
-
-                    // Owner details badge
-                    Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                      margin: const EdgeInsets.only(bottom: 6),
-                      decoration: BoxDecoration(
-                        color: const Color(0xFFF8FAFC),
-                        borderRadius: BorderRadius.circular(8),
-                        border: Border.all(color: const Color(0xFFE2E8F0)),
+                              )
+                            : const Center(
+                                child: Icon(
+                                  Icons.agriculture_rounded,
+                                  size: 46,
+                                  color: AppColors.primary,
+                                ),
+                              ),
                       ),
-                      child: Row(
+                      Positioned(
+                        top: 8,
+                        left: 8,
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                          decoration: BoxDecoration(
+                            color: Colors.black.withValues(alpha: 0.65),
+                            borderRadius: BorderRadius.circular(6),
+                          ),
+                          child: const Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Icon(Icons.star_rounded, size: 12, color: AppColors.starGold),
+                              SizedBox(width: 2),
+                              Text(
+                                '4.8',
+                                style: TextStyle(
+                                  fontSize: 10.5,
+                                  fontWeight: FontWeight.w800,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              // Info
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Icon(Icons.person_outline_rounded, size: 13, color: AppColors.textSecondary),
-                          const SizedBox(width: 4),
                           Expanded(
                             child: Text(
-                              (machine.owner?.name.isNotEmpty == true) ? machine.owner!.name : "உரிமையாளர் / Owner",
+                              machine.model ?? machine.type,
+                              maxLines: 2,
                               overflow: TextOverflow.ellipsis,
                               style: const TextStyle(
-                                fontSize: 11.5,
-                                fontWeight: FontWeight.w700,
+                                fontSize: 15.5,
+                                fontWeight: FontWeight.w800,
                                 color: AppColors.textPrimary,
+                                letterSpacing: -0.2,
+                                height: 1.25,
                               ),
                             ),
                           ),
-                          const Icon(Icons.verified_rounded, size: 13, color: AppColors.primary),
+                          if (machine.operatorIncluded) ...[
+                            const SizedBox(width: 6),
+                            Container(
+                              padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 3),
+                              decoration: BoxDecoration(
+                                color: AppColors.primary.withValues(alpha: 0.10),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              child: const Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Icon(Icons.engineering_rounded, size: 12, color: AppColors.primary),
+                                  SizedBox(width: 3),
+                                  Text(
+                                    'Operator',
+                                    style: TextStyle(
+                                      fontSize: 10.5,
+                                      color: AppColors.primary,
+                                      fontWeight: FontWeight.w700,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
                         ],
                       ),
-                    ),
+                      const SizedBox(height: 6),
 
-                    PriceChip(displayPrice: machine.displayPrice),
-                    const SizedBox(height: 6),
-                    Row(
-                      children: [
-                        Flexible(
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                      // Owner details badge
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                        decoration: BoxDecoration(
+                          color: const Color(0xFFF8FAFC),
+                          borderRadius: BorderRadius.circular(8),
+                          border: Border.all(color: const Color(0xFFE2E8F0)),
+                        ),
+                        child: Row(
+                          children: [
+                            const Icon(Icons.person_outline_rounded, size: 13, color: AppColors.textSecondary),
+                            const SizedBox(width: 4),
+                            Expanded(
+                              child: Text(
+                                (machine.owner?.name.isNotEmpty == true) ? machine.owner!.name : "உரிமையாளர் / Owner",
+                                overflow: TextOverflow.ellipsis,
+                                style: const TextStyle(
+                                  fontSize: 11.5,
+                                  fontWeight: FontWeight.w700,
+                                  color: AppColors.textPrimary,
+                                ),
+                              ),
+                            ),
+                            const Icon(Icons.verified_rounded, size: 13, color: AppColors.primary),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 6),
+
+                      PriceChip(displayPrice: machine.displayPrice, fontSize: 19),
+                      const SizedBox(height: 6),
+                      Row(
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
                             decoration: BoxDecoration(
                               color: const Color(0xFFF1F5F9),
                               borderRadius: BorderRadius.circular(6),
@@ -880,43 +893,35 @@ class _MachineCard extends StatelessWidget {
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 const Icon(Icons.near_me_rounded, size: 11, color: AppColors.textSecondary),
-                                const SizedBox(width: 3),
-                                Flexible(
-                                  child: Text(
-                                    machine.distanceKm != null ? '${machine.distanceKm!.toStringAsFixed(1)} km' : '—',
-                                    maxLines: 1,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: const TextStyle(
-                                      fontSize: 11.5,
-                                      fontWeight: FontWeight.w600,
-                                      color: AppColors.textSecondary,
-                                    ),
+                                const SizedBox(width: 4),
+                                Text(
+                                  machine.distanceKm != null ? '${machine.distanceKm!.toStringAsFixed(1)} km' : '—',
+                                  style: const TextStyle(
+                                    fontSize: 11.5,
+                                    fontWeight: FontWeight.w600,
+                                    color: AppColors.textSecondary,
                                   ),
                                 ),
                               ],
                             ),
                           ),
-                        ),
-                        const SizedBox(width: 6),
-                        const FittedBox(
-                          child: StarRatingWidget(rating: 4.5, starSize: 12),
-                        ),
-                        const Spacer(),
-                        Container(
-                          padding: const EdgeInsets.all(5),
-                          decoration: BoxDecoration(
-                            color: AppColors.primary.withValues(alpha: 0.08),
-                            shape: BoxShape.circle,
+                          const Spacer(),
+                          Container(
+                            padding: const EdgeInsets.all(6),
+                            decoration: BoxDecoration(
+                              color: AppColors.primary.withValues(alpha: 0.10),
+                              shape: BoxShape.circle,
+                            ),
+                            child: const Icon(Icons.arrow_forward_ios_rounded, color: AppColors.primary, size: 12),
                           ),
-                          child: const Icon(Icons.arrow_forward_ios_rounded, color: AppColors.primary, size: 12),
-                        ),
-                      ],
-                    ),
-                  ],
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
