@@ -453,7 +453,7 @@ class _FarmerBookingFlowState extends State<FarmerBookingFlow> {
               minHeight: 6,
             ),
             Expanded(
-              child: Padding(
+              child: SingleChildScrollView(
                 padding: const EdgeInsets.all(24),
                 child: _buildStep(),
               ),
@@ -702,12 +702,12 @@ class _StepDateState extends State<_StepDate> {
       if (widget.forecast != null)
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 4),
-          child: Row(
+          child: Wrap(
+            spacing: 12,
+            runSpacing: 6,
             children: [
               _LegendDot(color: AppColors.success, label: 'நல்லது / Good'),
-              const SizedBox(width: 12),
               _LegendDot(color: AppColors.warning, label: 'கவனம் / Caution'),
-              const SizedBox(width: 12),
               _LegendDot(color: AppColors.error, label: 'மோசம் / Poor'),
             ],
           ),
@@ -847,12 +847,16 @@ class _PayOption extends StatelessWidget {
           Container(width: 56, height: 56, decoration: BoxDecoration(color: c.withValues(alpha: 0.12), borderRadius: BorderRadius.circular(14)),
               child: Icon(icon, size: 32, color: c)),
           const SizedBox(width: 16),
-          Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Text(label, style: TextStyle(fontSize: 20, fontWeight: FontWeight.w800, color: selected ? c : AppColors.textPrimary)),
-            Text(sublabel, style: const TextStyle(fontSize: 13, color: AppColors.textSecondary)),
-          ]),
-          const Spacer(),
-          if (selected) Icon(Icons.check_circle_rounded, color: c, size: 28),
+          Expanded(
+            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Text(label, style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800, color: selected ? c : AppColors.textPrimary)),
+              Text(sublabel, style: const TextStyle(fontSize: 13, color: AppColors.textSecondary)),
+            ]),
+          ),
+          if (selected) ...[
+            const SizedBox(width: 8),
+            Icon(Icons.check_circle_rounded, color: c, size: 28),
+          ],
         ]),
       ),
     );
@@ -867,25 +871,28 @@ class _SuccessScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.primary,
       body: Center(
-        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          const Icon(Icons.check_circle_rounded, color: Colors.white, size: 120),
-          const SizedBox(height: 24),
-          const Text('முன்பதிவு வெற்றி!', style: TextStyle(color: Colors.white, fontSize: 32, fontWeight: FontWeight.w900)),
-          const SizedBox(height: 12),
-          Text(machine.model ?? machine.type,
-              style: TextStyle(color: Colors.white.withValues(alpha: 0.8), fontSize: 18)),
-          const SizedBox(height: 48),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.white,
-              foregroundColor: AppColors.primary,
-              minimumSize: const Size(200, 54),
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(24),
+          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+            const Icon(Icons.check_circle_rounded, color: Colors.white, size: 120),
+            const SizedBox(height: 24),
+            const Text('முன்பதிவு வெற்றி!', style: TextStyle(color: Colors.white, fontSize: 32, fontWeight: FontWeight.w900)),
+            const SizedBox(height: 12),
+            Text(machine.model ?? machine.type,
+                style: TextStyle(color: Colors.white.withValues(alpha: 0.8), fontSize: 18)),
+            const SizedBox(height: 48),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.white,
+                foregroundColor: AppColors.primary,
+                minimumSize: const Size(200, 54),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+              ),
+              onPressed: () => Navigator.of(context).popUntil((r) => r.isFirst),
+              child: const Text('முகப்புக்கு திரும்பு', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800)),
             ),
-            onPressed: () => Navigator.of(context).popUntil((r) => r.isFirst),
-            child: const Text('முகப்புக்கு திரும்பு', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800)),
-          ),
-        ]),
+          ]),
+        ),
       ),
     );
   }

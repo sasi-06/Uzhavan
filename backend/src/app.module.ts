@@ -8,6 +8,8 @@ import { MachinesModule } from './machines/machines.module';
 import { BookingsModule } from './bookings/bookings.module';
 import { PaymentsModule } from './payments/payments.module';
 import { SeedModule } from './seed/seed.module';
+import { AdminModule } from './admin/admin.module';
+import { SchemesModule } from './schemes/schemes.module';
 import { HealthController } from './health.controller';
 
 @Module({
@@ -20,6 +22,8 @@ import { HealthController } from './health.controller';
     BookingsModule,
     PaymentsModule,
     SeedModule,
+    AdminModule,
+    SchemesModule,
   ],
   controllers: [HealthController],
 })

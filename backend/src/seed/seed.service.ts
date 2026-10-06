@@ -2,6 +2,7 @@ import { Injectable, Logger } from '@nestjs/common';
 import { getFirestore, FieldValue } from 'firebase-admin/firestore';
 import { v4 as uuidv4 } from 'uuid';
 import { MachineStatus, MachineType, UserRole, KycStatus, PreferredLanguage } from '../common/enums';
+import { MASTER_SCHEMES } from '../schemes/schemes.data';
 
 @Injectable()
 export class SeedService {
@@ -107,6 +108,19 @@ export class SeedService {
     }
 
     this.logger.log(`Seeded ${machines.length} machines for owner ${owner.phone}`);
+
+    // Seed Government Schemes
+    for (const s of MASTER_SCHEMES) {
+      await db.collection('schemes').doc(s.id).set(
+        {
+          ...s,
+          updatedAt: FieldValue.serverTimestamp(),
+        },
+        { merge: true },
+      );
+    }
+    this.logger.log(`Seeded ${MASTER_SCHEMES.length} government schemes into Firestore collection 'schemes'`);
+
     this.logger.log('Demo farmer login: register with any new phone, or use owner 9876543210');
   }
 }

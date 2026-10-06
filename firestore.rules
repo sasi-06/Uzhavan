@@ -32,6 +32,12 @@ service cloud.firestore {
         allow read, write: if false; // Only Cloud Functions can access this
       }
     }
+
+    // Government Schemes collection (Farmers & Machine Owners)
+    match /schemes/{schemeId} {
+      allow read: if true;
+      allow write: if true;
+    }
   }
 }
 

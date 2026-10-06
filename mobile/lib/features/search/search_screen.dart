@@ -144,24 +144,27 @@ class _SearchScreenState extends State<SearchScreen> {
                   textAlign: TextAlign.center,
                 ),
               ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text('Search Radius:', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                IconButton(
-                  icon: const Icon(Icons.remove_circle_outline, size: 32),
-                  onPressed: () {
-                    if (_radiusKm > 5) setState(() => _radiusKm -= 5);
-                  },
-                ),
-                Text('${_radiusKm.toInt()} km', style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-                IconButton(
-                  icon: const Icon(Icons.add_circle_outline, size: 32),
-                  onPressed: () {
-                    if (_radiusKm < 100) setState(() => _radiusKm += 5);
-                  },
-                ),
-              ],
+            FittedBox(
+              fit: BoxFit.scaleDown,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text('Search Radius:', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                  IconButton(
+                    icon: const Icon(Icons.remove_circle_outline, size: 32),
+                    onPressed: () {
+                      if (_radiusKm > 5) setState(() => _radiusKm -= 5);
+                    },
+                  ),
+                  Text('${_radiusKm.toInt()} km', style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                  IconButton(
+                    icon: const Icon(Icons.add_circle_outline, size: 32),
+                    onPressed: () {
+                      if (_radiusKm < 100) setState(() => _radiusKm += 5);
+                    },
+                  ),
+                ],
+              ),
             ),
             const SizedBox(height: 10),
             ElevatedButton(

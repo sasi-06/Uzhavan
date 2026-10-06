@@ -13,6 +13,7 @@ import 'farmer_machine_detail_screen.dart';
 import '../owner/add_machine_flow_screen.dart';
 import '../agent/agent_booking_screen.dart';
 import '../location/screens/location_picker_screen.dart';
+import '../schemes/schemes_screen.dart';
 
 class FarmerHomeScreen extends StatefulWidget {
   const FarmerHomeScreen({super.key});
@@ -430,6 +431,117 @@ class _FarmerHomeScreenState extends State<FarmerHomeScreen>
                               shape: BoxShape.circle,
                             ),
                             child: const Icon(Icons.arrow_forward_rounded, color: Colors.white, size: 16),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+
+              // ── Government Schemes & Subsidies Banner ───────────
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 10, 16, 0),
+                  child: GestureDetector(
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => const SchemesScreen(initialRole: 'FARMER'),
+                      ),
+                    ),
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                      decoration: BoxDecoration(
+                        gradient: const LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: [Color(0xFF0F766E), Color(0xFF0D9488), Color(0xFF14B8A6)],
+                        ),
+                        borderRadius: BorderRadius.circular(20),
+                        boxShadow: [
+                          BoxShadow(
+                            color: const Color(0xFF0D9488).withValues(alpha: 0.25),
+                            blurRadius: 14,
+                            offset: const Offset(0, 6),
+                          ),
+                        ],
+                      ),
+                      child: Row(
+                        children: [
+                          Container(
+                            width: 48,
+                            height: 48,
+                            decoration: BoxDecoration(
+                              color: Colors.white.withValues(alpha: 0.2),
+                              borderRadius: BorderRadius.circular(14),
+                            ),
+                            child: const Icon(Icons.account_balance_rounded, color: Colors.white, size: 26),
+                          ),
+                          const SizedBox(width: 14),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  children: [
+                                    Text(
+                                      lang == 'ta'
+                                          ? 'அரசு திட்டங்கள் & மானியங்கள்'
+                                          : lang == 'te'
+                                              ? 'ప్రభుత్వ పథకాలు & రాయితీలు'
+                                              : lang == 'hi'
+                                                  ? 'सरकारी योजनाएं एवं सब्सिडी'
+                                                  : 'Govt Schemes & Subsidies',
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 14.5,
+                                        fontWeight: FontWeight.w800,
+                                      ),
+                                    ),
+                                    const SizedBox(width: 6),
+                                    Container(
+                                      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                                      decoration: BoxDecoration(
+                                        color: Colors.amber.shade400,
+                                        borderRadius: BorderRadius.circular(6),
+                                      ),
+                                      child: const Text(
+                                        'NEW',
+                                        style: TextStyle(
+                                          color: Color(0xFF78350F),
+                                          fontSize: 9.5,
+                                          fontWeight: FontWeight.w900,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 2),
+                                Text(
+                                  lang == 'ta'
+                                      ? 'PM-கிசான், பயிர் காப்பீடு, 100% பாசன மானியம்'
+                                      : lang == 'te'
+                                          ? 'పీఎం కిసాన్, పంట బీమా, డ్రిప్ సబ్సిడీ'
+                                          : lang == 'hi'
+                                              ? 'पीएम किसान, फसल बीमा, सिंचाई सब्सिडी'
+                                              : 'PM-Kisan, PMFBY Insurance, Drip Subsidies',
+                                  style: TextStyle(
+                                    color: Colors.white.withValues(alpha: 0.9),
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            padding: const EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                              color: Colors.white.withValues(alpha: 0.2),
+                              shape: BoxShape.circle,
+                            ),
+                            child: const Icon(Icons.arrow_forward_ios_rounded, color: Colors.white, size: 14),
                           ),
                         ],
                       ),

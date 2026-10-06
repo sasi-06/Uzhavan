@@ -94,6 +94,22 @@ class _FreeOpenStreetMapState extends State<FreeOpenStreetMap> {
     _initWebMap();
   }
 
+  @override
+  void didUpdateWidget(covariant FreeOpenStreetMap oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (kIsWeb &&
+        (oldWidget.latitude != widget.latitude ||
+            oldWidget.longitude != widget.longitude ||
+            oldWidget.startLatitude != widget.startLatitude ||
+            oldWidget.startLongitude != widget.startLongitude ||
+            oldWidget.destLatitude != widget.destLatitude ||
+            oldWidget.destLongitude != widget.destLongitude)) {
+      _viewId = 'osm-map-${DateTime.now().microsecondsSinceEpoch}';
+      _registerWebView();
+      setState(() {});
+    }
+  }
+
   void _initWebMap() {
     if (kIsWeb && _viewId == null) {
       _viewId = 'osm-map-${DateTime.now().microsecondsSinceEpoch}';
@@ -106,20 +122,30 @@ class _FreeOpenStreetMapState extends State<FreeOpenStreetMap> {
     final lat = _centerLat;
     final lng = _centerLng;
 
-    // Build OSM iframe HTML with markers for both points
+    // Build OSM markers JavaScript
     String markersJs = '';
     if (_hasRoute) {
       markersJs = '''
-        var ownerMarker = L.marker([${widget.startLatitude}, ${widget.startLongitude}])
+        var ownerIcon = L.divIcon({
+          className: '',
+          html: '<div class="custom-pin pin-green"><span class="custom-pin-inner">🚜</span></div>',
+          iconSize: [32, 42],
+          iconAnchor: [16, 40],
+          popupAnchor: [0, -38]
+        });
+        var farmerIcon = L.divIcon({
+          className: '',
+          html: '<div class="custom-pin pin-red"><span class="custom-pin-inner">📍</span></div>',
+          iconSize: [32, 42],
+          iconAnchor: [16, 40],
+          popupAnchor: [0, -38]
+        });
+
+        var ownerMarker = L.marker([${widget.startLatitude}, ${widget.startLongitude}], { icon: ownerIcon })
           .addTo(map)
           .bindPopup('<b>${widget.startTitle ?? 'Owner'}</b>')
           .openPopup();
-        var farmerMarker = L.marker([${widget.destLatitude}, ${widget.destLongitude}], {
-          icon: L.icon({
-            iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png',
-            iconSize: [25, 41], iconAnchor: [12, 41]
-          })
-        })
+        var farmerMarker = L.marker([${widget.destLatitude}, ${widget.destLongitude}], { icon: farmerIcon })
           .addTo(map)
           .bindPopup('<b>${widget.destTitle ?? 'Farmer'}</b>');
         L.polyline([[${widget.startLatitude}, ${widget.startLongitude}], [${widget.destLatitude}, ${widget.destLongitude}]], {
@@ -132,7 +158,14 @@ class _FreeOpenStreetMapState extends State<FreeOpenStreetMap> {
       ''';
     } else {
       markersJs = '''
-        L.marker([$lat, $lng]).addTo(map)
+        var singleIcon = L.divIcon({
+          className: '',
+          html: '<div class="custom-pin pin-red"><span class="custom-pin-inner">📍</span></div>',
+          iconSize: [32, 42],
+          iconAnchor: [16, 40],
+          popupAnchor: [0, -38]
+        });
+        L.marker([$lat, $lng], { icon: singleIcon }).addTo(map)
           .bindPopup('<b>${widget.markerTitle ?? ''}</b>').openPopup();
       ''';
     }
@@ -143,18 +176,59 @@ class _FreeOpenStreetMapState extends State<FreeOpenStreetMap> {
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <style>
+    html, body, #map { margin: 0; padding: 0; width: 100%; height: 100%; background: #e5e3df; }
+    .leaflet-tile { opacity: 1 !important; }
+    .custom-pin {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50% 50% 50% 0;
+      transform: rotate(-45deg);
+      border: 2px solid #ffffff;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.35);
+    }
+    .custom-pin-inner {
+      transform: rotate(45deg);
+      font-size: 16px;
+      line-height: 1;
+    }
+    .pin-green { background: #2E7D32; }
+    .pin-red { background: #D32F2F; }
+  </style>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <style>html,body,#map{margin:0;padding:0;width:100%;height:100%;}</style>
 </head>
 <body>
   <div id="map"></div>
   <script>
-    var map = L.map('map', { zoomControl: true }).setView([$lat, $lng], $zoom);
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
-      attribution: '© <a href="https://openstreetmap.org">OpenStreetMap</a> contributors'
-    }).addTo(map);
-    $markersJs
+    function startMap() {
+      if (typeof L === 'undefined') {
+        setTimeout(startMap, 50);
+        return;
+      }
+      try {
+        var map = L.map('map', { zoomControl: true, fadeAnimation: false }).setView([$lat, $lng], $zoom);
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          maxZoom: 19,
+          attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        setTimeout(function() {
+          map.invalidateSize();
+        }, 100);
+
+        $markersJs
+      } catch (err) {
+        console.error('Error starting map:', err);
+      }
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', startMap);
+    } else {
+      startMap();
+    }
   </script>
 </body>
 </html>''';

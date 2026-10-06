@@ -263,15 +263,28 @@ class _AgentBookingScreenState extends State<AgentBookingScreen>
                 spacing: 8,
                 runSpacing: 8,
                 children: samples.map((s) {
-                  return ActionChip(
-                    backgroundColor: const Color(0xFF1C2526),
-                    side: const BorderSide(color: Color(0xFF4CAF50)),
-                    label: Text(s, style: const TextStyle(color: Colors.white, fontSize: 13)),
-                    onPressed: () {
-                      Navigator.pop(ctx);
-                      final clean = s.replaceFirst(RegExp(r'^[^\w\s\u0B80-\u0BFF]+'), '').trim();
-                      _submitTextInput(clean);
-                    },
+                  return Material(
+                    color: Colors.transparent,
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.pop(ctx);
+                        final clean = s.replaceFirst(RegExp(r'^[^\w\s\u0B80-\u0BFF]+'), '').trim();
+                        _submitTextInput(clean);
+                      },
+                      borderRadius: BorderRadius.circular(14),
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+                        decoration: BoxDecoration(
+                          color: const Color(0xFF1C2526),
+                          borderRadius: BorderRadius.circular(14),
+                          border: Border.all(color: const Color(0xFF4CAF50), width: 1.2),
+                        ),
+                        child: Text(
+                          s,
+                          style: const TextStyle(color: Colors.white, fontSize: 13, fontWeight: FontWeight.w600),
+                        ),
+                      ),
+                    ),
                   );
                 }).toList(),
               ),

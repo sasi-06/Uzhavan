@@ -263,16 +263,18 @@ class _FarmerLocationModalSheetState extends State<_FarmerLocationModalSheet> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    'பாதை இருப்பிடம் / Route to Farmer',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: AppColors.textPrimary),
-                  ),
-                  const SizedBox(height: 2),
-                  Text('$farmerName ($village)', style: const TextStyle(fontSize: 13, color: AppColors.textSecondary)),
-                ],
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'பாதை இருப்பிடம் / Route to Farmer',
+                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: AppColors.textPrimary),
+                    ),
+                    const SizedBox(height: 2),
+                    Text('$farmerName ($village)', style: const TextStyle(fontSize: 13, color: AppColors.textSecondary), overflow: TextOverflow.ellipsis),
+                  ],
+                ),
               ),
               IconButton(
                 icon: const Icon(Icons.close_rounded),

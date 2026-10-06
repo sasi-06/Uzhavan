@@ -44,44 +44,53 @@ class _PaymentScreenState extends State<PaymentScreen> {
     return Scaffold(
       appBar: AppBar(title: const Text('Payment')),
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              if (_done)
-                StatusBanner(
-                  type: StatusType.success,
-                  icon: Icons.check_circle_rounded,
-                  message: _message,
-                )
-              else ...[
-                Text('₹${widget.amount.toStringAsFixed(0)}', style: Theme.of(context).textTheme.headlineLarge, textAlign: TextAlign.center),
-                const SizedBox(height: 32),
-                ElevatedButton.icon(
-                  onPressed: _loading ? null : () => _pay('upi'),
-                  icon: const Icon(Icons.account_balance_wallet),
-                  label: const Text('Pay via UPI'),
+        child: LayoutBuilder(
+          builder: (context, constraints) => SingleChildScrollView(
+            child: ConstrainedBox(
+              constraints: BoxConstraints(minHeight: constraints.maxHeight),
+              child: IntrinsicHeight(
+                child: Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      if (_done)
+                        StatusBanner(
+                          type: StatusType.success,
+                          icon: Icons.check_circle_rounded,
+                          message: _message,
+                        )
+                      else ...[
+                        Text('₹${widget.amount.toStringAsFixed(0)}', style: Theme.of(context).textTheme.headlineLarge, textAlign: TextAlign.center),
+                        const SizedBox(height: 32),
+                        ElevatedButton.icon(
+                          onPressed: _loading ? null : () => _pay('upi'),
+                          icon: const Icon(Icons.account_balance_wallet),
+                          label: const Text('Pay via UPI'),
+                        ),
+                        const SizedBox(height: 12),
+                        ElevatedButton.icon(
+                          onPressed: _loading ? null : () => _pay('cash'),
+                          style: ElevatedButton.styleFrom(backgroundColor: AppColors.info),
+                          icon: const Icon(Icons.money),
+                          label: const Text('Cash on Pickup'),
+                        ),
+                      ],
+                      if (_error != null) ...[
+                        const SizedBox(height: 12),
+                        Text(_error!, style: const TextStyle(color: AppColors.error, fontSize: 16)),
+                      ],
+                      const Spacer(),
+                      if (_done)
+                        ElevatedButton(
+                          onPressed: () => Navigator.popUntil(context, (r) => r.isFirst),
+                          child: const Text('Done'),
+                        ),
+                    ],
+                  ),
                 ),
-                const SizedBox(height: 12),
-                ElevatedButton.icon(
-                  onPressed: _loading ? null : () => _pay('cash'),
-                  style: ElevatedButton.styleFrom(backgroundColor: AppColors.info),
-                  icon: const Icon(Icons.money),
-                  label: const Text('Cash on Pickup'),
-                ),
-              ],
-              if (_error != null) ...[
-                const SizedBox(height: 12),
-                Text(_error!, style: const TextStyle(color: AppColors.error, fontSize: 16)),
-              ],
-              const Spacer(),
-              if (_done)
-                ElevatedButton(
-                  onPressed: () => Navigator.popUntil(context, (r) => r.isFirst),
-                  child: const Text('Done'),
-                ),
-            ],
+              ),
+            ),
           ),
         ),
       ),

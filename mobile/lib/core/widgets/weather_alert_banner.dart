@@ -189,7 +189,7 @@ class _WeatherAlertBannerState extends State<WeatherAlertBanner>
   Widget _buildWeatherStrip() {
     final days = _forecast!.days;
     return SizedBox(
-      height: 98,
+      height: 104,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
         itemCount: days.length,
@@ -336,26 +336,32 @@ class _DayChip extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(
-            _dayLabel(day.date),
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 10,
-              height: 1.15,
-              fontWeight: FontWeight.w700,
-              color: isSelected ? Colors.white : AppColors.textSecondary,
+          FittedBox(
+            fit: BoxFit.scaleDown,
+            child: Text(
+              _dayLabel(day.date),
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 10,
+                height: 1.15,
+                fontWeight: FontWeight.w700,
+                color: isSelected ? Colors.white : AppColors.textSecondary,
+              ),
             ),
           ),
           Text(
             _weatherEmoji(day.weatherCode),
             style: const TextStyle(fontSize: 18),
           ),
-          Text(
-            '${day.precipProbMax}%',
-            style: TextStyle(
-              fontSize: 10,
-              fontWeight: FontWeight.w700,
-              color: textColor,
+          FittedBox(
+            fit: BoxFit.scaleDown,
+            child: Text(
+              '${day.precipProbMax}%',
+              style: TextStyle(
+                fontSize: 10,
+                fontWeight: FontWeight.w700,
+                color: textColor,
+              ),
             ),
           ),
         ],
@@ -515,11 +521,11 @@ class _WorkabilityCard extends StatelessWidget {
     final isStrict = strictMachines.contains(machineType.toLowerCase());
     if (level == SoilWorkabilityLevel.poor) {
       return isStrict
-          ? 'கனமழையில் ${machineType} பயன்படுத்தினால் மண் சேதமாகலாம் மற்றும் இயந்திரம் மாட்டிக்கொள்ளலாம். உரிமையாளரிடம் ஒருமுறை கேளுங்கள்.'
+          ? 'கனமழையில் $machineType பயன்படுத்தினால் மண் சேதமாகலாம் மற்றும் இயந்திரம் மாட்டிக்கொள்ளலாம். உரிமையாளரிடம் ஒருமுறை கேளுங்கள்.'
           : 'Heavy rain forecast. Confirm with the machine owner before booking.';
     }
     return isStrict
-        ? 'சிறிய மழை இருக்கலாம். ${machineType} உரிமையாளரிடம் உறுதிப்படுத்திக்கொள்ளுங்கள்.'
+        ? 'சிறிய மழை இருக்கலாம். $machineType உரிமையாளரிடம் உறுதிப்படுத்திக்கொள்ளுங்கள்.'
         : 'Light rain possible. Double-check with the owner before finalising.';
   }
 }

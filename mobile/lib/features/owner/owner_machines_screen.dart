@@ -8,6 +8,7 @@ import '../../core/theme/app_colors.dart';
 import '../../core/widgets/machine_type_tile.dart';
 import '../../core/utils/machine_icons.dart';
 import 'add_machine_flow_screen.dart';
+import '../schemes/schemes_screen.dart';
 
 class OwnerMachinesScreen extends StatefulWidget {
   const OwnerMachinesScreen({super.key});
@@ -48,6 +49,27 @@ class _OwnerMachinesScreenState extends State<OwnerMachinesScreen> {
         elevation: 0,
         title: const Text('என் எந்திரங்கள்',
             style: TextStyle(fontSize: 22, fontWeight: FontWeight.w800, color: AppColors.textPrimary)),
+        actions: [
+          TextButton.icon(
+            style: TextButton.styleFrom(
+              backgroundColor: const Color(0xFF1E3A8A).withValues(alpha: 0.1),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+            ),
+            icon: const Icon(Icons.account_balance_rounded, size: 16, color: Color(0xFF1E3A8A)),
+            label: const Text(
+              'அரசு மானியம்',
+              style: TextStyle(fontSize: 12.5, fontWeight: FontWeight.bold, color: Color(0xFF1E3A8A)),
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const SchemesScreen(initialRole: 'MACHINE_OWNER')),
+              );
+            },
+          ),
+          const SizedBox(width: 12),
+        ],
       ),
       body: _loading
           ? const Center(child: CircularProgressIndicator())
@@ -82,23 +104,99 @@ class _OwnerMachinesScreenState extends State<OwnerMachinesScreen> {
                     ]))
                   : RefreshIndicator(
                       onRefresh: _load,
-                      child: GridView.builder(
-                        padding: const EdgeInsets.fromLTRB(16, 8, 16, 120),
-                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2, crossAxisSpacing: 12, mainAxisSpacing: 12,
-                          childAspectRatio: 0.62,
-                        ),
-                        itemCount: _machines.length,
-                        itemBuilder: (_, i) {
-                          final m = _machines[i];
-                          return _MachineGridCard(
-                            machine: m,
-                            statusColor: _statusColor(m.status),
-                            statusIcon: _statusIcon(m.status),
-                            statusLabel: _statusLabel(m.status),
-                            onRefresh: _load,
-                          );
-                        },
+                      child: Column(
+                        children: [
+                          // ── Government Subsidies for Machine Owners Banner ──
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(16, 6, 16, 10),
+                            child: GestureDetector(
+                              onTap: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => const SchemesScreen(initialRole: 'MACHINE_OWNER'),
+                                ),
+                              ),
+                              child: Container(
+                                padding: const EdgeInsets.all(14),
+                                decoration: BoxDecoration(
+                                  gradient: const LinearGradient(
+                                    colors: [Color(0xFF1E3A8A), Color(0xFF2563EB)],
+                                  ),
+                                  borderRadius: BorderRadius.circular(16),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: const Color(0xFF2563EB).withValues(alpha: 0.25),
+                                      blurRadius: 10,
+                                      offset: const Offset(0, 4),
+                                    ),
+                                  ],
+                                ),
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      width: 42,
+                                      height: 42,
+                                      decoration: BoxDecoration(
+                                        color: Colors.white.withValues(alpha: 0.18),
+                                        borderRadius: BorderRadius.circular(12),
+                                      ),
+                                      child: const Icon(Icons.agriculture_rounded, color: Colors.white, size: 24),
+                                    ),
+                                    const SizedBox(width: 12),
+                                    const Expanded(
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Text(
+                                                'டிராக்டர் வாங்க 50% அரசு மானியம்',
+                                                style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 13.5,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          SizedBox(height: 2),
+                                          Text(
+                                            'SMAM திட்டம் & 3% குறைந்த வட்டி AIF கடன்',
+                                            style: TextStyle(
+                                              color: Colors.white70,
+                                              fontSize: 11.5,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    const Icon(Icons.arrow_forward_ios_rounded, color: Colors.white, size: 14),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            child: GridView.builder(
+                              padding: const EdgeInsets.fromLTRB(16, 0, 16, 120),
+                              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2, crossAxisSpacing: 12, mainAxisSpacing: 12,
+                                childAspectRatio: 0.62,
+                              ),
+                              itemCount: _machines.length,
+                              itemBuilder: (_, i) {
+                                final m = _machines[i];
+                                return _MachineGridCard(
+                                  machine: m,
+                                  statusColor: _statusColor(m.status),
+                                  statusIcon: _statusIcon(m.status),
+                                  statusLabel: _statusLabel(m.status),
+                                  onRefresh: _load,
+                                );
+                              },
+                            ),
+                          ),
+                        ],
                       ),
                     ),
       floatingActionButton: FloatingActionButton.extended(
@@ -162,7 +260,9 @@ class _MachineGridCard extends StatelessWidget {
                 style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w800)),
             const SizedBox(height: 6),
             // Status pill
-            Row(
+            Wrap(
+              spacing: 6,
+              runSpacing: 4,
               children: [
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
@@ -176,8 +276,7 @@ class _MachineGridCard extends StatelessWidget {
                     Text(statusLabel, style: TextStyle(fontSize: 12, fontWeight: FontWeight.w700, color: statusColor)),
                   ]),
                 ),
-                if (machine.isOverdueForServicing) ...[
-                  const SizedBox(width: 6),
+                if (machine.isOverdueForServicing)
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                     decoration: BoxDecoration(
@@ -189,7 +288,6 @@ class _MachineGridCard extends StatelessWidget {
                       style: TextStyle(fontSize: 11, fontWeight: FontWeight.w800, color: AppColors.error),
                     ),
                   ),
-                ],
               ],
             ),
             const SizedBox(height: 6),
@@ -378,78 +476,82 @@ class _OwnerAddMachineFlowState extends State<OwnerAddMachineFlow> {
           ))),
         ]);
       case 2:
-        return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          const Text('விலை நிர்ணயம்', style: TextStyle(fontSize: 22, fontWeight: FontWeight.w800)),
-          const SizedBox(height: 20),
-          // Per Acre / Per Hour toggle
-          Row(children: [
-            Expanded(child: GestureDetector(
-              onTap: () => setState(() => _perAcre = true),
-              child: AnimatedContainer(duration: const Duration(milliseconds: 150),
-                padding: const EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                  color: _perAcre ? AppColors.ownerAccent : AppColors.card,
-                  borderRadius: BorderRadius.circular(14),
-                  border: Border.all(color: _perAcre ? AppColors.ownerAccent : AppColors.divider),
+        return SingleChildScrollView(
+          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            const Text('விலை நிர்ணயம்', style: TextStyle(fontSize: 22, fontWeight: FontWeight.w800)),
+            const SizedBox(height: 20),
+            // Per Acre / Per Hour toggle
+            Row(children: [
+              Expanded(child: GestureDetector(
+                onTap: () => setState(() => _perAcre = true),
+                child: AnimatedContainer(duration: const Duration(milliseconds: 150),
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: _perAcre ? AppColors.ownerAccent : AppColors.card,
+                    borderRadius: BorderRadius.circular(14),
+                    border: Border.all(color: _perAcre ? AppColors.ownerAccent : AppColors.divider),
+                  ),
+                  child: Column(children: [
+                    Icon(Icons.crop_rounded, size: 32, color: _perAcre ? Colors.white : AppColors.ownerAccent),
+                    const SizedBox(height: 6),
+                    Text('ஏக்கருக்கு', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700, color: _perAcre ? Colors.white : AppColors.textPrimary)),
+                  ]),
                 ),
-                child: Column(children: [
-                  Icon(Icons.crop_rounded, size: 32, color: _perAcre ? Colors.white : AppColors.ownerAccent),
-                  const SizedBox(height: 6),
-                  Text('ஏக்கருக்கு', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700, color: _perAcre ? Colors.white : AppColors.textPrimary)),
-                ]),
-              ),
-            )),
-            const SizedBox(width: 12),
-            Expanded(child: GestureDetector(
-              onTap: () => setState(() => _perAcre = false),
-              child: AnimatedContainer(duration: const Duration(milliseconds: 150),
-                padding: const EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                  color: !_perAcre ? AppColors.ownerAccent : AppColors.card,
-                  borderRadius: BorderRadius.circular(14),
-                  border: Border.all(color: !_perAcre ? AppColors.ownerAccent : AppColors.divider),
+              )),
+              const SizedBox(width: 12),
+              Expanded(child: GestureDetector(
+                onTap: () => setState(() => _perAcre = false),
+                child: AnimatedContainer(duration: const Duration(milliseconds: 150),
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: !_perAcre ? AppColors.ownerAccent : AppColors.card,
+                    borderRadius: BorderRadius.circular(14),
+                    border: Border.all(color: !_perAcre ? AppColors.ownerAccent : AppColors.divider),
+                  ),
+                  child: Column(children: [
+                    Icon(Icons.access_time_rounded, size: 32, color: !_perAcre ? Colors.white : AppColors.ownerAccent),
+                    const SizedBox(height: 6),
+                    Text('மணிக்கு', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700, color: !_perAcre ? Colors.white : AppColors.textPrimary)),
+                  ]),
                 ),
-                child: Column(children: [
-                  Icon(Icons.access_time_rounded, size: 32, color: !_perAcre ? Colors.white : AppColors.ownerAccent),
-                  const SizedBox(height: 6),
-                  Text('மணிக்கு', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700, color: !_perAcre ? Colors.white : AppColors.textPrimary)),
-                ]),
-              ),
-            )),
-          ]),
-          const SizedBox(height: 32),
-          Center(child: Text('₹${_price.toStringAsFixed(0)}', style: const TextStyle(fontSize: 60, fontWeight: FontWeight.w900, color: AppColors.ownerAccent))),
-          const SizedBox(height: 24),
-          Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            _BigOBtn(icon: Icons.remove_rounded, onTap: _price > 100 ? () => setState(() => _price -= 100) : null),
-            const SizedBox(width: 24),
-            _BigOBtn(icon: Icons.add_rounded, onTap: () => setState(() => _price += 100), color: AppColors.ownerAccent),
-          ]),
-          const SizedBox(height: 20),
-          SwitchListTile(
-            value: _operatorIncluded,
-            onChanged: (v) => setState(() => _operatorIncluded = v),
-            title: const Row(children: [
-              Icon(Icons.engineering_rounded, color: AppColors.ownerAccent),
-              SizedBox(width: 10),
-              Text('உழைப்பாளர் உட்பட', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
+              )),
             ]),
-          ),
-        ]);
+            const SizedBox(height: 32),
+            Center(child: Text('₹${_price.toStringAsFixed(0)}', style: const TextStyle(fontSize: 60, fontWeight: FontWeight.w900, color: AppColors.ownerAccent))),
+            const SizedBox(height: 24),
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+              _BigOBtn(icon: Icons.remove_rounded, onTap: _price > 100 ? () => setState(() => _price -= 100) : null),
+              const SizedBox(width: 24),
+              _BigOBtn(icon: Icons.add_rounded, onTap: () => setState(() => _price += 100), color: AppColors.ownerAccent),
+            ]),
+            const SizedBox(height: 20),
+            SwitchListTile(
+              value: _operatorIncluded,
+              onChanged: (v) => setState(() => _operatorIncluded = v),
+              title: const Row(children: [
+                Icon(Icons.engineering_rounded, color: AppColors.ownerAccent),
+                SizedBox(width: 10),
+                Text('உழைப்பாளர் உட்பட', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
+              ]),
+            ),
+          ]),
+        );
       case 3:
-        return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          const Text('கிடைக்கும் நாட்கள்', style: TextStyle(fontSize: 22, fontWeight: FontWeight.w800)),
-          const SizedBox(height: 8),
-          const Text('சிவப்பு = முடக்கப்பட்டது · பச்சை = கிடைக்கும்',
-              style: TextStyle(fontSize: 13, color: AppColors.textSecondary)),
-          const SizedBox(height: 16),
-          _AvailabilityCalendar(blocked: _blockedDates, onToggle: (d) {
-            setState(() {
-              if (_blockedDates.contains(d)) _blockedDates.remove(d);
-              else _blockedDates.add(d);
-            });
-          }),
-        ]);
+        return SingleChildScrollView(
+          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            const Text('கிடைக்கும் நாட்கள்', style: TextStyle(fontSize: 22, fontWeight: FontWeight.w800)),
+            const SizedBox(height: 8),
+            const Text('சிவப்பு = முடக்கப்பட்டது · பச்சை = கிடைக்கும்',
+                style: TextStyle(fontSize: 13, color: AppColors.textSecondary)),
+            const SizedBox(height: 16),
+            _AvailabilityCalendar(blocked: _blockedDates, onToggle: (d) {
+              setState(() {
+                if (_blockedDates.contains(d)) _blockedDates.remove(d);
+                else _blockedDates.add(d);
+              });
+            }),
+          ]),
+        );
       default: return const SizedBox();
     }
   }

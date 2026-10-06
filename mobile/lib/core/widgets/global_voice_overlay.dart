@@ -359,15 +359,17 @@ class _GlobalVoiceOverlayState extends State<GlobalVoiceOverlay>
                 ),
                 const SizedBox(width: 8),
                 const Flexible(
-                  child: Text(
-                    'குரல் வழிநடத்தல் / Voice Command',
-                    style: TextStyle(
-                      fontSize: 17,
-                      fontWeight: FontWeight.w900,
-                      color: Colors.white,
-                      letterSpacing: -0.2,
+                  child: FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: Text(
+                      'குரல் வழிநடத்தல் / Voice Command',
+                      style: TextStyle(
+                        fontSize: 17,
+                        fontWeight: FontWeight.w900,
+                        color: Colors.white,
+                        letterSpacing: -0.2,
+                      ),
                     ),
-                    overflow: TextOverflow.ellipsis,
                   ),
                 ),
               ],
@@ -530,14 +532,19 @@ class _GlobalVoiceOverlayState extends State<GlobalVoiceOverlay>
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: const [
                     Icon(Icons.smart_toy_rounded, color: Colors.white, size: 22),
-                    SizedBox(width: 10),
-                    Text(
-                      '🤖 AI உழவன் உதவியாளர் / Open AI Agent',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w800,
-                        fontSize: 15,
-                        letterSpacing: 0.2,
+                    SizedBox(width: 8),
+                    Flexible(
+                      child: FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Text(
+                          '🤖 AI உழவன் உதவியாளர் / Open AI Agent',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w800,
+                            fontSize: 15,
+                            letterSpacing: 0.2,
+                          ),
+                        ),
                       ),
                     ),
                   ],
@@ -585,18 +592,38 @@ class _GlobalVoiceOverlayState extends State<GlobalVoiceOverlay>
   }
 
   Widget _buildSampleChip(String label) {
-    return ActionChip(
-      backgroundColor: Colors.white.withValues(alpha: 0.12),
-      side: BorderSide(color: Colors.white.withValues(alpha: 0.2)),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      label: Text(
-        label,
-        style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w700, color: Colors.white),
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: () {
+          final clean = label.replaceFirst(RegExp(r'^[^\w\s\u0B80-\u0BFF]+'), '').trim();
+          _handleSpeechResult(clean);
+        },
+        borderRadius: BorderRadius.circular(14),
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+          decoration: BoxDecoration(
+            color: const Color(0xFF132A1C),
+            borderRadius: BorderRadius.circular(14),
+            border: Border.all(color: const Color(0xFF2E6B44), width: 1.2),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withValues(alpha: 0.25),
+                blurRadius: 4,
+                offset: const Offset(0, 2),
+              ),
+            ],
+          ),
+          child: Text(
+            label,
+            style: const TextStyle(
+              fontSize: 12.5,
+              fontWeight: FontWeight.w700,
+              color: Color(0xFFE2F3E5),
+            ),
+          ),
+        ),
       ),
-      onPressed: () {
-        final clean = label.replaceFirst(RegExp(r'^[^\w\s\u0B80-\u0BFF]+'), '').trim();
-        _handleSpeechResult(clean);
-      },
     );
   }
 }

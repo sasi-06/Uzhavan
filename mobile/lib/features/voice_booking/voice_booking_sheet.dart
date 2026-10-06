@@ -649,7 +649,7 @@ class _VoiceBookingSheetState extends State<VoiceBookingSheet> {
     final ownerName = _machine?.owner?.name ?? 'உரிமையாளர்';
     final ownerPhone = _machine?.owner?.phone ?? '';
     return Center(
-      child: Padding(
+      child: SingleChildScrollView(
         padding: const EdgeInsets.all(28),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

@@ -45,5 +45,11 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Uzhavan requires microphone access to enable voice booking and hands-free voice commands in Tamil, Telugu, Hindi, and English.</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>Uzhavan uses speech recognition to understand your voice commands and book farm machinery.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Uzhavan uses your location to discover nearby tractors, harvesters, and machinery.</string>
 </dict>
 </plist>

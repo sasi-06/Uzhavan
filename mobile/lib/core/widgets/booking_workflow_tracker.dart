@@ -143,11 +143,14 @@ class _BookingWorkflowTrackerState extends State<BookingWorkflowTracker> {
             children: [
               const Icon(Icons.linear_scale_rounded, color: AppColors.primary, size: 20),
               const SizedBox(width: 8),
-              const Text(
-                'முன்பதிவு நிலை / Booking Status Tracker',
-                style: TextStyle(fontSize: 14, fontWeight: FontWeight.w800, color: AppColors.textPrimary),
+              const Expanded(
+                child: Text(
+                  'முன்பதிவு நிலை / Booking Status Tracker',
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w800, color: AppColors.textPrimary),
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
-              const Spacer(),
+              const SizedBox(width: 8),
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
                 decoration: BoxDecoration(
@@ -244,17 +247,21 @@ class _BookingWorkflowTrackerState extends State<BookingWorkflowTracker> {
                                   ),
                                 ),
                                 const SizedBox(height: 6),
-                                Text(
-                                  step.label,
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    fontSize: 11,
-                                    fontWeight: isDone
-                                        ? FontWeight.w800
-                                        : (isClickable ? FontWeight.w700 : FontWeight.w500),
-                                    color: isDone
-                                        ? step.activeColor
-                                        : (isClickable ? step.activeColor : Colors.grey.shade600),
+                                FittedBox(
+                                  fit: BoxFit.scaleDown,
+                                  child: Text(
+                                    step.label,
+                                    textAlign: TextAlign.center,
+                                    maxLines: 1,
+                                    style: TextStyle(
+                                      fontSize: 11,
+                                      fontWeight: isDone
+                                          ? FontWeight.w800
+                                          : (isClickable ? FontWeight.w700 : FontWeight.w500),
+                                      color: isDone
+                                          ? step.activeColor
+                                          : (isClickable ? step.activeColor : Colors.grey.shade600),
+                                    ),
                                   ),
                                 ),
                               ],
@@ -266,15 +273,17 @@ class _BookingWorkflowTrackerState extends State<BookingWorkflowTracker> {
 
                     // Connecting Bar
                     if (index < _steps.length - 1)
-                      Container(
-                        width: 24,
-                        height: 3,
-                        margin: const EdgeInsets.only(bottom: 20),
-                        decoration: BoxDecoration(
-                          color: index < activeIndex
-                              ? _steps[index + 1].activeColor
-                              : Colors.grey.shade200,
-                          borderRadius: BorderRadius.circular(2),
+                      Flexible(
+                        child: Container(
+                          constraints: const BoxConstraints(minWidth: 4, maxWidth: 20),
+                          height: 3,
+                          margin: const EdgeInsets.only(bottom: 20),
+                          decoration: BoxDecoration(
+                            color: index < activeIndex
+                                ? _steps[index + 1].activeColor
+                                : Colors.grey.shade200,
+                            borderRadius: BorderRadius.circular(2),
+                          ),
                         ),
                       ),
                   ],
