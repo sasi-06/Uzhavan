@@ -196,7 +196,10 @@ class _FarmerLocationModalSheetState extends State<_FarmerLocationModalSheet> {
         }
       }
       if (perm == LocationPermission.always || perm == LocationPermission.whileInUse) {
-        final pos = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+        final pos = await Geolocator.getCurrentPosition(
+          desiredAccuracy: LocationAccuracy.high,
+          timeLimit: const Duration(seconds: 4),
+        );
         if (mounted) {
           setState(() {
             _liveOwnerLat = pos.latitude;
@@ -228,8 +231,25 @@ class _FarmerLocationModalSheetState extends State<_FarmerLocationModalSheet> {
 
   void _openDirections(double startLat, double startLng, double destLat, double destLng) {
     final url = 'https://www.google.com/maps/dir/?api=1&origin=$startLat,$startLng&destination=$destLat,$destLng&travelmode=driving';
-    if (kIsWeb) {
+    try {
       openWebWindow(url);
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('கூகுள் வரைபடம் திறக்கப்படுகிறது... / Opening Google Maps Directions...'),
+            duration: Duration(seconds: 2),
+          ),
+        );
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('வரைபடம் திறப்பதில் பிழை / Error opening map: $e'),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
     }
   }
 
@@ -372,7 +392,12 @@ class _FarmerLocationModalSheetState extends State<_FarmerLocationModalSheet> {
                       padding: const EdgeInsets.symmetric(vertical: 14),
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      openWebWindow('tel:$farmerPhone');
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text('அழைக்கிறது / Calling $farmerPhone...')),
+                      );
+                    },
                     icon: const Icon(Icons.phone_rounded, color: Colors.white),
                     label: const FittedBox(
                       fit: BoxFit.scaleDown,

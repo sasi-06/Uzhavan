@@ -122,7 +122,18 @@ class _FreeOpenStreetMapState extends State<FreeOpenStreetMap> {
     final lat = _centerLat;
     final lng = _centerLng;
 
-    // Build OSM markers JavaScript
+    // Build OSM markers JavaScript safely with escaped strings
+    String escapeJs(String? s) => (s ?? '')
+        .replaceAll(r'\', r'\\')
+        .replaceAll("'", r"\'")
+        .replaceAll('"', r'\"')
+        .replaceAll('\n', ' ')
+        .replaceAll('\r', '');
+
+    final safeStartTitle = escapeJs(widget.startTitle ?? 'Owner');
+    final safeDestTitle = escapeJs(widget.destTitle ?? 'Farmer');
+    final safeMarkerTitle = escapeJs(widget.markerTitle ?? '');
+
     String markersJs = '';
     if (_hasRoute) {
       markersJs = '''
@@ -143,11 +154,11 @@ class _FreeOpenStreetMapState extends State<FreeOpenStreetMap> {
 
         var ownerMarker = L.marker([${widget.startLatitude}, ${widget.startLongitude}], { icon: ownerIcon })
           .addTo(map)
-          .bindPopup('<b>${widget.startTitle ?? 'Owner'}</b>')
+          .bindPopup('<b>$safeStartTitle</b>')
           .openPopup();
         var farmerMarker = L.marker([${widget.destLatitude}, ${widget.destLongitude}], { icon: farmerIcon })
           .addTo(map)
-          .bindPopup('<b>${widget.destTitle ?? 'Farmer'}</b>');
+          .bindPopup('<b>$safeDestTitle</b>');
         L.polyline([[${widget.startLatitude}, ${widget.startLongitude}], [${widget.destLatitude}, ${widget.destLongitude}]], {
           color: '#1B5E20', weight: 4, opacity: 0.9, dashArray: '8, 6'
         }).addTo(map);
@@ -166,7 +177,7 @@ class _FreeOpenStreetMapState extends State<FreeOpenStreetMap> {
           popupAnchor: [0, -38]
         });
         L.marker([$lat, $lng], { icon: singleIcon }).addTo(map)
-          .bindPopup('<b>${widget.markerTitle ?? ''}</b>').openPopup();
+          .bindPopup('<b>$safeMarkerTitle</b>').openPopup();
       ''';
     }
 
@@ -203,8 +214,14 @@ class _FreeOpenStreetMapState extends State<FreeOpenStreetMap> {
 <body>
   <div id="map"></div>
   <script>
+    var retries = 0;
     function startMap() {
       if (typeof L === 'undefined') {
+        retries++;
+        if (retries > 60) {
+          document.getElementById('map').innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:#475569;font-family:sans-serif;font-size:13px;text-align:center;padding:16px;">வரைபடம் ஏற்றப்படுகிறது... / Loading interactive map...</div>';
+          return;
+        }
         setTimeout(startMap, 50);
         return;
       }
