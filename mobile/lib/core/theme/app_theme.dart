@@ -76,6 +76,15 @@ abstract final class AppTheme {
           textStyle: const TextStyle(fontSize: 17, fontWeight: FontWeight.w700),
         ),
       ),
+      outlinedButtonTheme: OutlinedButtonThemeData(
+        style: OutlinedButton.styleFrom(
+          foregroundColor: AppColors.primary,
+          minimumSize: const Size(double.infinity, 54),
+          side: const BorderSide(color: AppColors.primary, width: 1.5),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
+          textStyle: const TextStyle(fontSize: 17, fontWeight: FontWeight.w700),
+        ),
+      ),
       cardTheme: CardThemeData(
         color: AppColors.card,
         elevation: 0,

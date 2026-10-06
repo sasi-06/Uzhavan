@@ -222,50 +222,62 @@ class _SchemeDetailSheetState extends State<SchemeDetailSheet> {
                       children: [
                         if (s.applyUrl.isNotEmpty)
                           Expanded(
-                            child: ElevatedButton.icon(
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: AppColors.primary,
-                                foregroundColor: Colors.white,
-                                padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 8),
-                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                            child: SizedBox(
+                              height: 48,
+                              child: ElevatedButton.icon(
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: AppColors.primary,
+                                  foregroundColor: Colors.white,
+                                  elevation: 0,
+                                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+                                ),
+                                icon: const Icon(Icons.open_in_new_rounded, size: 18),
+                                label: FittedBox(
+                                  fit: BoxFit.scaleDown,
+                                  child: Text(
+                                    t('applyOnline'),
+                                    style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13.5),
+                                  ),
+                                ),
+                                onPressed: () {
+                                  openWebWindow(s.applyUrl);
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(content: Text('Opening: ${s.applyUrl}')),
+                                  );
+                                },
                               ),
-                              icon: const Icon(Icons.open_in_new_rounded, size: 18),
-                              label: Text(
-                                t('applyOnline'),
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
-                              ),
-                              onPressed: () {
-                                openWebWindow(s.applyUrl);
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(content: Text('Opening: ${s.applyUrl}')),
-                                );
-                              },
                             ),
                           ),
                         if (s.applyUrl.isNotEmpty && s.helpline.isNotEmpty)
-                          const SizedBox(width: 8),
+                          const SizedBox(width: 10),
                         if (s.helpline.isNotEmpty)
                           Expanded(
-                            child: OutlinedButton.icon(
-                              style: OutlinedButton.styleFrom(
-                                padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 8),
-                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                                side: const BorderSide(color: AppColors.primary, width: 1.5),
+                            child: SizedBox(
+                              height: 48,
+                              child: OutlinedButton.icon(
+                                style: OutlinedButton.styleFrom(
+                                  backgroundColor: const Color(0xFFF0FDF4),
+                                  foregroundColor: AppColors.primary,
+                                  elevation: 0,
+                                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+                                  side: const BorderSide(color: AppColors.primary, width: 1.5),
+                                ),
+                                icon: const Icon(Icons.phone_in_talk_rounded, size: 18, color: AppColors.primary),
+                                label: FittedBox(
+                                  fit: BoxFit.scaleDown,
+                                  child: Text(
+                                    s.helpline,
+                                    style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13.5, color: AppColors.primary),
+                                  ),
+                                ),
+                                onPressed: () {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(content: Text('${t('helpline')}: ${s.helpline}')),
+                                  );
+                                },
                               ),
-                              icon: const Icon(Icons.phone_in_talk_rounded, size: 18, color: AppColors.primary),
-                              label: Text(
-                                s.helpline,
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12.5, color: AppColors.primary),
-                              ),
-                              onPressed: () {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(content: Text('${t('helpline')}: ${s.helpline}')),
-                                );
-                              },
                             ),
                           ),
                       ],
