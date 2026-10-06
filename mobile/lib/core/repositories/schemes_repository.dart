@@ -10,16 +10,18 @@ class SchemesRepository {
     }
   }
 
-  /// Real-time stream of schemes from Firestore
+  /// Real-time stream of schemes from Firestore with instant fallback & offline availability
   Stream<List<SchemeModel>> streamSchemes({
     required String role, // 'FARMER' or 'MACHINE_OWNER' or 'ALL'
     required String lang, // 'ta', 'te', 'hi', 'en'
     String? category,
-  }) {
+  }) async* {
+    // 1. Immediately yield local fallback data so the UI loads instantly without any spinner
+    final fallbackList = getFallbackSchemes(role: role, lang: lang, category: category);
+    yield fallbackList;
+
     final db = _db;
-    if (db == null) {
-      return Stream.value(_getFallbackSchemes(role, lang, category));
-    }
+    if (db == null) return;
 
     try {
       Query query = db.collection('schemes').where('isActive', isEqualTo: true);
@@ -33,20 +35,20 @@ class SchemesRepository {
         query = query.where('category', isEqualTo: category);
       }
 
-      return query.snapshots().map((snapshot) {
-        if (snapshot.docs.isEmpty) {
-          return _getFallbackSchemes(role, lang, category);
+      await for (final snapshot in query.snapshots()) {
+        if (snapshot.docs.isNotEmpty) {
+          final liveList = snapshot.docs.map((doc) {
+            final data = doc.data() as Map<String, dynamic>;
+            return SchemeModel.fromFirestore(data, lang);
+          }).toList();
+          yield liveList;
+        } else {
+          yield fallbackList;
         }
-        return snapshot.docs.map((doc) {
-          final data = doc.data() as Map<String, dynamic>;
-          return SchemeModel.fromFirestore(data, lang);
-        }).toList();
-      }).handleError((_) {
-        // In case of any Firestore permission/connectivity issues, return fallback
-        return _getFallbackSchemes(role, lang, category);
-      });
-    } catch (_) {
-      return Stream.value(_getFallbackSchemes(role, lang, category));
+      }
+    } catch (err) {
+      // Permission-denied, network offline, etc. - fallback was already yielded so user has all schemes
+      print('Firestore schemes stream exception suppressed (using fallback): $err');
     }
   }
 
@@ -58,7 +60,7 @@ class SchemesRepository {
   }) async {
     try {
       final db = _db;
-      if (db == null) return _getFallbackSchemes(role, lang, category);
+      if (db == null) return getFallbackSchemes(role: role, lang: lang, category: category);
 
       Query query = db.collection('schemes').where('isActive', isEqualTo: true);
       final normalizedRole = role.toUpperCase();
@@ -71,19 +73,23 @@ class SchemesRepository {
 
       final snapshot = await query.get();
       if (snapshot.docs.isEmpty) {
-        return _getFallbackSchemes(role, lang, category);
+        return getFallbackSchemes(role: role, lang: lang, category: category);
       }
       return snapshot.docs.map((doc) {
         final data = doc.data() as Map<String, dynamic>;
         return SchemeModel.fromFirestore(data, lang);
       }).toList();
     } catch (_) {
-      return _getFallbackSchemes(role, lang, category);
+      return getFallbackSchemes(role: role, lang: lang, category: category);
     }
   }
 
   /// Built-in fallback dataset ensuring 100% offline availability
-  List<SchemeModel> _getFallbackSchemes(String role, String lang, String? category) {
+  List<SchemeModel> getFallbackSchemes({
+    required String role,
+    required String lang,
+    String? category,
+  }) {
     final all = _fallbackRawData.map((d) => SchemeModel.fromFirestore(d, lang)).toList();
     final normRole = role.toUpperCase();
 

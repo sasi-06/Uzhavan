@@ -200,17 +200,22 @@ class _SchemesScreenState extends State<SchemesScreen> {
           // Schemes Stream List
           Expanded(
             child: StreamBuilder<List<SchemeModel>>(
+              initialData: _repo.getFallbackSchemes(
+                role: _activeRole,
+                lang: _selectedLanguage,
+                category: _selectedCategory,
+              ),
               stream: _repo.streamSchemes(
                 role: _activeRole,
                 lang: _selectedLanguage,
                 category: _selectedCategory,
               ),
               builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting && !snapshot.hasData) {
+                final schemes = snapshot.data ?? [];
+                if (schemes.isEmpty && snapshot.connectionState == ConnectionState.waiting) {
                   return const Center(child: CircularProgressIndicator());
                 }
 
-                final schemes = snapshot.data ?? [];
                 if (schemes.isEmpty) {
                   return Center(
                     child: Column(
