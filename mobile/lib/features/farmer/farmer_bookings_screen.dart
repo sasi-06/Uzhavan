@@ -338,7 +338,10 @@ class _BookingDetailScreenState extends State<_BookingDetailScreen> {
                 icon: _cancelling
                     ? const SizedBox(width: 20, height: 20, child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2))
                     : const Icon(Icons.cancel_rounded),
-                label: const Text('ரத்து செய் / Cancel Booking', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w800)),
+                label: const FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Text('ரத்து செய் / Cancel Booking', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w800)),
+                ),
               ),
           ],
         ),

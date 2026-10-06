@@ -72,13 +72,17 @@ class BookingStatusCard extends StatelessWidget {
                         Icon(machineIcon(booking.machineType ?? 'tractor'),
                             size: 15, color: AppColors.textSecondary),
                         const SizedBox(width: 5),
-                        Text(
-                          booking.machineType?.toUpperCase() ?? 'MACHINE',
-                          style: const TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w700,
-                            color: AppColors.textSecondary,
-                            letterSpacing: 0.5,
+                        Flexible(
+                          child: Text(
+                            booking.machineType?.toUpperCase() ?? 'MACHINE',
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: const TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w700,
+                              color: AppColors.textSecondary,
+                              letterSpacing: 0.5,
+                            ),
                           ),
                         ),
                         const Spacer(),

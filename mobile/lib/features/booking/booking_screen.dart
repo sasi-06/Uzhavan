@@ -146,7 +146,10 @@ class _BookingScreenState extends State<BookingScreen> {
                             side: const BorderSide(color: AppColors.primary, width: 2),
                             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
                           ),
-                          child: const Text('பின்னே / BACK', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: AppColors.primary)),
+                          child: const FittedBox(
+                            fit: BoxFit.scaleDown,
+                            child: Text('பின்னே / BACK', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: AppColors.primary)),
+                          ),
                         ),
                       ),
                     ),
@@ -170,9 +173,12 @@ class _BookingScreenState extends State<BookingScreen> {
                         ),
                         child: _loading
                             ? const CircularProgressIndicator(color: Colors.white)
-                            : Text(
-                                _step == 2 ? 'உறுதி செய் / CONFIRM' : 'அடுத்து / NEXT',
-                                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
+                            : FittedBox(
+                                fit: BoxFit.scaleDown,
+                                child: Text(
+                                  _step == 2 ? 'உறுதி செய் / CONFIRM' : 'அடுத்து / NEXT',
+                                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
+                                ),
                               ),
                       ),
                     ),

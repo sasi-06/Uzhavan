@@ -581,7 +581,10 @@ class _VoiceBookingSheetState extends State<VoiceBookingSheet> {
                 height: 56,
                 child: OutlinedButton.icon(
                   icon: const Icon(Icons.arrow_back_rounded),
-                  label: const Text('திரும்பு / BACK', style: TextStyle(fontWeight: FontWeight.bold)),
+                  label: const FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: Text('திரும்பு / BACK', style: TextStyle(fontWeight: FontWeight.bold)),
+                  ),
                   style: OutlinedButton.styleFrom(
                     side: const BorderSide(color: AppColors.primary, width: 2),
                     foregroundColor: AppColors.primary,
@@ -600,9 +603,12 @@ class _VoiceBookingSheetState extends State<VoiceBookingSheet> {
                   icon: _booking
                       ? const SizedBox(width: 18, height: 18, child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white))
                       : const Icon(Icons.check_circle_rounded, color: Colors.white),
-                  label: Text(
-                    _booking ? 'அனுப்புகிறோம்...' : 'உறுதி செய் / CONFIRM',
-                    style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w800, color: Colors.white),
+                  label: FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: Text(
+                      _booking ? 'அனுப்புகிறோம்...' : 'உறுதி செய் / CONFIRM',
+                      style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w800, color: Colors.white),
+                    ),
                   ),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.success,

@@ -344,23 +344,30 @@ class _AgentBookingScreenState extends State<AgentBookingScreen>
               child: const Icon(Icons.smart_toy_rounded, color: Colors.white, size: 20),
             ),
             const SizedBox(width: 10),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text(
-                  'உழவன் உதவியாளர்',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 15,
-                    fontWeight: FontWeight.w800,
-                    letterSpacing: -0.2,
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Text(
+                    'உழவன் உதவியாளர்',
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 15,
+                      fontWeight: FontWeight.w800,
+                      letterSpacing: -0.2,
+                    ),
                   ),
-                ),
-                Text(
-                  'AI Booking Agent • On-Device',
-                  style: TextStyle(color: AppColors.mintAccent.withValues(alpha: 0.8), fontSize: 11, fontWeight: FontWeight.w600),
-                ),
-              ],
+                  Text(
+                    'AI Booking Agent • On-Device',
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(color: AppColors.mintAccent.withValues(alpha: 0.8), fontSize: 11, fontWeight: FontWeight.w600),
+                  ),
+                ],
+              ),
             ),
           ],
         ),

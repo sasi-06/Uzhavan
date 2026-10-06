@@ -149,26 +149,32 @@ class ProfileScreen extends StatelessWidget {
                   Text('மொழி / Language', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: textPrimary)),
                 ]),
                 const SizedBox(height: 14),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    _LangBtn(label: 'தமிழ்', code: 'ta', selected: lang == 'ta', isOwner: isOwner, onTap: () {
-                      appState.setLanguage('ta');
-                      TTSService.speak('தமிழ் தேர்ந்தெடுக்கப்பட்டது', lang: 'ta');
-                    }),
-                    _LangBtn(label: 'తెలుగు', code: 'te', selected: lang == 'te', isOwner: isOwner, onTap: () {
-                      appState.setLanguage('te');
-                      TTSService.speak('తెలుగు ఎంచుకోబడింది', lang: 'te');
-                    }),
-                    _LangBtn(label: 'हिंदी', code: 'hi', selected: lang == 'hi', isOwner: isOwner, onTap: () {
-                      appState.setLanguage('hi');
-                      TTSService.speak('हिंदी चुनी गई', lang: 'hi');
-                    }),
-                    _LangBtn(label: 'English', code: 'en', selected: lang == 'en', isOwner: isOwner, onTap: () {
-                      appState.setLanguage('en');
-                      TTSService.speak('English selected', lang: 'en');
-                    }),
-                  ],
+                FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      _LangBtn(label: 'தமிழ்', code: 'ta', selected: lang == 'ta', isOwner: isOwner, onTap: () {
+                        appState.setLanguage('ta');
+                        TTSService.speak('தமிழ் தேர்ந்தெடுக்கப்பட்டது', lang: 'ta');
+                      }),
+                      const SizedBox(width: 8),
+                      _LangBtn(label: 'తెలుగు', code: 'te', selected: lang == 'te', isOwner: isOwner, onTap: () {
+                        appState.setLanguage('te');
+                        TTSService.speak('తెలుగు ఎంచుకోబడింది', lang: 'te');
+                      }),
+                      const SizedBox(width: 8),
+                      _LangBtn(label: 'हिंदी', code: 'hi', selected: lang == 'hi', isOwner: isOwner, onTap: () {
+                        appState.setLanguage('hi');
+                        TTSService.speak('हिंदी चुनी गई', lang: 'hi');
+                      }),
+                      const SizedBox(width: 8),
+                      _LangBtn(label: 'English', code: 'en', selected: lang == 'en', isOwner: isOwner, onTap: () {
+                        appState.setLanguage('en');
+                        TTSService.speak('English selected', lang: 'en');
+                      }),
+                    ],
+                  ),
                 ),
               ],
             ),
@@ -188,8 +194,11 @@ class ProfileScreen extends StatelessWidget {
               context.read<AppState>().logout();
             },
             icon: const Icon(Icons.logout_rounded, size: 24, color: Colors.white),
-            label: const Text('வெளியேறு / Logout',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800, color: Colors.white)),
+            label: const FittedBox(
+              fit: BoxFit.scaleDown,
+              child: Text('வெளியேறு / Logout',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800, color: Colors.white)),
+            ),
           ),
           const SizedBox(height: 40),
         ]),

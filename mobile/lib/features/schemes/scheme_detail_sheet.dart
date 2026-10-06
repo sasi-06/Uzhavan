@@ -226,13 +226,15 @@ class _SchemeDetailSheetState extends State<SchemeDetailSheet> {
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: AppColors.primary,
                                 foregroundColor: Colors.white,
-                                padding: const EdgeInsets.symmetric(vertical: 14),
+                                padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 8),
                                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                               ),
                               icon: const Icon(Icons.open_in_new_rounded, size: 18),
                               label: Text(
                                 t('applyOnline'),
-                                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
                               ),
                               onPressed: () {
                                 openWebWindow(s.applyUrl);
@@ -243,19 +245,21 @@ class _SchemeDetailSheetState extends State<SchemeDetailSheet> {
                             ),
                           ),
                         if (s.applyUrl.isNotEmpty && s.helpline.isNotEmpty)
-                          const SizedBox(width: 12),
+                          const SizedBox(width: 8),
                         if (s.helpline.isNotEmpty)
                           Expanded(
                             child: OutlinedButton.icon(
                               style: OutlinedButton.styleFrom(
-                                padding: const EdgeInsets.symmetric(vertical: 14),
+                                padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 8),
                                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                                 side: const BorderSide(color: AppColors.primary, width: 1.5),
                               ),
                               icon: const Icon(Icons.phone_in_talk_rounded, size: 18, color: AppColors.primary),
                               label: Text(
                                 s.helpline,
-                                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13, color: AppColors.primary),
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12.5, color: AppColors.primary),
                               ),
                               onPressed: () {
                                 ScaffoldMessenger.of(context).showSnackBar(

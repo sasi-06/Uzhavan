@@ -127,13 +127,17 @@ class _OwnerShellState extends State<OwnerShell> {
                     ),
                   ),
                   const SizedBox(width: 8),
-                  const Text(
-                    'Uzhavan Owner',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w900,
-                      fontSize: 18,
-                      letterSpacing: 0.2,
+                  const Flexible(
+                    child: Text(
+                      'Uzhavan Owner',
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w900,
+                        fontSize: 18,
+                        letterSpacing: 0.2,
+                      ),
                     ),
                   ),
                   const SizedBox(width: 10),

@@ -476,14 +476,18 @@ class _DieselAuditDialogState extends State<DieselAuditDialog> {
                         size: 24,
                       ),
                       const SizedBox(width: 8),
-                      Text(
-                        isHigh
-                            ? 'அசாதாரண டீசல் நுகர்வு / High Fuel Alert!'
-                            : (isMod ? 'கவனிக்கத்தக்க வேறுபாடு / Moderate Variance' : 'சரியான நுகர்வு / Normal Consumption'),
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w800,
-                          color: statusColor,
+                      Expanded(
+                        child: Text(
+                          isHigh
+                              ? 'அசாதாரண டீசல் நுகர்வு / High Fuel Alert!'
+                              : (isMod ? 'கவனிக்கத்தக்க வேறுபாடு / Moderate Variance' : 'சரியான நுகர்வு / Normal Consumption'),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w800,
+                            color: statusColor,
+                          ),
                         ),
                       ),
                     ],
@@ -566,9 +570,12 @@ class _DieselAuditDialogState extends State<DieselAuditDialog> {
                 Navigator.pop(context);
               },
               icon: const Icon(Icons.check_rounded, color: Colors.white),
-              label: const Text(
-                'சரிபார்த்தேன் / Confirm & Close',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
+              label: const FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Text(
+                  'சரிபார்த்தேன் / Confirm & Close',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
+                ),
               ),
             ),
           ],

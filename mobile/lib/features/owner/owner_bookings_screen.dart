@@ -354,9 +354,12 @@ class _FarmerLocationModalSheetState extends State<_FarmerLocationModalSheet> {
                   ),
                   onPressed: () => _openDirections(ownerLat, ownerLng, farmerLat, farmerLng),
                   icon: const Icon(Icons.navigation_rounded, color: Colors.white),
-                  label: const Text(
-                    'வழித்தடம் / Directions',
-                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.white),
+                  label: const FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: Text(
+                      'வழித்தடம் / Directions',
+                      style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.white),
+                    ),
                   ),
                 ),
               ),
@@ -371,9 +374,12 @@ class _FarmerLocationModalSheetState extends State<_FarmerLocationModalSheet> {
                     ),
                     onPressed: () {},
                     icon: const Icon(Icons.phone_rounded, color: Colors.white),
-                    label: const Text(
-                      'அழைக்க / Call',
-                      style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.white),
+                    label: const FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Text(
+                        'அழைக்க / Call',
+                        style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.white),
+                      ),
                     ),
                   ),
                 ),
@@ -654,10 +660,13 @@ class _ActiveList extends StatelessWidget {
                       ),
                       onPressed: () => _showFarmerLocationMap(context, b),
                       icon: const Icon(Icons.location_on_rounded, size: 16),
-                      label: Text(
-                        'வரைபடம்: ${b.farmerVillage ?? "Map"}',
-                        style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
-                        overflow: TextOverflow.ellipsis,
+                      label: Flexible(
+                        child: Text(
+                          'வரைபடம்: ${b.farmerVillage ?? "Map"}',
+                          maxLines: 1,
+                          style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+                          overflow: TextOverflow.ellipsis,
+                        ),
                       ),
                     ),
                   ),
@@ -680,10 +689,13 @@ class _ActiveList extends StatelessWidget {
                         );
                       },
                       icon: const Icon(Icons.local_gas_station_rounded, size: 16, color: Color(0xFF16A34A)),
-                      label: const Text(
-                        'டீசல் சரிபார் / Fuel Audit',
-                        style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
-                        overflow: TextOverflow.ellipsis,
+                      label: const Flexible(
+                        child: Text(
+                          'டீசல் சரிபார் / Fuel Audit',
+                          maxLines: 1,
+                          style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+                          overflow: TextOverflow.ellipsis,
+                        ),
                       ),
                     ),
                   ),

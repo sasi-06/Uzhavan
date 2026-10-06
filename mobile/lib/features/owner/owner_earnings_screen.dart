@@ -65,19 +65,22 @@ class _OwnerEarningsScreenState extends State<OwnerEarningsScreen>
               child: Column(children: [
                 const Text('இந்த மாதம் மொத்தம்', style: TextStyle(color: Colors.white70, fontSize: 14, fontWeight: FontWeight.w600)),
                 const SizedBox(height: 12),
-                Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                  Text('₹${_totalThisMonth.toStringAsFixed(0)}',
-                      style: const TextStyle(color: Colors.white, fontSize: 52, fontWeight: FontWeight.w900)),
-                  const SizedBox(width: 12),
-                  GestureDetector(
-                    onTap: _speakTotal,
-                    child: Container(
-                      padding: const EdgeInsets.all(10),
-                      decoration: BoxDecoration(color: Colors.white.withValues(alpha: 0.2), shape: BoxShape.circle),
-                      child: const Icon(Icons.volume_up_rounded, color: Colors.white, size: 24),
+                FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                    Text('₹${_totalThisMonth.toStringAsFixed(0)}',
+                        style: const TextStyle(color: Colors.white, fontSize: 52, fontWeight: FontWeight.w900)),
+                    const SizedBox(width: 12),
+                    GestureDetector(
+                      onTap: _speakTotal,
+                      child: Container(
+                        padding: const EdgeInsets.all(10),
+                        decoration: BoxDecoration(color: Colors.white.withValues(alpha: 0.2), shape: BoxShape.circle),
+                        child: const Icon(Icons.volume_up_rounded, color: Colors.white, size: 24),
+                      ),
                     ),
-                  ),
-                ]),
+                  ]),
+                ),
               ]),
             ),
 

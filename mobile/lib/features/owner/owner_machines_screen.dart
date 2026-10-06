@@ -147,21 +147,21 @@ class _OwnerMachinesScreenState extends State<OwnerMachinesScreen> {
                                       child: Column(
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
-                                          Row(
-                                            children: [
-                                              Text(
-                                                'டிராக்டர் வாங்க 50% அரசு மானியம்',
-                                                style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 13.5,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                          SizedBox(height: 2),
                                           Text(
+                                            'டிராக்டர் வாங்க 50% அரசு மானியம்',
+                                            maxLines: 1,
+                                            overflow: TextOverflow.ellipsis,
+                                            style: const TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 13.5,
+                                            ),
+                                          ),
+                                          const SizedBox(height: 2),
+                                          const Text(
                                             'SMAM திட்டம் & 3% குறைந்த வட்டி AIF கடன்',
+                                            maxLines: 1,
+                                            overflow: TextOverflow.ellipsis,
                                             style: TextStyle(
                                               color: Colors.white70,
                                               fontSize: 11.5,
@@ -181,7 +181,7 @@ class _OwnerMachinesScreenState extends State<OwnerMachinesScreen> {
                               padding: const EdgeInsets.fromLTRB(16, 0, 16, 120),
                               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                                 crossAxisCount: 2, crossAxisSpacing: 12, mainAxisSpacing: 12,
-                                childAspectRatio: 0.62,
+                                childAspectRatio: 0.55,
                               ),
                               itemCount: _machines.length,
                               itemBuilder: (_, i) {

@@ -336,9 +336,12 @@ class _BookingWorkflowTrackerState extends State<BookingWorkflowTracker> {
                 icon: _updating
                     ? const SizedBox(width: 18, height: 18, child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white))
                     : Icon(_steps[activeIndex + 1].icon, size: 20),
-                label: Text(
-                  _getOwnerActionText(activeIndex),
-                  style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                label: FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Text(
+                    _getOwnerActionText(activeIndex),
+                    style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                  ),
                 ),
               ),
             ),
@@ -380,9 +383,12 @@ class _BookingWorkflowTrackerState extends State<BookingWorkflowTracker> {
                 icon: _updating
                     ? const SizedBox(width: 18, height: 18, child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white))
                     : Icon(_steps[activeIndex + 1].icon, size: 20),
-                label: Text(
-                  _getFarmerActionText(activeIndex),
-                  style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                label: FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Text(
+                    _getFarmerActionText(activeIndex),
+                    style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                  ),
                 ),
               ),
             ),

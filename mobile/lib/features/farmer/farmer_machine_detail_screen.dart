@@ -119,10 +119,16 @@ class FarmerMachineDetailScreen extends StatelessWidget {
                       Row(children: [
                         const Icon(Icons.location_on_rounded, size: 16, color: AppColors.textSecondary),
                         const SizedBox(width: 4),
-                        Text(machine.distanceKm != null
-                            ? '${machine.distanceKm!.toStringAsFixed(1)} km உங்களிடம் இருந்து'
-                            : 'தூரம் தெரியவில்லை',
-                            style: const TextStyle(fontSize: 14, color: AppColors.textSecondary)),
+                        Expanded(
+                          child: Text(
+                            machine.distanceKm != null
+                                ? '${machine.distanceKm!.toStringAsFixed(1)} km உங்களிடம் இருந்து'
+                                : 'தூரம் தெரியவில்லை',
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: const TextStyle(fontSize: 14, color: AppColors.textSecondary),
+                          ),
+                        ),
                       ]),
                       const SizedBox(height: 8),
 
@@ -169,6 +175,8 @@ class FarmerMachineDetailScreen extends StatelessWidget {
                                           machine.owner?.name.isNotEmpty == true
                                               ? machine.owner!.name
                                               : 'உரிமையாளர் / Machine Owner',
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
                                           style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w800),
                                         ),
                                       ),
@@ -742,11 +750,14 @@ class _LegendDot extends StatelessWidget {
   final String label;
   @override
   Widget build(BuildContext context) {
-    return Row(children: [
-      Container(width: 8, height: 8, decoration: BoxDecoration(color: color, shape: BoxShape.circle)),
-      const SizedBox(width: 4),
-      Text(label, style: const TextStyle(fontSize: 10, color: AppColors.textSecondary, fontWeight: FontWeight.w600)),
-    ]);
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Container(width: 8, height: 8, decoration: BoxDecoration(color: color, shape: BoxShape.circle)),
+        const SizedBox(width: 4),
+        Text(label, style: const TextStyle(fontSize: 10, color: AppColors.textSecondary, fontWeight: FontWeight.w600)),
+      ],
+    );
   }
 }
 

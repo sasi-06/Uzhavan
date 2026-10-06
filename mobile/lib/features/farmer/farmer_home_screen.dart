@@ -166,6 +166,8 @@ class _FarmerHomeScreenState extends State<FarmerHomeScreen>
                               children: [
                                 Text(
                                   'வணக்கம், ${appState.user?.name ?? 'விவசாயி'} 🙏',
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
                                   style: const TextStyle(
                                     fontSize: 18,
                                     fontWeight: FontWeight.w900,
@@ -485,18 +487,22 @@ class _FarmerHomeScreenState extends State<FarmerHomeScreen>
                               children: [
                                 Row(
                                   children: [
-                                    Text(
-                                      lang == 'ta'
-                                          ? 'அரசு திட்டங்கள் & மானியங்கள்'
-                                          : lang == 'te'
-                                              ? 'ప్రభుత్వ పథకాలు & రాయితీలు'
-                                              : lang == 'hi'
-                                                  ? 'सरकारी योजनाएं एवं सब्सिडी'
-                                                  : 'Govt Schemes & Subsidies',
-                                      style: const TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 14.5,
-                                        fontWeight: FontWeight.w800,
+                                    Flexible(
+                                      child: Text(
+                                        lang == 'ta'
+                                            ? 'அரசு திட்டங்கள் & மானியங்கள்'
+                                            : lang == 'te'
+                                                ? 'ప్రభుత్వ పథకాలు & రాయితీలు'
+                                                : lang == 'hi'
+                                                    ? 'सरकारी योजनाएं एवं सब्सिडी'
+                                                    : 'Govt Schemes & Subsidies',
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: const TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 14.5,
+                                          fontWeight: FontWeight.w800,
+                                        ),
                                       ),
                                     ),
                                     const SizedBox(width: 6),
@@ -863,29 +869,38 @@ class _MachineCard extends StatelessWidget {
                     const SizedBox(height: 6),
                     Row(
                       children: [
-                        Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                          decoration: BoxDecoration(
-                            color: const Color(0xFFF1F5F9),
-                            borderRadius: BorderRadius.circular(6),
-                          ),
-                          child: Row(
-                            children: [
-                              const Icon(Icons.near_me_rounded, size: 11, color: AppColors.textSecondary),
-                              const SizedBox(width: 3),
-                              Text(
-                                machine.distanceKm != null ? '${machine.distanceKm!.toStringAsFixed(1)} km' : '—',
-                                style: const TextStyle(
-                                  fontSize: 11.5,
-                                  fontWeight: FontWeight.w600,
-                                  color: AppColors.textSecondary,
+                        Flexible(
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                            decoration: BoxDecoration(
+                              color: const Color(0xFFF1F5F9),
+                              borderRadius: BorderRadius.circular(6),
+                            ),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                const Icon(Icons.near_me_rounded, size: 11, color: AppColors.textSecondary),
+                                const SizedBox(width: 3),
+                                Flexible(
+                                  child: Text(
+                                    machine.distanceKm != null ? '${machine.distanceKm!.toStringAsFixed(1)} km' : '—',
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: const TextStyle(
+                                      fontSize: 11.5,
+                                      fontWeight: FontWeight.w600,
+                                      color: AppColors.textSecondary,
+                                    ),
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
-                        const SizedBox(width: 8),
-                        const StarRatingWidget(rating: 4.5, starSize: 13),
+                        const SizedBox(width: 6),
+                        const FittedBox(
+                          child: StarRatingWidget(rating: 4.5, starSize: 12),
+                        ),
                         const Spacer(),
                         Container(
                           padding: const EdgeInsets.all(5),

@@ -151,7 +151,10 @@ class _AddMachineFlowScreenState extends State<AddMachineFlowScreen> {
                             side: const BorderSide(color: AppColors.ownerAccent, width: 2),
                             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
                           ),
-                          child: const Text('பின்னே / BACK', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: AppColors.ownerAccent)),
+                          child: const FittedBox(
+                            fit: BoxFit.scaleDown,
+                            child: Text('பின்னே / BACK', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: AppColors.ownerAccent)),
+                          ),
                         ),
                       ),
                     ),
@@ -165,9 +168,12 @@ class _AddMachineFlowScreenState extends State<AddMachineFlowScreen> {
                           backgroundColor: AppColors.ownerAccent,
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
                         ),
-                        child: Text(
-                          _currentStep == 5 ? 'முடிக்க / SUBMIT' : 'அடுத்து / NEXT',
-                          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
+                        child: FittedBox(
+                          fit: BoxFit.scaleDown,
+                          child: Text(
+                            _currentStep == 5 ? 'முடிக்க / SUBMIT' : 'அடுத்து / NEXT',
+                            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
+                          ),
                         ),
                       ),
                     ),
@@ -440,7 +446,10 @@ class _AddMachineFlowScreenState extends State<AddMachineFlowScreen> {
                     foregroundColor: _priceUnit == 'per_hour' ? Colors.white : Colors.black,
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
                   ),
-                  child: const Text('மணிநேரம் / Per Hour', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
+                  child: const FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: Text('மணிநேரம் / Per Hour', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
+                  ),
                 ),
               ),
             ),
@@ -455,7 +464,10 @@ class _AddMachineFlowScreenState extends State<AddMachineFlowScreen> {
                     foregroundColor: _priceUnit == 'per_acre' ? Colors.white : Colors.black,
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
                   ),
-                  child: const Text('ஏக்கர் / Per Acre', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
+                  child: const FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: Text('ஏக்கர் / Per Acre', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
+                  ),
                 ),
               ),
             ),
