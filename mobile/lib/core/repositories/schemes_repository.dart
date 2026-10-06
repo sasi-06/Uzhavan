@@ -2,7 +2,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import '../models/scheme_model.dart';
 
 class SchemesRepository {
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  FirebaseFirestore? get _db {
+    try {
+      return FirebaseFirestore.instance;
+    } catch (_) {
+      return null;
+    }
+  }
 
   /// Real-time stream of schemes from Firestore
   Stream<List<SchemeModel>> streamSchemes({
@@ -10,29 +16,38 @@ class SchemesRepository {
     required String lang, // 'ta', 'te', 'hi', 'en'
     String? category,
   }) {
-    Query query = _firestore.collection('schemes').where('isActive', isEqualTo: true);
-
-    final normalizedRole = role.toUpperCase();
-    if (normalizedRole != 'ALL') {
-      query = query.where('targetRole', whereIn: [normalizedRole, 'BOTH']);
+    final db = _db;
+    if (db == null) {
+      return Stream.value(_getFallbackSchemes(role, lang, category));
     }
 
-    if (category != null && category.isNotEmpty && category != 'ALL') {
-      query = query.where('category', isEqualTo: category);
-    }
+    try {
+      Query query = db.collection('schemes').where('isActive', isEqualTo: true);
 
-    return query.snapshots().map((snapshot) {
-      if (snapshot.docs.isEmpty) {
-        return _getFallbackSchemes(role, lang, category);
+      final normalizedRole = role.toUpperCase();
+      if (normalizedRole != 'ALL') {
+        query = query.where('targetRole', whereIn: [normalizedRole, 'BOTH']);
       }
-      return snapshot.docs.map((doc) {
-        final data = doc.data() as Map<String, dynamic>;
-        return SchemeModel.fromFirestore(data, lang);
-      }).toList();
-    }).handleError((_) {
-      // In case of any Firestore permission/connectivity issues, return fallback
-      return _getFallbackSchemes(role, lang, category);
-    });
+
+      if (category != null && category.isNotEmpty && category != 'ALL') {
+        query = query.where('category', isEqualTo: category);
+      }
+
+      return query.snapshots().map((snapshot) {
+        if (snapshot.docs.isEmpty) {
+          return _getFallbackSchemes(role, lang, category);
+        }
+        return snapshot.docs.map((doc) {
+          final data = doc.data() as Map<String, dynamic>;
+          return SchemeModel.fromFirestore(data, lang);
+        }).toList();
+      }).handleError((_) {
+        // In case of any Firestore permission/connectivity issues, return fallback
+        return _getFallbackSchemes(role, lang, category);
+      });
+    } catch (_) {
+      return Stream.value(_getFallbackSchemes(role, lang, category));
+    }
   }
 
   /// One-time fetch of schemes
@@ -42,7 +57,10 @@ class SchemesRepository {
     String? category,
   }) async {
     try {
-      Query query = _firestore.collection('schemes').where('isActive', isEqualTo: true);
+      final db = _db;
+      if (db == null) return _getFallbackSchemes(role, lang, category);
+
+      Query query = db.collection('schemes').where('isActive', isEqualTo: true);
       final normalizedRole = role.toUpperCase();
       if (normalizedRole != 'ALL') {
         query = query.where('targetRole', whereIn: [normalizedRole, 'BOTH']);
